@@ -25,7 +25,7 @@ namespace Isu.Services
         /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
         public string GetName()
         {
-            return SPECIALIZATION + Course.ToInt() + $"{2:_number}";
+            return SPECIALIZATION + Course.GetNumber() + $"{2:_number}";
         }
     }
 }

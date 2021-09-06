@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Isu.Tools;
 
 namespace Isu.Services
 {
@@ -11,7 +12,7 @@ namespace Isu.Services
             _number = number;
         }
 
-        public int ToInt()
+        public int GetNumber()
         {
             return _number;
         }
