@@ -9,6 +9,8 @@ namespace Isu.Services
 
         public CourseNumber(int number)
         {
+            if (_number < 0)
+                throw new IsuException("Group number must be a positive integer.");
             _number = number;
         }
 
