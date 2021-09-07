@@ -73,10 +73,6 @@ namespace Isu.Services
 
         public void ChangeStudentGroup(Student student, Group newGroup)
         {
-            IEnumerable<Group> groupQuery = from @group in _groups
-                where @group.Students.Contains(student)
-                select @group;
-
             Group containingGroup = _groups.
                 Single(group => group.Students.Contains(student));
 
