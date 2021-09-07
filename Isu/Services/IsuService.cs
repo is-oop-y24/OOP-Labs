@@ -32,22 +32,16 @@ namespace Isu.Services
 
         public Student GetStudent(int id)
         {
-            IEnumerable<Student> result = from @group in _groups
-                from student in @group.Students
-                where student.Id == id
-                select student;
-
-            return result.Single();
+            return _groups.
+                SelectMany(group => @group.Students).
+                Single(student => student.Id == id);
         }
 
         public Student FindStudent(string name)
         {
-            IEnumerable<Student> result = from @group in _groups
-                from student in @group.Students
-                where student.Name == name
-                select student;
-
-            return result.SingleOrDefault();
+            return _groups.
+                SelectMany(group => @group.Students).
+                SingleOrDefault(student => student.Name == name);
         }
 
         public List<Student> FindStudents(string groupName)
@@ -58,30 +52,23 @@ namespace Isu.Services
 
         public List<Student> FindStudents(CourseNumber courseNumber)
         {
-            IEnumerable<Student> result = from @group in _groups
-                where @group.Name.Course == courseNumber
-                from student in @group.Students
-                select student;
-
-            return result.ToList();
+            return _groups.
+                Where(group => group.Name.Course == courseNumber).
+                SelectMany(group => group.Students).
+                ToList();
         }
 
         public Group FindGroup(string groupName)
         {
-            IEnumerable<Group> result = from @group in _groups
-                where @group.Name.GetName() == groupName
-                select @group;
-
-            return result.SingleOrDefault();
+            return _groups.
+                SingleOrDefault(group => group.Name == new GroupName(groupName));
         }
 
         public List<Group> FindGroups(CourseNumber courseNumber)
         {
-            IEnumerable<Group> result = from @group in _groups
-                where @group.Name.Course == courseNumber
-                select @group;
-
-            return result.ToList();
+            return _groups.
+                Where(group => group.Name.Course == courseNumber).
+                ToList();
         }
 
         public void ChangeStudentGroup(Student student, Group newGroup)
@@ -90,7 +77,9 @@ namespace Isu.Services
                 where @group.Students.Contains(student)
                 select @group;
 
-            Group containingGroup = groupQuery.Single();
+            Group containingGroup = _groups.
+                Single(group => group.Students.Contains(student));
+
             containingGroup.DeleteStudent(student);
             newGroup.AddStudent(student);
             student.CurrentGroup = newGroup;
