@@ -9,6 +9,8 @@ namespace Isu.Services
         private const int LENGTH = 5;
         private const string SPECIALIZATION = "M3";
         private int _number;
+        
+        /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
         public GroupName(string groupName)
         {
             if (groupName.Length != LENGTH || groupName[..2] != SPECIALIZATION)
@@ -21,8 +23,7 @@ namespace Isu.Services
         }
 
         public CourseNumber Course { get; }
-
-        /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
+        
         public string GetName()
         {
             return SPECIALIZATION + Course.GetNumber() + $"{2:_number}";
