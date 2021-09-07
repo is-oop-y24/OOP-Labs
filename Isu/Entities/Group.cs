@@ -18,6 +18,7 @@ namespace Isu.Entities
         }
 
         public GroupName Name { get; }
+        public CourseNumber Course => Name.Course;
         public ReadOnlyCollection<Student> Students => _students.AsReadOnly();
 
         public void AddStudent(Student student)

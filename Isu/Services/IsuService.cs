@@ -53,7 +53,7 @@ namespace Isu.Services
         public List<Student> FindStudents(CourseNumber courseNumber)
         {
             return _groups.
-                Where(group => group.Name.Course == courseNumber).
+                Where(group => group.Course == courseNumber).
                 SelectMany(group => group.Students).
                 ToList();
         }
@@ -67,7 +67,7 @@ namespace Isu.Services
         public List<Group> FindGroups(CourseNumber courseNumber)
         {
             return _groups.
-                Where(group => group.Name.Course == courseNumber).
+                Where(group => group.Course == courseNumber).
                 ToList();
         }
 
