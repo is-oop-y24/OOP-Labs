@@ -13,13 +13,18 @@ namespace Isu.Services
         /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
         public GroupName(string groupName)
         {
-            if (groupName.Length != LENGTH || groupName[..2] != SPECIALIZATION)
-                throw new IsuException();
+            if (groupName.Length != LENGTH)
+                throw new IsuException("Group name has incorrect length.");
+            
+            if (groupName[..2] != SPECIALIZATION)
+                throw new IsuException("Specialization is not supported");
+            
             if (!char.IsDigit(groupName[2]))
-                throw new IsuException();
+                throw new IsuException("Third symbol in a group name is not a correct course number.");
             Course = new CourseNumber(groupName[2] - '0');
+            
             if (!int.TryParse(groupName[3..], out _number))
-                throw new IsuException();
+                throw new IsuException("Last two symbols in a group name is not a correct course number.");
         }
 
         public CourseNumber Course { get; }

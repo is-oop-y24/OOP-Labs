@@ -24,7 +24,7 @@ namespace Isu.Entities
         public void AddStudent(Student student)
         {
             if (_students.Count == _maxStudentsCount)
-                throw new IsuException();
+                throw new IsuException("The max students count has been already reached.");
             _students.Add(student);
         }
 
