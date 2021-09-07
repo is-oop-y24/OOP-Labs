@@ -6,17 +6,17 @@ namespace Isu.Services
 {
     public class GroupName
     {
-        private const int LENGTH = 5;
-        private const string SPECIALIZATION = "M3";
+        private const int _maxGroupNameLength = 5;
+        private const string _specialization = "M3";
         private int _number;
 
         /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
         public GroupName(string groupName)
         {
-            if (groupName.Length != LENGTH)
+            if (groupName.Length != _maxGroupNameLength)
                 throw new IsuException("Group name has incorrect length.");
             
-            if (groupName[..2] != SPECIALIZATION)
+            if (groupName[..2] != _specialization)
                 throw new IsuException("Specialization is not supported");
             
             if (!char.IsDigit(groupName[2]))
@@ -31,7 +31,7 @@ namespace Isu.Services
 
         public string GetName()
         {
-            return SPECIALIZATION + Course.GetNumber() + $"{2:_number}";
+            return _specialization + Course.GetNumber() + $"{2:_number}";
         }
     }
 }
