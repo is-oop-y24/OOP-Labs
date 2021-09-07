@@ -5,12 +5,12 @@
         public Student(string name, int id, Group group)
         {
             Name = name;
-            ID = id;
+            Id = id;
             CurrentGroup = group;
         }
 
         public string Name { get; }
-        public int ID { get; }
+        public int Id { get; }
 
         public Group CurrentGroup { get; set; }
     }

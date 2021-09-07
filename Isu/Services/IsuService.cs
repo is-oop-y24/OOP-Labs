@@ -9,7 +9,7 @@ namespace Isu.Services
         private readonly uint _maxStudentsCount;
 
         private readonly List<Group> _groups = new List<Group>();
-        private int _currentID = 1;
+        private int _currentId = 1;
 
         public IsuService(uint maxStudentsCount)
         {
@@ -25,7 +25,7 @@ namespace Isu.Services
 
         public Student AddStudent(Group group, string name)
         {
-            var student = new Student(name, _currentID++, group);
+            var student = new Student(name, _currentId++, group);
             group.AddStudent(student);
             return student;
         }
@@ -34,7 +34,7 @@ namespace Isu.Services
         {
             IEnumerable<Student> result = from @group in _groups
                 from student in @group.Students
-                where student.ID == id
+                where student.Id == id
                 select student;
 
             return result.Single();
