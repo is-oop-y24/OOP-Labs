@@ -15,14 +15,14 @@ namespace Isu.Services
         {
             if (groupName.Length != _maxGroupNameLength)
                 throw new IsuException("Group name has incorrect length.");
-            
+
             if (groupName[..2] != _specialization)
                 throw new IsuException("Specialization is not supported");
-            
+
             if (!char.IsDigit(groupName[2]))
                 throw new IsuException("Third symbol in a group name is not a correct course number.");
             Course = new CourseNumber(groupName[2] - '0');
-            
+
             if (!int.TryParse(groupName[3..], out _number))
                 throw new IsuException("Last two symbols in a group name is not a correct course number.");
         }
