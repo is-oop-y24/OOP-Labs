@@ -32,16 +32,16 @@ namespace Isu.Services
 
         public Student GetStudent(int id)
         {
-            return _groups.
-                SelectMany(group => @group.Students).
-                Single(student => student.Id == id);
+            return _groups
+                .SelectMany(group => @group.Students)
+                .Single(student => student.Id == id);
         }
 
         public Student FindStudent(string name)
         {
-            return _groups.
-                SelectMany(group => @group.Students).
-                SingleOrDefault(student => student.Name == name);
+            return _groups
+                .SelectMany(group => @group.Students)
+                .SingleOrDefault(student => student.Name == name);
         }
 
         public List<Student> FindStudents(string groupName)
@@ -52,29 +52,29 @@ namespace Isu.Services
 
         public List<Student> FindStudents(CourseNumber courseNumber)
         {
-            return _groups.
-                Where(group => group.Course == courseNumber).
-                SelectMany(group => group.Students).
-                ToList();
+            return _groups
+                .Where(group => group.Course == courseNumber)
+                .SelectMany(group => group.Students)
+                .ToList();
         }
 
         public Group FindGroup(string groupName)
         {
-            return _groups.
-                SingleOrDefault(group => group.Name == new GroupName(groupName));
+            return _groups
+                .SingleOrDefault(group => group.Name == new GroupName(groupName));
         }
 
         public List<Group> FindGroups(CourseNumber courseNumber)
         {
-            return _groups.
-                Where(group => group.Course == courseNumber).
-                ToList();
+            return _groups
+                .Where(group => group.Course == courseNumber)
+                .ToList();
         }
 
         public void ChangeStudentGroup(Student student, Group newGroup)
         {
-            Group containingGroup = _groups.
-                Single(group => group.Students.Contains(student));
+            Group containingGroup = _groups
+                .Single(group => group.Students.Contains(student));
 
             containingGroup.DeleteStudent(student);
             newGroup.AddStudent(student);
