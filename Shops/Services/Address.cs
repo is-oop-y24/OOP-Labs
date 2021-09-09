@@ -1,6 +1,6 @@
 ﻿namespace Shops
 {
-    public class ShopAddress
+    public class Address
     {
         
     }
