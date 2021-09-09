@@ -1,6 +1,6 @@
 ﻿namespace Shops
 {
-    public class Consignment
+    public class GoodsSupply
     {
         
     }
