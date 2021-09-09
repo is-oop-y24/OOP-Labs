@@ -4,10 +4,9 @@ namespace Shops
 {
     public class ShopManager : IShopManager
     {
-
         public ShopManager()
         {
-            
+            throw new System.NotImplementedException();
         }
 
         public Shop CreateShop(string shopName, Address shopAddress)
