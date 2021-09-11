@@ -10,11 +10,10 @@ namespace Shops
         public Supply() { }
 
         public ReadOnlyCollection<ProductSupply> ProductSupplies => _products.AsReadOnly();
-        
+
         public void AddProduct(ProductSupply productSupply)
         {
             _products.Add(productSupply);
         }
-        
     }
 }

@@ -6,7 +6,6 @@ namespace Shops
 {
     public class ShopManager : IShopManager
     {
-
         private List<Shop> _shops = new List<Shop>();
         private int _currentShopId = 1;
         public ShopManager() { }

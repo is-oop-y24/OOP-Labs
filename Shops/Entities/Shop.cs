@@ -7,15 +7,14 @@ namespace Shops
 {
     public class Shop
     {
-
         private List<Product> _products = new List<Product>();
-        
+
         public Shop(string name, int shopId)
         {
             Name = name;
             Id = new ShopId(shopId);
         }
-        
+
         public string Name { get; }
         public ShopId Id { get; }
 
@@ -59,7 +58,7 @@ namespace Shops
             {
                 totalCost += productPurchase.Quantity * GetProduct(productPurchase.ProductName).Worth;
             }
-            
+
             return totalCost;
         }
 
@@ -81,10 +80,10 @@ namespace Shops
             if (totalCost > purchase.Customer.Balance)
                 throw new ShopManagerException("Not enough money to buy.");
             purchase.Customer.Balance -= totalCost;
-            
+
             if (!AreProductsEnough(purchase))
                 throw new ShopManagerException("There are not enough products.");
-            
+
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
                 Product product = GetProduct(productPurchase.ProductName);

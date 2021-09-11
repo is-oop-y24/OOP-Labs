@@ -15,7 +15,6 @@ namespace Shops
         public Customer Customer { get; }
         public ReadOnlyCollection<ProductPurchase> ProductPurchases => _productPurchases.AsReadOnly();
 
-
         public void AddProductPurchase(ProductPurchase productPurchase)
         {
             _productPurchases.Add(productPurchase);

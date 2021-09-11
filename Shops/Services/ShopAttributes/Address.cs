@@ -2,7 +2,6 @@
 {
     public class Address
     {
-
         private string _address;
 
         public Address(string address)

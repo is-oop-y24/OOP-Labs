@@ -3,7 +3,7 @@
     public class ShopId
     {
         public int _id;
-        
+
         public ShopId(int id)
         {
             _id = id;
@@ -13,6 +13,5 @@
         {
             return _id;
         }
-        
     }
 }

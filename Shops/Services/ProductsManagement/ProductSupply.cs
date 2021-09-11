@@ -8,7 +8,7 @@ namespace Shops
             Quantity = quantity;
             Worth = worth;
         }
-        
+
         public int Worth { get; }
         public int Quantity { get; }
         public string ProductName { get; }
