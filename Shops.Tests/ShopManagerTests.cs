@@ -12,7 +12,18 @@ namespace Shops.Tests
         {
             _shopManager = new ShopManager();
         }
-        
+
+        [Test]
+        public void MakeSupply_ProductsAreAvailableToBuy()
+        {
+            
+        }
+
+        [Test]
+        public void ChangeProductWorth_WorthHasBeenChanged()
+        {
+            
+        }
         
     }
 }

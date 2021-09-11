@@ -1,4 +1,5 @@
 ﻿using System;
+using Shops.Tools;
 
 namespace Shops
 {
@@ -12,6 +13,9 @@ namespace Shops
 
         public Customer(string name, int balance)
         {
+            if (balance < 0)
+                throw new ShopManagerException("Customer balance cannot be a negative number.");
+            
             Name = name;
             Balance = balance;
         }
