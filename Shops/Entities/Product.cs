@@ -4,9 +4,8 @@ namespace Shops
 {
     public class Product
     {
-        public Product(string name, int worth)
+        public Product(string name)
         {
-            Worth = worth;
             Name = name;
             Quantity = 0;
         }
