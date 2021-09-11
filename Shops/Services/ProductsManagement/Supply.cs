@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 
 namespace Shops
 {
-    public class GoodsSupply
+    public class Supply
     {
         private readonly List<ProductSupply> _products = new List<ProductSupply>();
 
-        public GoodsSupply() { }
+        public Supply() { }
 
         public ReadOnlyCollection<ProductSupply> ProductSupplies => _products.AsReadOnly();
 

@@ -24,7 +24,7 @@ namespace Shops
             throw new NotImplementedException();
         }
 
-        public void GetSupply(GoodsSupply supply)
+        public void GetSupply(Supply supply)
         {
             throw new NotImplementedException();
         }
