@@ -3,9 +3,8 @@ namespace Shops
     public class ProductPurchase
     {
 
-        public ProductPurchase(Customer customer, Product product, int quantity)
+        public ProductPurchase(Product product, int quantity)
         {
-            Customer = customer;
             ProductName = product.Name;
             Quantity = quantity;
         }

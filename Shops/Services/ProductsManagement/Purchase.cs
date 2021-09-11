@@ -7,11 +7,12 @@ namespace Shops
     {
         private readonly List<ProductPurchase> _productPurchases = new List<ProductPurchase>();
 
-        public Purchase()
+        public Purchase(Customer customer)
         {
-            
+            Customer = customer;
         }
 
+        public Customer Customer { get; }
         public ReadOnlyCollection<ProductPurchase> ProductPurchases => _productPurchases.AsReadOnly();
 
 
