@@ -10,10 +10,10 @@ namespace Shops
 
         private List<Product> _products = new List<Product>();
         
-        public Shop(string name, ShopId shopId)
+        public Shop(string name, int shopId)
         {
             Name = name;
-            Id = shopId;
+            Id = new ShopId(shopId);
         }
         
         public string Name { get; }
@@ -52,7 +52,7 @@ namespace Shops
             }
         }
 
-        private int CalculateTotalCost(Purchase purchase)
+        public int CalculateTotalCost(Purchase purchase)
         {
             int totalCost = 0;
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
