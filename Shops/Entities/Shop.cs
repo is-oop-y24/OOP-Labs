@@ -63,6 +63,18 @@ namespace Shops
             return totalCost;
         }
 
+        public bool AreProductsEnough(Purchase purchase)
+        {
+            foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
+            {
+                Product product = GetProduct(productPurchase.ProductName);
+                if (product.Quantity < productPurchase.Quantity)
+                    return false;
+            }
+
+            return true;
+        }
+
         public void BuyProducts(Purchase purchase)
         {
             int totalCost = CalculateTotalCost(purchase);
@@ -70,11 +82,12 @@ namespace Shops
                 throw new ShopManagerException("Not enough money to buy.");
             purchase.Customer.Balance -= totalCost;
             
+            if (!AreProductsEnough(purchase))
+                throw new ShopManagerException("There are not enough products.");
+            
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
                 Product product = GetProduct(productPurchase.ProductName);
-                if (product.Quantity < productPurchase.Quantity)
-                    throw new ShopManagerException($"Product {product.Name} is not enough.");
                 product.Quantity -= productPurchase.Quantity;
             }
         }
