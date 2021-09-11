@@ -6,15 +6,17 @@ namespace Shops
     {
         public Customer(string name)
         {
-            throw new NotImplementedException();
+            Name = name;
+            Balance = 0;
         }
 
-        public Customer(string name, int balance) 
-            : this(name)
+        public Customer(string name, int balance)
         {
-            throw new NotImplementedException();
+            Name = name;
+            Balance = balance;
         }
 
+        public string Name { get; }
         public int Balance { get; set; }
     }
 }
