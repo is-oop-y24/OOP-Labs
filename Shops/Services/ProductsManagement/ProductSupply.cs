@@ -4,7 +4,7 @@ namespace Shops
     {
         private int _quantity;
         private int _worth;
-        private Product Product { get; }
+        public Product Product { get; }
 
         public ProductSupply(Product product, int quantity, int worth)
         {
