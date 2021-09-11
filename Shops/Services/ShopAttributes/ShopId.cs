@@ -2,7 +2,7 @@
 {
     public class ShopId
     {
-        public int _id;
+        private int _id;
 
         public ShopId(int id)
         {
