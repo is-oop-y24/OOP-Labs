@@ -12,8 +12,7 @@ namespace Shops
             ProductName = product.Name;
             Quantity = quantity;
         }
-
-        public Customer Customer { get; }
+        
         public string ProductName { get; }
 
         public int Quantity
