@@ -4,17 +4,28 @@ namespace Shops
 {
     public class ProductPurchase
     {
+
+        private int _quantity;
+        
         public ProductPurchase(Product product, int quantity)
         {
-            if (quantity < 0)
-                throw new ShopManagerException("Product quantity cannot be a negative number");
-
             ProductName = product.Name;
             Quantity = quantity;
         }
 
         public Customer Customer { get; }
         public string ProductName { get; }
-        public int Quantity { get; }
+
+        public int Quantity
+        {
+            get => _quantity;
+            private init
+            {
+                if (value < 0)
+                    throw new ShopManagerException("Product quantity cannot be a negative number");
+                _quantity = value;
+            }
+            
+    }
     }
 }

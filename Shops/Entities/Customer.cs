@@ -5,6 +5,9 @@ namespace Shops
 {
     public class Customer
     {
+
+        private int _balance;
+        
         public Customer(string name)
         {
             Name = name;
@@ -13,14 +16,21 @@ namespace Shops
 
         public Customer(string name, int balance)
         {
-            if (balance < 0)
-                throw new ShopManagerException("Customer balance cannot be a negative number.");
-
             Name = name;
             Balance = balance;
         }
 
         public string Name { get; }
-        public int Balance { get; set; }
+
+        public int Balance
+        {
+            get => _balance;
+            set
+            {
+                if (value < 0)
+                    throw new ShopManagerException("Customer balance cannot be a negative number.");
+                _balance = value;
+            }
+        }
     }
 }
