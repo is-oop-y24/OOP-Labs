@@ -8,7 +8,7 @@ namespace Shops
         {
             if (quantity < 0)
                 throw new ShopManagerException("Product quantity cannot be a negative number");
-            
+
             ProductName = product.Name;
             Quantity = quantity;
         }

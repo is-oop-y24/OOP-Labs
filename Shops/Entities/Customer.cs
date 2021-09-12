@@ -15,7 +15,7 @@ namespace Shops
         {
             if (balance < 0)
                 throw new ShopManagerException("Customer balance cannot be a negative number.");
-            
+
             Name = name;
             Balance = balance;
         }
