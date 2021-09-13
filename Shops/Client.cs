@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using Shops.Commands;
 using Shops.Tools;
 using Spectre.Console.Cli;
 
@@ -18,8 +19,11 @@ namespace Shops
         {
             var registrar = new TypeRegistrar(_services);
             var app = new CommandApp(registrar);
-            
+            app.Configure(config =>
+                {
+                    config.AddCommand<AddShopCommand>("/add-shop");
+                });
+            app.Run(Console.ReadLine().Split());
         }
-        
     }
 }
