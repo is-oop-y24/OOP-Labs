@@ -79,11 +79,10 @@ namespace Shops
             int totalCost = CalculateTotalCost(purchase);
             if (totalCost > purchase.Customer.Balance)
                 throw new ShopManagerException("Not enough money to buy.");
-            purchase.Customer.Balance -= totalCost;
-
             if (!AreProductsEnough(purchase))
                 throw new ShopManagerException("There are not enough products.");
 
+            purchase.Customer.Balance -= totalCost;
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
                 Product product = GetProduct(productPurchase.ProductName);
