@@ -22,12 +22,11 @@ namespace Shops
         {
             if (_products.Exists(product => product.Name == productName))
                 throw new ShopManagerException($"The product {productName} is already registered.");
-            
+
             var product = new Product(productName);
             _products.Add(product);
             _shops.ForEach(shop => shop.RegisterProduct(productName));
             return product;
-            
         }
 
         // Returns the Shop list because shopName is not unique.
