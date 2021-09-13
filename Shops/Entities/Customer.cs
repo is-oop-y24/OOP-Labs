@@ -24,7 +24,7 @@ namespace Shops
         public int Balance
         {
             get => _balance;
-            set
+            internal set
             {
                 if (value < 0)
                     throw new ShopManagerException("Customer balance cannot be a negative number.");
