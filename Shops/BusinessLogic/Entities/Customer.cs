@@ -31,5 +31,13 @@ namespace Shops
                 _balance = value;
             }
         }
+        
+        public Purchase CurrentPurchase { get; private set; }
+
+        public Purchase NewPurchase()
+        {
+            CurrentPurchase = new Purchase(this);
+            return CurrentPurchase;
+        }
     }
 }

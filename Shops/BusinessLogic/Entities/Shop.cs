@@ -17,6 +17,13 @@ namespace Shops
 
         public string Name { get; }
         public ShopId Id { get; }
+        public Supply CurrentSupply { get; private set; }
+
+        public Supply NewSupply()
+        {
+            CurrentSupply = new Supply();
+            return CurrentSupply;
+        }
 
         public Product RegisterProduct(string name)
         {
