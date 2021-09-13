@@ -1,5 +1,7 @@
 using System;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Shops.Commands;
 using Shops.Tools;
 using Spectre.Console.Cli;
@@ -8,11 +10,19 @@ namespace Shops
 {
     public class Client
     {
-        private ServiceCollection _services;
+        private ServiceCollection _services = new ServiceCollection();
 
-        public Client(ServiceCollection services)
+        public Client(IShopManager shopManager, IUserInterface userInterface)
         {
-            _services = services;
+            _services.Add(new ServiceDescriptor(
+                typeof(IShopManager),
+                shopManager.GetType(),
+                ServiceLifetime.Singleton));
+
+            _services.Add(new ServiceDescriptor(
+                typeof(IUserInterface),
+                userInterface.GetType(),
+                ServiceLifetime.Singleton));
         }
 
         public void Run()
@@ -23,7 +33,10 @@ namespace Shops
                 {
                     config.AddCommand<AddShopCommand>("/add-shop");
                 });
-            app.Run(Console.ReadLine().Split());
+
+            int executionResult = 0;
+            while (executionResult == 0)
+                executionResult = app.Run(Console.ReadLine().Split());
         }
     }
 }

@@ -6,9 +6,7 @@ namespace Shops
     {
         private static void Main()
         {
-            var services = new ServiceCollection();
-            services.AddSingleton<IShopManager, ShopManager>();
-            new Client(services).Run();
+            new Client(new ShopManager(), new ConsoleUI()).Run();
         }
     }
 }
