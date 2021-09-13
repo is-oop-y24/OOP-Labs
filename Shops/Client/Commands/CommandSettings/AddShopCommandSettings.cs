@@ -7,7 +7,7 @@ namespace Shops.Commands
         [CommandArgument(0, "[shopName]")]
         public string ShopName { get; init; }
 
-        [CommandArgument(0, "[shopAddress]")]
+        [CommandArgument(1, "[shopAddress]")]
         public string ShopAddress { get; init; }
     }
 }
