@@ -27,8 +27,8 @@ namespace Shops.Tests
             const int productsToBuy = 2;
 
             Shop shop = _shopManager.CreateShop("Lenta", new Address("Belorusskaya"));
-            Product milk = shop.RegisterProduct("milk");
-            Product bread = shop.RegisterProduct("bread");
+            Product milk = _shopManager.RegisterProduct("milk");
+            Product bread = _shopManager.RegisterProduct("bread");
             
             var supply = new Supply();
             supply.AddProduct(new ProductSupply(bread, breadCount, breadWorth));
@@ -120,7 +120,7 @@ namespace Shops.Tests
             const int finiteBalance = 500;
             
             Shop shop = _shopManager.CreateShop("shop", new Address("address"));
-            Product product = shop.RegisterProduct("product");
+            Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
             supply.AddProduct(new ProductSupply(product, initialQuantity, productWorth));
@@ -144,7 +144,7 @@ namespace Shops.Tests
             const int customerBalance = 400;
 
             Shop shop = _shopManager.CreateShop("shop", new Address("address"));
-            Product product = shop.RegisterProduct("product");
+            Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
             supply.AddProduct(new ProductSupply(product, productQuantity, productWorth));
@@ -169,7 +169,7 @@ namespace Shops.Tests
             const int customerBalance = 1000;
 
             Shop shop = _shopManager.CreateShop("shop", new Address("address"));
-            Product product = shop.RegisterProduct("product");
+            Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
             supply.AddProduct(new ProductSupply(product, productQuantity, productWorth));
