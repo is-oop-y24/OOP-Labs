@@ -20,9 +20,6 @@ namespace Shops
 
         public Product RegisterProduct(string name)
         {
-            if (_products.Exists(product => product.Name == name))
-                throw new ShopManagerException($"The product {name} is already registered.");
-
             var product = new Product(name);
             _products.Add(product);
             return product;
