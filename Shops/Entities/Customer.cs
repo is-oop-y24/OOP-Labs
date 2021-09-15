@@ -6,6 +6,7 @@ namespace Shops
     public class Customer
     {
         private int _balance;
+        private Purchase _currentPurchase;
 
         public Customer(string name)
         {
@@ -20,6 +21,18 @@ namespace Shops
         }
 
         public string Name { get; }
+
+        public Purchase CurrentPurchase
+        {
+            get => _currentPurchase ?? throw new ShopManagerException("Purchase is not created;");
+            private set => _currentPurchase = value;
+        }
+
+        public Purchase NewPurchase()
+        {
+            CurrentPurchase = new Purchase(this);
+            return CurrentPurchase;
+        }
 
         public int Balance
         {
