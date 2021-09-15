@@ -10,6 +10,16 @@ namespace Shops
             AnsiConsole.WriteLine(message);
         }
 
+        public void WriteError(string errorMessage)
+        {
+            AnsiConsole.Markup($"[red]{errorMessage}[/]");;
+        }
+
+        public void ShowTable(Table table)
+        {
+            AnsiConsole.Render(table);
+        }
+
         public string ReadLine()
         {
             return Console.ReadLine();
