@@ -1,12 +1,13 @@
 using System;
+using Spectre.Console;
 
 namespace Shops
 {
-    public class ConsoleUI : IUserInterface
+    public class AnsiConsoleUI : IUserInterface
     {
         public void WriteLine(string message)
         {
-            Console.WriteLine(message);
+            AnsiConsole.WriteLine(message);
         }
 
         public string ReadLine()

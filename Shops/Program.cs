@@ -6,7 +6,7 @@ namespace Shops
     {
         private static void Main()
         {
-            new Client(new ShopManager(), new ConsoleUI()).Run();
+            new Client(new ShopManager(), new AnsiConsoleUI()).Run();
         }
     }
 }
