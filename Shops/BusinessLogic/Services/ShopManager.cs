@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Shops.Tools;
 
@@ -10,6 +11,9 @@ namespace Shops
         private List<Product> _products = new List<Product>();
         private int _currentShopId = 1;
         public ShopManager() { }
+
+
+        public ReadOnlyCollection<Product> Products => _products.AsReadOnly();
 
         public Shop CreateShop(string shopName, Address shopAddress)
         {
