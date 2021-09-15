@@ -1,4 +1,5 @@
 using System;
+using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Shops.Commands
@@ -16,7 +17,14 @@ namespace Shops.Commands
 
         public override int Execute(CommandContext context, ProductListCommandSettings settings)
         {
-            throw new NotImplementedException();
+            var table = new Table();
+            table.AddColumn("Product name");
+            foreach (Product product in _shopManager.Products)
+            {
+                table.AddRow(product.Name);
+            }
+            _userInterface.ShowTable(table);
+            return 0;
         }
     }
 }

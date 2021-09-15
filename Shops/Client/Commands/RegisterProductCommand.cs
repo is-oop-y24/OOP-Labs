@@ -17,7 +17,9 @@ namespace Shops.Commands
 
         public override int Execute(CommandContext context, RegisterProductCommandSettings settings)
         {
-            throw new NotImplementedException();
+            _shopManager.RegisterProduct(settings.ProductName);
+            _userInterface.WriteLine($"Product {settings.ProductName} is successfully registered");
+            return 0;
         }
     }
 }
