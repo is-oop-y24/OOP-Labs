@@ -6,13 +6,13 @@ namespace Shops.Commands
     {
         [CommandArgument(0, "[shopName]")]
         public int ShopId { get; init; }
-        
+
         [CommandArgument(1, "[productName]")]
         public string ProductName { get; init; }
-        
+
         [CommandArgument(2, "productWorth")]
         public int ProductWorth { get; init; }
-        
+
         [CommandArgument(3, "[quantity]")]
         public int Quantity { get; init; }
     }

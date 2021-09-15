@@ -12,7 +12,7 @@ namespace Shops.Commands
             _shopManager = shopManager;
             _userInterface = userInterface;
         }
-        
+
         public override int Execute(CommandContext context, MakeSupplyCommandSettings settings)
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));

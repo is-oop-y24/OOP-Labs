@@ -12,7 +12,6 @@ namespace Shops
         private int _currentShopId = 1;
         public ShopManager() { }
 
-
         public ReadOnlyCollection<Product> Products => _products.AsReadOnly();
 
         public Shop CreateShop(string shopName, Address shopAddress)

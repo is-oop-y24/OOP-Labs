@@ -9,7 +9,7 @@ namespace Shops
     {
         private List<Product> _products = new List<Product>();
         private Supply _currentSupply;
-        
+
         public Shop(string name, int shopId)
         {
             Name = name;
@@ -29,7 +29,7 @@ namespace Shops
             CurrentSupply = new Supply();
             return CurrentSupply;
         }
-        
+
         public Product RegisterProduct(string name)
         {
             var product = new Product(name);

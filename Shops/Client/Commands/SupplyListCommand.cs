@@ -3,7 +3,6 @@ using Spectre.Console.Cli;
 namespace Shops.Commands
 {
     public class SupplyListCommand : Command<SupplyListCommandSettings>
-        
     {
         private readonly IShopManager _shopManager;
         private readonly IUserInterface _userInterface;

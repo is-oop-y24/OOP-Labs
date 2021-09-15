@@ -28,12 +28,6 @@ namespace Shops
             private set => _currentPurchase = value;
         }
 
-        public Purchase NewPurchase()
-        {
-            CurrentPurchase = new Purchase(this);
-            return CurrentPurchase;
-        }
-
         public int Balance
         {
             get => _balance;
@@ -44,6 +38,11 @@ namespace Shops
                 _balance = value;
             }
         }
-        
+
+        public Purchase NewPurchase()
+        {
+            CurrentPurchase = new Purchase(this);
+            return CurrentPurchase;
+        }
     }
 }

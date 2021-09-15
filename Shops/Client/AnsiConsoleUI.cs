@@ -12,7 +12,7 @@ namespace Shops
 
         public void WriteError(string errorMessage)
         {
-            AnsiConsole.Markup($"[red]{errorMessage}[/]");;
+            AnsiConsole.Markup($"[red]{errorMessage}[/]");
         }
 
         public void ShowTable(Table table)

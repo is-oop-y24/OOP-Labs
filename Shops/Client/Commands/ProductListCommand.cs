@@ -23,6 +23,7 @@ namespace Shops.Commands
             {
                 table.AddRow(product.Name);
             }
+
             _userInterface.ShowTable(table);
             return 0;
         }

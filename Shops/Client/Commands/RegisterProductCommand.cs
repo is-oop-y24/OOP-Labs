@@ -14,7 +14,6 @@ namespace Shops.Commands
             _userInterface = userInterface;
         }
 
-
         public override int Execute(CommandContext context, RegisterProductCommandSettings settings)
         {
             _shopManager.RegisterProduct(settings.ProductName);
