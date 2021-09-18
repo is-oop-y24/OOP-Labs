@@ -6,6 +6,7 @@ namespace Shops
     public interface IShopManager
     {
         ReadOnlyCollection<Product> Products { get; }
+        ReadOnlyCollection<Shop> Shops { get; }
 
         Shop CreateShop(string shopName, Address shopAddress);
         Product RegisterProduct(string productName);
