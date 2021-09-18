@@ -26,9 +26,15 @@ namespace Shops
             app.Configure(config =>
                 {
                     config.AddCommand<AddShopCommand>("/add-shop");
-                    config.AddCommand<RegisterProductCommand>("/register-product");
-                    config.AddCommand<ProductListCommand>("/product-list");
                     config.AddCommand<AddToPurchaseCommand>("/add-to-purchase");
+                    config.AddCommand<AddToSupplyCommand>("/add-to-supply");
+                    config.AddCommand<BuyCommand>("/buy");
+                    config.AddCommand<MakeSupplyCommand>("/make-supply");
+                    config.AddCommand<ProductListCommand>("/product-list");
+                    config.AddCommand<PurchaseListCommand>("/purchase-list");
+                    config.AddCommand<RegisterProductCommand>("/register-product");
+                    config.AddCommand<ShopListCommand>("/shop-list");
+                    config.AddCommand<SupplyListCommand>("/supply-list");
                 });
 
             while (true)
