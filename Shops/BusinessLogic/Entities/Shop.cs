@@ -14,6 +14,7 @@ namespace Shops
             Name = name;
             Id = new ShopId(shopId);
             Address = shopAddress;
+            NewSupply();
         }
 
         public string Name { get; }

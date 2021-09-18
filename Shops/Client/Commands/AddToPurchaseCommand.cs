@@ -17,9 +17,6 @@ namespace Shops.Commands
 
         public override int Execute(CommandContext context, AddToPurchaseCommandSettings settings)
         {
-            if (_customer.CurrentPurchase == null)
-                _customer.NewPurchase();
-
             _customer.CurrentPurchase.AddProductPurchase(
                 new ProductPurchase(new ProductId(settings.ProductId), settings.Quantity));
             _userInterface.WriteLine($"Product {settings.ProductId} successfully added to purchase.");

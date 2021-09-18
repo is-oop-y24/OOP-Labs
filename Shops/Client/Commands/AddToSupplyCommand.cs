@@ -18,8 +18,6 @@ namespace Shops.Commands
         public override int Execute(CommandContext context, AddToSupplyCommandSettings settings)
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
-            if (shop.CurrentSupply == null)
-                shop.NewSupply();
             shop.CurrentSupply.AddProduct(new ProductSupply(
                 new ProductId(settings.ProductId), settings.Quantity, settings.ProductWorth));
             _userInterface.WriteLine($"Product {settings.ProductId} is successfully added to {shop.Name} supply");

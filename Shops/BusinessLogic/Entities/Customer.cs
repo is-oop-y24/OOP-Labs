@@ -17,6 +17,7 @@ namespace Shops
         {
             Name = name;
             Balance = balance;
+            NewPurchase();
         }
 
         public string Name { get; }
