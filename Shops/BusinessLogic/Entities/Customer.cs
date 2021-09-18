@@ -14,7 +14,8 @@ namespace Shops
             NewPurchase();
         }
 
-        public Customer(string name, int balance) : this(name)
+        public Customer(string name, int balance)
+            : this(name)
         {
             Balance = balance;
         }

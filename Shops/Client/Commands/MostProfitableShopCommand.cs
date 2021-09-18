@@ -21,7 +21,7 @@ namespace Shops.Commands
         {
             Shop shop = _shopManager.GetMostProfitableShop(_customer.CurrentPurchase);
             _userInterface.WriteLine($"The most profitable shop is {shop.Name} with ID: {shop.Id.GetIntId()}.");
-            
+
             return 0;
         }
     }
