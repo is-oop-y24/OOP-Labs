@@ -10,14 +10,16 @@ namespace Shops
         private List<Product> _products = new List<Product>();
         private Supply _currentSupply;
 
-        public Shop(string name, int shopId)
+        public Shop(string name, int shopId, Address shopAddress)
         {
             Name = name;
             Id = new ShopId(shopId);
+            Address = shopAddress;
         }
 
         public string Name { get; }
         public ShopId Id { get; }
+        public Address Address { get; }
         public Supply CurrentSupply
         {
             get => _currentSupply ?? throw new ShopManagerException("Supply is not created.");

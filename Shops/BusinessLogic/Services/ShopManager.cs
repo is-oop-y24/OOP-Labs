@@ -14,10 +14,11 @@ namespace Shops
         public ShopManager() { }
 
         public ReadOnlyCollection<Product> Products => _products.AsReadOnly();
+        public ReadOnlyCollection<Shop> Shops => _shops.AsReadOnly();
 
         public Shop CreateShop(string shopName, Address shopAddress)
         {
-            var shop = new Shop(shopName, _currentShopId++);
+            var shop = new Shop(shopName, _currentShopId++, shopAddress);
             _shops.Add(shop);
             return shop;
         }
