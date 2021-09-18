@@ -18,10 +18,11 @@ namespace Shops.Commands
         public override int Execute(CommandContext context, ProductListCommandSettings settings)
         {
             var table = new Table();
-            table.AddColumn("Product name");
+            table.AddColumn("ID");
+            table.AddColumn("Name");
             foreach (Product product in _shopManager.Products)
             {
-                table.AddRow(product.Name);
+                table.AddRow(product.Id.GetId().ToString(), product.Name);
             }
 
             _userInterface.ShowTable(table);
