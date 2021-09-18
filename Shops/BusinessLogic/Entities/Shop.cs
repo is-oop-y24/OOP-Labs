@@ -30,9 +30,9 @@ namespace Shops
             return CurrentSupply;
         }
 
-        public Product RegisterProduct(string name)
+        public Product RegisterProduct(string name, ProductId productId)
         {
-            var product = new Product(name);
+            var product = new Product(name, productId);
             _products.Add(product);
             return product;
         }

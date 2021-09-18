@@ -10,6 +10,7 @@ namespace Shops
         private List<Shop> _shops = new List<Shop>();
         private List<Product> _products = new List<Product>();
         private int _currentShopId = 1;
+        private int _curentproductId = 1;
         public ShopManager() { }
 
         public ReadOnlyCollection<Product> Products => _products.AsReadOnly();
@@ -26,9 +27,10 @@ namespace Shops
             if (_products.Exists(product => product.Name == productName))
                 throw new ShopManagerException($"The product {productName} is already registered.");
 
-            var product = new Product(productName);
+            var productId = new ProductId(_curentproductId++);
+            var product = new Product(productName, productId);
             _products.Add(product);
-            _shops.ForEach(shop => shop.RegisterProduct(productName));
+            _shops.ForEach(shop => shop.RegisterProduct(productName, productId));
             return product;
         }
 
