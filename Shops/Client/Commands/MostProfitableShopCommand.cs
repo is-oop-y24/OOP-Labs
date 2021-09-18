@@ -28,6 +28,7 @@ namespace Shops.Commands
             {
                 _userInterface.WriteError(e.Message);
             }
+
             return 0;
         }
     }

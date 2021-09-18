@@ -29,7 +29,7 @@ namespace Shops.Commands
             {
                 _userInterface.WriteLine(e.Message);
             }
-            
+
             return 0;
         }
     }
