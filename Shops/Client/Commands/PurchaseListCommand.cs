@@ -26,6 +26,7 @@ namespace Shops.Commands
                 table.AddRow(productPurchase.ProductId.GetId().ToString(),
                     productPurchase.Quantity.ToString());
             }
+            _userInterface.ShowTable(table);
             return 0;
         }
     }
