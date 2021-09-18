@@ -23,9 +23,11 @@ namespace Shops.Commands
             table.AddColumn("Supply quantity");
             foreach (ProductPurchase productPurchase in _customer.CurrentPurchase.ProductPurchases)
             {
-                table.AddRow(productPurchase.ProductId.GetId().ToString(),
+                table.AddRow(
+                    productPurchase.ProductId.GetId().ToString(),
                     productPurchase.Quantity.ToString());
             }
+
             _userInterface.ShowTable(table);
             return 0;
         }

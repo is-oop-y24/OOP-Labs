@@ -25,10 +25,12 @@ namespace Shops.Commands
 
             foreach (ProductSupply productSupply in shop.CurrentSupply.ProductSupplies)
             {
-                table.AddRow(productSupply.ProductId.GetId().ToString(),
+                table.AddRow(
+                    productSupply.ProductId.GetId().ToString(),
                     productSupply.Quantity.ToString(),
                     productSupply.Worth.ToString());
             }
+
             _userInterface.ShowTable(table);
 
             return 0;

@@ -25,6 +25,7 @@ namespace Shops.Commands
             {
                 table.AddRow(shop.Id.GetIntId().ToString(), shop.Name, shop.Address.GetAddressString());
             }
+
             _userInterface.ShowTable(table);
             return 0;
         }
