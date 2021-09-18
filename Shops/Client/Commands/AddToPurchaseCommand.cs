@@ -22,6 +22,7 @@ namespace Shops.Commands
 
             _customer.CurrentPurchase.AddProductPurchase(
                 new ProductPurchase(new ProductId(settings.ProductId), settings.Quantity));
+            _userInterface.WriteLine($"Product {settings.ProductId} successfully added to purchase.");
             return 0;
         }
     }

@@ -19,6 +19,7 @@ namespace Shops.Commands
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
             shop.BuyProducts(_customer.CurrentPurchase);
+            _userInterface.WriteLine($"Purchase successfully made.\n Your balance now {_customer.Balance}");
             return 0;
         }
     }
