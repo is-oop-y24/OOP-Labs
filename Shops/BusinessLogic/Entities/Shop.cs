@@ -8,7 +8,6 @@ namespace Shops
     public class Shop
     {
         private List<Product> _products = new List<Product>();
-        private Supply _currentSupply;
 
         public Shop(string name, int shopId, Address shopAddress)
         {
@@ -20,11 +19,7 @@ namespace Shops
         public string Name { get; }
         public ShopId Id { get; }
         public Address Address { get; }
-        public Supply CurrentSupply
-        {
-            get => _currentSupply ?? throw new ShopManagerException("Supply is not created.");
-            private set => _currentSupply = value;
-        }
+        public Supply CurrentSupply { get; private set; }
 
         public Supply NewSupply()
         {
