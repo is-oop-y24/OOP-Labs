@@ -1,3 +1,5 @@
+using System;
+using Shops.Tools;
 using Spectre.Console.Cli;
 
 namespace Shops.Commands
@@ -18,8 +20,16 @@ namespace Shops.Commands
         public override int Execute(CommandContext context, BuyCommandSettings settings)
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
-            shop.BuyProducts(_customer.CurrentPurchase);
-            _userInterface.WriteLine($"Purchase successfully made.\n Your balance now {_customer.Balance}");
+            try
+            {
+                shop.BuyProducts(_customer.CurrentPurchase);
+                _userInterface.WriteLine($"Purchase successfully made.\n Your balance now {_customer.Balance}");
+            }
+            catch (ShopManagerException e)
+            {
+                _userInterface.WriteLine(e.Message);
+            }
+            
             return 0;
         }
     }
