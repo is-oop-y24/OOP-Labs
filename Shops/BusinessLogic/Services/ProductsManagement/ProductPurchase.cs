@@ -6,13 +6,13 @@ namespace Shops
     {
         private int _quantity;
 
-        public ProductPurchase(Product product, int quantity)
+        public ProductPurchase(ProductId productId, int quantity)
         {
-            ProductName = product.Name;
+            ProductId = productId;
             Quantity = quantity;
         }
 
-        public string ProductName { get; }
+        public ProductId ProductId { get; }
 
         public int Quantity
         {

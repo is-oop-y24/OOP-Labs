@@ -7,9 +7,9 @@ namespace Shops
         private int _quantity;
         private int _worth;
 
-        public ProductSupply(Product product, int quantity, int worth)
+        public ProductSupply(ProductId productId, int quantity, int worth)
         {
-            ProductName = product.Name;
+            ProductId = productId;
             Quantity = quantity;
             Worth = worth;
         }
@@ -37,5 +37,6 @@ namespace Shops
         }
 
         public string ProductName { get; }
+        public ProductId ProductId { get; }
     }
 }

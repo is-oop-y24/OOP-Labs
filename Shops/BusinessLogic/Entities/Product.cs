@@ -14,7 +14,6 @@ namespace Shops
         public int Worth { get; set; }
         public int Quantity { get; internal set; }
         public string Name { get; }
-
         public ProductId Id { get; }
     }
 }

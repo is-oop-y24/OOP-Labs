@@ -17,8 +17,8 @@ namespace Shops.Commands
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
             shop.CurrentSupply.AddProduct(new ProductSupply(
-                shop.GetProduct(settings.ProductName), settings.Quantity, settings.ProductWorth));
-            _userInterface.WriteLine($"Product {settings.ProductName} is successfully added to {shop.Name} supply");
+                new ProductId(settings.ProductId), settings.Quantity, settings.ProductWorth));
+            _userInterface.WriteLine($"Product {settings.ProductId} is successfully added to {shop.Name} supply");
             return 0;
         }
     }

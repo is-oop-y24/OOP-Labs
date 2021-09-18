@@ -42,11 +42,11 @@ namespace Shops
             return _products.Find(product => product.Name == name);
         }
 
-        public Product GetProduct(string name)
+        public Product GetProduct(ProductId productId)
         {
-            Product product = FindProduct(name);
+            Product product = _products.Find(product => product.Id.GetId() == productId.GetId());
             if (product == null)
-                throw new ShopManagerException($"The product {name} is not found.");
+                throw new ShopManagerException($"The product {productId} is not found.");
             return product;
         }
 
@@ -54,7 +54,7 @@ namespace Shops
         {
             foreach (ProductSupply productSupply in supply.ProductSupplies)
             {
-                Product product = GetProduct(productSupply.ProductName);
+                Product product = GetProduct(productSupply.ProductId);
                 product.Worth = productSupply.Worth;
                 product.Quantity += productSupply.Quantity;
             }
@@ -65,7 +65,7 @@ namespace Shops
             int totalCost = 0;
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
-                totalCost += productPurchase.Quantity * GetProduct(productPurchase.ProductName).Worth;
+                totalCost += productPurchase.Quantity * GetProduct(productPurchase.ProductId).Worth;
             }
 
             return totalCost;
@@ -75,7 +75,7 @@ namespace Shops
         {
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
-                Product product = GetProduct(productPurchase.ProductName);
+                Product product = GetProduct(productPurchase.ProductId);
                 if (product.Quantity < productPurchase.Quantity)
                     return false;
             }
@@ -94,7 +94,7 @@ namespace Shops
             purchase.Customer.Balance -= totalCost;
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
-                Product product = GetProduct(productPurchase.ProductName);
+                Product product = GetProduct(productPurchase.ProductId);
                 product.Quantity -= productPurchase.Quantity;
             }
         }
