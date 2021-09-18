@@ -1,3 +1,4 @@
+using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Shops.Commands
@@ -15,7 +16,17 @@ namespace Shops.Commands
 
         public override int Execute(CommandContext context, ShopListCommandSettings settings)
         {
-            throw new System.NotImplementedException();
+            var table = new Table();
+            table.AddColumn("Shop ID");
+            table.AddColumn("Name");
+            table.AddColumn("Address");
+
+            foreach (Shop shop in _shopManager.Shops)
+            {
+                table.AddRow(shop.Id.GetIntId().ToString(), shop.Name, shop.Address.GetAddressString());
+            }
+            _userInterface.ShowTable(table);
+            return 0;
         }
     }
 }
