@@ -4,7 +4,7 @@ namespace Shops.Commands
 {
     public class AddToPurchaseCommandSettings : CommandSettings
     {
-        [CommandArgument(0, "[shopName]")]
+        [CommandArgument(0, "[shopId]")]
         public int ShopId { get; init; }
 
         [CommandArgument(1, "[productId]")]

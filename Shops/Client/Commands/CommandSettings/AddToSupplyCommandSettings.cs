@@ -10,7 +10,7 @@ namespace Shops.Commands
         [CommandArgument(1, "[productName]")]
         public int ProductId { get; init; }
 
-        [CommandArgument(2, "productWorth")]
+        [CommandArgument(2, "[productWorth]")]
         public int ProductWorth { get; init; }
 
         [CommandArgument(3, "[quantity]")]
