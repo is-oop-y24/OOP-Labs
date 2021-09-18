@@ -11,6 +11,8 @@ namespace Shops
 
         public Shop(string name, int shopId, Address shopAddress)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ShopManagerException("Shop name cannot be empty.");
             Name = name;
             Id = new ShopId(shopId);
             Address = shopAddress;

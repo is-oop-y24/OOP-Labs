@@ -1,4 +1,5 @@
 ﻿using System;
+using Shops.Tools;
 
 namespace Shops
 {
@@ -6,6 +7,8 @@ namespace Shops
     {
         public Product(string name, ProductId id)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ShopManagerException("Product name cannot be empty");
             Name = name;
             Id = id;
             Quantity = 0;

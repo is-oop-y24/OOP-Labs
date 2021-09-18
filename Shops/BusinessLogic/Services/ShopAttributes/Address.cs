@@ -1,4 +1,7 @@
-﻿namespace Shops
+﻿using System;
+using Shops.Tools;
+
+namespace Shops
 {
     public class Address
     {
@@ -6,6 +9,8 @@
 
         public Address(string address)
         {
+            if (string.IsNullOrWhiteSpace(address))
+                throw new ShopManagerException("Address cannot be empty.");
             _address = address;
         }
 

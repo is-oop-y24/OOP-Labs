@@ -11,13 +11,12 @@ namespace Shops
         {
             Name = name;
             Balance = 0;
+            NewPurchase();
         }
 
-        public Customer(string name, int balance)
+        public Customer(string name, int balance) : this(name)
         {
-            Name = name;
             Balance = balance;
-            NewPurchase();
         }
 
         public string Name { get; }
