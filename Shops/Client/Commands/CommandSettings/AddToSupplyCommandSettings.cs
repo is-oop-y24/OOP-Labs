@@ -4,10 +4,10 @@ namespace Shops.Commands
 {
     public class AddToSupplyCommandSettings : CommandSettings
     {
-        [CommandArgument(0, "[shopName]")]
+        [CommandArgument(0, "[shopId]")]
         public int ShopId { get; init; }
 
-        [CommandArgument(1, "[productName]")]
+        [CommandArgument(1, "[productId]")]
         public int ProductId { get; init; }
 
         [CommandArgument(2, "[productWorth]")]
