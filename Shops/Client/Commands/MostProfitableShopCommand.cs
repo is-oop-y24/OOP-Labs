@@ -19,16 +19,9 @@ namespace Shops.Commands
 
         public override int Execute(CommandContext context, MostProfitableShopCommandSettings settings)
         {
-            try
-            {
-                Shop shop = _shopManager.GetMostProfitableShop(_customer.CurrentPurchase);
-                _userInterface.WriteLine($"The most profitable shop is {shop.Name} with ID: {shop.Id}.");
-            }
-            catch (ShopManagerException e)
-            {
-                _userInterface.WriteError(e.Message);
-            }
-
+            Shop shop = _shopManager.GetMostProfitableShop(_customer.CurrentPurchase);
+            _userInterface.WriteLine($"The most profitable shop is {shop.Name} with ID: {shop.Id.GetIntId()}.");
+            
             return 0;
         }
     }

@@ -20,16 +20,9 @@ namespace Shops.Commands
         public override int Execute(CommandContext context, BuyCommandSettings settings)
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
-            try
-            {
-                shop.BuyProducts(_customer.CurrentPurchase);
-                _userInterface.WriteLine($"Purchase successfully made.\n Your balance now {_customer.Balance}");
-            }
-            catch (ShopManagerException e)
-            {
-                _userInterface.WriteLine(e.Message);
-            }
-
+            shop.BuyProducts(_customer.CurrentPurchase);
+            _userInterface.WriteLine($"Purchase successfully made.\n Your balance now {_customer.Balance}");
+            
             return 0;
         }
     }
