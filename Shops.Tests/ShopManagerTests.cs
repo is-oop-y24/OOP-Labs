@@ -31,14 +31,14 @@ namespace Shops.Tests
             Product bread = _shopManager.RegisterProduct("bread");
             
             var supply = new Supply();
-            supply.AddProduct(new ProductSupply(bread, breadCount, breadWorth));
-            supply.AddProduct(new ProductSupply(milk, milkCount, milkWorth));
+            supply.AddProduct(new ProductSupply(new ProductId(1), milkCount, milkWorth));
+            supply.AddProduct(new ProductSupply(new ProductId(2), breadCount, breadWorth));
             shop.MakeSupply(supply);
 
             var customer = new Customer("Misha", customerBalance);
             var purchase = new Purchase(customer);
-            purchase.AddProductPurchase(new ProductPurchase(milk, productsToBuy));
-            purchase.AddProductPurchase(new ProductPurchase(bread, productsToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productsToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(2), productsToBuy));
             shop.BuyProducts(purchase);
         }
 
@@ -49,10 +49,10 @@ namespace Shops.Tests
             const int finiteWorth = 200;
             
             Shop shop = _shopManager.CreateShop("shop", new Address("address"));
-            Product milk = shop.RegisterProduct("milk");
+            Product milk = shop.RegisterProduct("milk", new ProductId(1));
             milk.Worth = initialWorth;
-            Assert.AreEqual(initialWorth, shop.GetProduct("milk").Worth);
-            shop.GetProduct("milk").Worth = finiteWorth;
+            Assert.AreEqual(initialWorth, shop.GetProduct(new ProductId(1)).Worth);
+            shop.GetProduct(new ProductId(1)).Worth = finiteWorth;
             Assert.AreEqual(milk.Worth, finiteWorth);
 
         }
@@ -70,15 +70,15 @@ namespace Shops.Tests
             foreach (int num in Enumerable.Range(1, 5))
             {
                 shops.Add(_shopManager.CreateShop($"shop_{num}", new Address($"address_{num}")));
-                Product product = shops[num - 1].RegisterProduct(productName);
+                Product product = shops[num - 1].RegisterProduct(productName, new ProductId(1));
                 var supply = new Supply();
-                supply.AddProduct(new ProductSupply(product, productQuantity, num));
+                supply.AddProduct(new ProductSupply(new ProductId(1), productQuantity, num));
                 shops[num - 1].MakeSupply(supply);
             }
 
             Shop mostProfitableShop = shops[0];
             var purchase = new Purchase(new Customer("Misha", customerBalance));
-            purchase.AddProductPurchase(new ProductPurchase(new Product(productName), productToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productToBuy));
 
             Assert.AreEqual(mostProfitableShop, _shopManager.GetMostProfitableShop(purchase));
         }
@@ -94,14 +94,14 @@ namespace Shops.Tests
             foreach (int num in Enumerable.Range(1, 5))
             {
                 Shop shop = _shopManager.CreateShop($"shop_{num}", new Address($"address_{num}"));
-                Product product = shop.RegisterProduct(productName);
+                Product product = shop.RegisterProduct(productName, new ProductId(1));
                 var supply = new Supply();
-                supply.AddProduct(new ProductSupply(product, productQuantity, num));
+                supply.AddProduct(new ProductSupply(new ProductId(1), productQuantity, num));
                 shop.MakeSupply(supply);
             }
 
             var purchase = new Purchase(new Customer("Misha", customerBalance));
-            purchase.AddProductPurchase(new ProductPurchase(new Product(productName), productToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productToBuy));
 
             Assert.Catch<ShopManagerException>(() =>
             {
@@ -123,15 +123,15 @@ namespace Shops.Tests
             Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
-            supply.AddProduct(new ProductSupply(product, initialQuantity, productWorth));
+            supply.AddProduct(new ProductSupply(new ProductId(1), initialQuantity, productWorth));
             shop.MakeSupply(supply);
 
             var customer = new Customer("Misha", initialBalance);
             var purchase = new Purchase(customer);
-            purchase.AddProductPurchase(new ProductPurchase(product, productsToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productsToBuy));
             shop.BuyProducts(purchase);
             
-            Assert.AreEqual(finiteQuantity, product.Quantity);
+            Assert.AreEqual(finiteQuantity, shop.GetProduct(new ProductId(1)).Quantity);
             Assert.AreEqual(finiteBalance, customer.Balance);
         }
 
@@ -147,12 +147,12 @@ namespace Shops.Tests
             Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
-            supply.AddProduct(new ProductSupply(product, productQuantity, productWorth));
+            supply.AddProduct(new ProductSupply(new ProductId(1), productQuantity, productWorth));
             shop.MakeSupply(supply);
 
             var customer = new Customer("Misha", customerBalance);
             var purchase = new Purchase(customer);
-            purchase.AddProductPurchase(new ProductPurchase(product, productsToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productsToBuy));
 
             Assert.Catch<ShopManagerException>(() =>
             {
@@ -172,12 +172,12 @@ namespace Shops.Tests
             Product product = _shopManager.RegisterProduct("product");
 
             var supply = new Supply();
-            supply.AddProduct(new ProductSupply(product, productQuantity, productWorth));
+            supply.AddProduct(new ProductSupply(new ProductId(1), productQuantity, productWorth));
             shop.MakeSupply(supply);
 
             var customer = new Customer("Misha", customerBalance);
             var purchase = new Purchase(customer);
-            purchase.AddProductPurchase(new ProductPurchase(product, productsToBuy));
+            purchase.AddProductPurchase(new ProductPurchase(new ProductId(1), productsToBuy));
 
             Assert.Catch<ShopManagerException>(() =>
             {
