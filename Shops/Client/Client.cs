@@ -30,6 +30,7 @@ namespace Shops
                     config.AddCommand<AddToSupplyCommand>("/add-to-supply");
                     config.AddCommand<BuyCommand>("/buy");
                     config.AddCommand<MakeSupplyCommand>("/make-supply");
+                    config.AddCommand<MostProfitableShopCommand>("/most-profitable-shop");
                     config.AddCommand<ProductListCommand>("/product-list");
                     config.AddCommand<PurchaseListCommand>("/purchase-list");
                     config.AddCommand<RegisterProductCommand>("/register-product");
