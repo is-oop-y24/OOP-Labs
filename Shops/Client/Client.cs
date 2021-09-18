@@ -16,6 +16,7 @@ namespace Shops
             var services = new ServiceCollection();
             services.AddScoped(typeof(IUserInterface), typeof(AnsiConsoleUI));
             services.AddSingleton(typeof(IShopManager), new ShopManager());
+            services.AddSingleton(typeof(Customer), new Customer("Customer"));
             ServiceProvider provider = services.BuildServiceProvider();
 
             IUserInterface userInterface = provider.GetService<IUserInterface>();
@@ -27,6 +28,7 @@ namespace Shops
                     config.AddCommand<AddShopCommand>("/add-shop");
                     config.AddCommand<RegisterProductCommand>("/register-product");
                     config.AddCommand<ProductListCommand>("/product-list");
+                    config.AddCommand<AddToPurchaseCommand>("/add-to-purchase");
                 });
 
             while (true)
