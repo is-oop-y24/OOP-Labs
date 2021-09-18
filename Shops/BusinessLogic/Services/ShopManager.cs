@@ -47,7 +47,7 @@ namespace Shops
         public Shop GetShop(ShopId shopId)
         {
             return _shops
-                .Where(shop => shop.Id == shopId)
+                .Where(shop => shop.Id.GetIntId() == shopId.GetIntId())
                 .Select(shop => shop)
                 .Single();
         }
