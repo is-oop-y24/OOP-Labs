@@ -27,7 +27,7 @@ namespace Shops
                 {
                     config.AddCommand<AddShopCommand>("/add-shop");
                     config.AddCommand<AddToPurchaseCommand>("/add-to-purchase");
-                    config.AddCommand<AddToSupplyCommand>("/add-to-supply");
+                    config.AddCommand<MakeSupplyCommand>("/add-to-supply");
                     config.AddCommand<BuyCommand>("/buy");
                     config.AddCommand<MakeSupplyCommand>("/make-supply");
                     config.AddCommand<MostProfitableShopCommand>("/most-profitable-shop");
@@ -35,7 +35,6 @@ namespace Shops
                     config.AddCommand<PurchaseListCommand>("/purchase-list");
                     config.AddCommand<RegisterProductCommand>("/register-product");
                     config.AddCommand<ShopListCommand>("/shop-list");
-                    config.AddCommand<SupplyListCommand>("/supply-list");
                 });
 
             while (true)

@@ -1,3 +1,5 @@
+using System;
+using Shops.Tools;
 using Spectre.Console.Cli;
 
 namespace Shops.Commands
@@ -16,8 +18,10 @@ namespace Shops.Commands
         public override int Execute(CommandContext context, MakeSupplyCommandSettings settings)
         {
             Shop shop = _shopManager.GetShop(new ShopId(settings.ShopId));
-            shop.MakeSupply(shop.CurrentSupply);
-            _userInterface.WriteLine($"Supply in shop {shop.Name} is successfully made.");
+            var supply = new Supply();
+            supply.AddProduct(new ProductSupply(
+                new ProductId(settings.ProductId), settings.Quantity, settings.ProductWorth));
+            _userInterface.WriteLine($"Product {settings.ProductId} is successfully supplied to {shop.Name}.");
             return 0;
         }
     }
