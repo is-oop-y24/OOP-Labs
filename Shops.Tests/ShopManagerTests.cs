@@ -50,9 +50,13 @@ namespace Shops.Tests
             
             Shop shop = _shopManager.CreateShop("shop", new Address("address"));
             Product milk = shop.RegisterProduct("milk", new ProductId(1));
-            milk.Worth = initialWorth;
+            var supply = new Supply();
+            supply.AddProduct(new ProductSupply(milk.Id, 1, initialWorth));
+            shop.MakeSupply(supply);
             Assert.AreEqual(initialWorth, shop.GetProduct(milk.Id).Worth);
-            shop.GetProduct(milk.Id).Worth = finiteWorth;
+            var supply2 = new Supply();
+            supply2.AddProduct(new ProductSupply(milk.Id, 1, finiteWorth));
+            shop.MakeSupply(supply2);
             Assert.AreEqual(milk.Worth, finiteWorth);
 
         }
