@@ -75,9 +75,16 @@ namespace Shops
         {
             foreach (ProductPurchase productPurchase in purchase.ProductPurchases)
             {
-                Product product = GetProduct(productPurchase.ProductId);
-                if (product.Quantity < productPurchase.Quantity)
+                try
+                {
+                    Product product = GetProduct(productPurchase.ProductId);
+                    if (product.Quantity < productPurchase.Quantity)
+                        return false;
+                }
+                catch (ShopManagerException)
+                {
                     return false;
+                }
             }
 
             return true;
