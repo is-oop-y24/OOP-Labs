@@ -56,7 +56,7 @@ namespace IsuExtra
         public List<Student> GetRegisteredStudents()
         {
             return _profiles
-                .Where(profile => profile.GsaGroups.Count == 2)
+                .Where(profile => profile.GsaGroups.Count >= 1)
                 .Select(profile => profile.Student)
                 .ToList();
         }

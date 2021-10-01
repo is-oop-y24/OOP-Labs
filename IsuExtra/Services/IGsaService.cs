@@ -9,6 +9,7 @@ namespace IsuExtra
     {
         ReadOnlyCollection<GsaCourse> GsaCourses { get; }
 
+        public GsaProfile CreateProfile(Student student, Shedule shedule);
         void AddGsa(MfTag mfTag, string name);
         void SignStudent(GsaProfile gsaProfile, GsaGroup gsaGroup);
         void CancelRegistration(GsaProfile gsaProfile, GsaGroup gsaGroup);
