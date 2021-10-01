@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Isu.Entities;
 using Isu.Services;
@@ -10,6 +11,8 @@ namespace IsuExtra
     {
         private readonly List<GsaCourse> _courses = new List<GsaCourse>();
         private readonly List<GsaProfile> _profiles = new List<GsaProfile>();
+
+        public ReadOnlyCollection<GsaCourse> GsaCourses => _courses.AsReadOnly();
 
         public void AddGsa(MfTag mfTag, string name)
         {
