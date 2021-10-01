@@ -11,7 +11,7 @@ namespace IsuExtra
         public void AddLesson(Lesson lesson)
         {
             if (_lessons.Exists(@lesson => @lesson.IsCrossed(lesson)))
-                throw new Exception("New lesson crosses current shedule.");
+                throw new GsaException("New lesson crosses current shedule.");
 
             _lessons.Add(lesson);
         }
