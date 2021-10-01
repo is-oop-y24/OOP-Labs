@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Isu.Entities;
 using Isu.Services;
 
@@ -19,25 +20,47 @@ namespace IsuExtra
         {
             if (_profiles.Exists(profile => profile.Student.Id == student.Id))
                 throw new Exception("Student profile is already exist.");
-
+            
             GsaProfile profile = new GsaProfile(student, shedule);
             _profiles.Add(profile);
             return profile;
         }
 
-        public void SignStudent(Student student, GsaGroup gsaGroup)
+        public void SignStudent(GsaProfile gsaProfile, GsaGroup gsaGroup)
         {
+            if (gsaProfile.GsaGroups.Count == 2)
+                throw new Exception("Student cannot be registered for more than 2 courses.");
+            if (gsaProfile.GsaGroups.FirstOrDefault(@group => @group.Course == group.Course) != null)
+                throw new Exception("Student is already registered to another group of this course.");
+            if (gsaProfile.Student.CurrentGroup.Name.MfTag == gsaGroup.Course.MfTag)
+                throw new Exception("Student cannot register to his faculty's GSA.");
+            if (gsaProfile.Shedule.IsCrossed(gsaGroup.Shedule))
+                throw new Exception("Student's shedule is crossed with group's shedule.");
             
+            gsaGroup.AddStudent(gsaProfile);
+            gsaProfile.RegisterToGroup(gsaGroup);
         }
 
-        public void CancelRegistration(Student student, GsaGroup gsaGroup)
+        public void CancelRegistration(GsaProfile gsaProfile, GsaGroup gsaGroup)
         {
-            throw new System.NotImplementedException();
+            if (!gsaProfile.GsaGroups.Contains(gsaGroup))
+                throw new Exception("Student is not registered to this group");
+
+            gsaProfile.CancelRegistration(gsaGroup);
+            gsaGroup.RemoveStudent(gsaProfile);
+        }
+
+        public List<Student> GetRegisteredStudents()
+        {
+            return _profiles
+                .Where(profile => profile.GsaGroups.Count == 2)
+                .Select(profile => profile.Student)
+                .ToList();
         }
 
         public List<Student> NotRegisteredStudents(Group @group)
         {
-            throw new System.NotImplementedException();
+            return group.Students.Except(GetRegisteredStudents()).ToList();
         }
     }
 }

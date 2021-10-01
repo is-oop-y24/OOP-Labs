@@ -20,7 +20,12 @@ namespace IsuExtra
         internal void AddStudent(GsaProfile gsaProfile)
         {
             _students.Add(gsaProfile.Student);
-        } 
+        }
+
+        internal void RemoveStudent(GsaProfile gsaProfile)
+        {
+            _students.Remove(gsaProfile.Student);
+        }
         
         public string Name { get; }
         public ReadOnlyCollection<Student> Students => _students.AsReadOnly();
