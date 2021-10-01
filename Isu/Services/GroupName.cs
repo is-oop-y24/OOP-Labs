@@ -32,7 +32,7 @@ namespace Isu.Services
         }
 
         public CourseNumber Course { get; }
-        
+
         public MfTag MfTag { get; }
 
         public string GetName()

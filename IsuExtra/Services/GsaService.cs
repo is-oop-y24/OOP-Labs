@@ -10,7 +10,7 @@ namespace IsuExtra
     {
         private readonly List<GsaCourse> _courses = new List<GsaCourse>();
         private readonly List<GsaProfile> _profiles = new List<GsaProfile>();
-        
+
         public void AddGsa(MfTag mfTag, string name)
         {
             _courses.Add(new GsaCourse(mfTag, name));
@@ -20,7 +20,7 @@ namespace IsuExtra
         {
             if (_profiles.Exists(profile => profile.Student.Id == student.Id))
                 throw new Exception("Student profile is already exist.");
-            
+
             GsaProfile profile = new GsaProfile(student, shedule);
             _profiles.Add(profile);
             return profile;
@@ -36,7 +36,7 @@ namespace IsuExtra
                 throw new Exception("Student cannot register to his faculty's GSA.");
             if (gsaProfile.Shedule.IsCrossed(gsaGroup.Shedule))
                 throw new Exception("Student's shedule is crossed with group's shedule.");
-            
+
             gsaGroup.AddStudent(gsaProfile);
             gsaProfile.RegisterToGroup(gsaGroup);
         }

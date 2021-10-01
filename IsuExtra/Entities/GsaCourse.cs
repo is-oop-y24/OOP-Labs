@@ -16,6 +16,10 @@ namespace IsuExtra
             Name = name;
         }
 
+        public string Name { get; }
+        public MfTag MfTag { get; }
+        public ReadOnlyCollection<GsaGroup> Groups => _groups.AsReadOnly();
+
         public void AddGroup(string courseName, Shedule shedule)
         {
             _groups.Add(new GsaGroup(courseName, course: this, shedule));
@@ -27,9 +31,5 @@ namespace IsuExtra
                 .SelectMany(@group => @group.Students)
                 .ToList();
         }
-        
-        public string Name { get; }
-        public MfTag MfTag { get; }
-        public ReadOnlyCollection<GsaGroup> Groups => _groups.AsReadOnly();
     }
 }

@@ -6,7 +6,7 @@ namespace IsuExtra
         {
             Number = number;
         }
-        
+
         public string Number { get; }
     }
 }

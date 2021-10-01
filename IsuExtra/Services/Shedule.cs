@@ -12,14 +12,14 @@ namespace IsuExtra
         {
             if (_lessons.Exists(@lesson => @lesson.IsCrossed(lesson)))
                 throw new Exception("New lesson crosses current shedule.");
-            
+
             _lessons.Add(lesson);
         }
+
         public bool IsCrossed(Shedule other)
         {
             return _lessons.Exists(
-                lesson => other._lessons.Exists(otherLesson => otherLesson.IsCrossed(lesson))
-                );
+                lesson => other._lessons.Exists(otherLesson => otherLesson.IsCrossed(lesson)));
         }
     }
 }

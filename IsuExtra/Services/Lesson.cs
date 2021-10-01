@@ -8,12 +8,12 @@ namespace IsuExtra
             Time = time;
         }
 
+        public string Name { get; }
+        public TimeInterval Time { get; }
+
         public bool IsCrossed(Lesson other)
         {
             return Time.IsCrossed(other.Time);
         }
-        
-        public string Name { get; }
-        public TimeInterval Time { get; }
     }
 }

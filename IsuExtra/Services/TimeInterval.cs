@@ -15,8 +15,8 @@ namespace IsuExtra
 
         public bool IsCrossed(TimeInterval otherTime)
         {
-            return otherTime._startTime >= _startTime && otherTime._startTime <= _finishTime ||
-                   otherTime._finishTime >= _startTime && otherTime._finishTime <= _finishTime;
+            return (otherTime._startTime >= _startTime && otherTime._startTime <= _finishTime) ||
+                   (otherTime._finishTime >= _startTime && otherTime._finishTime <= _finishTime);
         }
     }
 }

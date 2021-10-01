@@ -17,6 +17,11 @@ namespace IsuExtra
             Shedule = shedule;
         }
 
+        public string Name { get; }
+        public ReadOnlyCollection<Student> Students => _students.AsReadOnly();
+        public GsaCourse Course { get; }
+        public Shedule Shedule { get; }
+
         internal void AddStudent(GsaProfile gsaProfile)
         {
             _students.Add(gsaProfile.Student);
@@ -26,10 +31,5 @@ namespace IsuExtra
         {
             _students.Remove(gsaProfile.Student);
         }
-        
-        public string Name { get; }
-        public ReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        public GsaCourse Course { get; }
-        public Shedule Shedule { get; }
     }
 }

@@ -8,8 +8,6 @@ namespace IsuExtra
 {
     public class GsaProfile
     {
-        public Student Student { get; }
-        public Shedule Shedule { get; }
         private readonly List<GsaGroup> _gsaGroups = new List<GsaGroup>();
 
         public GsaProfile(Student student, Shedule shedule)
@@ -17,6 +15,10 @@ namespace IsuExtra
             Student = student;
             Shedule = shedule;
         }
+
+        public ReadOnlyCollection<GsaGroup> GsaGroups => _gsaGroups.AsReadOnly();
+        public Student Student { get; }
+        public Shedule Shedule { get; }
 
         internal void RegisterToGroup(GsaGroup gsaGroup)
         {
@@ -27,7 +29,5 @@ namespace IsuExtra
         {
             _gsaGroups.Remove(gsaGroup);
         }
-
-        public ReadOnlyCollection<GsaGroup> GsaGroups => _gsaGroups.AsReadOnly();
     }
 }
