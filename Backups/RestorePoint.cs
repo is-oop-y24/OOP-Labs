@@ -22,5 +22,12 @@ namespace Backups
             storage.Process();
             _storages.Add(storage);
         }
+        
+        public void AddStorage(JobObject jobObject)
+        {
+            var storage = new Storage(_path, new StorageId(_storageId++), jobObject);
+            storage.Process();
+            _storages.Add(storage);
+        }
     }
 }

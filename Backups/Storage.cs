@@ -17,7 +17,14 @@ namespace Backups
             _jobObjects.InsertRange(0, jobObjects);
         }
 
-        public void Process()
+        public Storage(string backupPath, StorageId storageId, JobObject jobObject)
+        {
+            _path = backupPath;
+            _id = storageId;
+            _jobObjects.Add(jobObject);
+        }
+
+        internal void Process()
         {
             throw new NotImplementedException();
         }
