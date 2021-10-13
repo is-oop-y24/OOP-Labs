@@ -17,10 +17,9 @@ namespace Backups
         
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
 
-        public void AddFile(string filePath)
+        public void AddFile(JobObject jobObject)
         {
-            _jobObjects.Add(
-                new JobObject(filePath));
+            _jobObjects.Add(jobObject);
         }
 
         public void MakeRestorePoint()

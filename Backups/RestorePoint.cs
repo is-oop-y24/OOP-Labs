@@ -7,7 +7,7 @@ namespace Backups
     {
         private readonly List<Storage> _storages = new List<Storage>();
         private readonly string _path;
-        private int _storageId = 1;
+        private int _currentStorageId = 1;
 
         public RestorePoint(string path)
         {
@@ -18,14 +18,14 @@ namespace Backups
 
         public void AddStorage(List<JobObject> jobObjects)
         {
-            var storage = new Storage(_path, new StorageId(_storageId++), jobObjects);
+            var storage = new Storage(_path, new StorageId(_currentStorageId++), jobObjects);
             storage.Process();
             _storages.Add(storage);
         }
         
         public void AddStorage(JobObject jobObject)
         {
-            var storage = new Storage(_path, new StorageId(_storageId++), jobObject);
+            var storage = new Storage(_path, new StorageId(_currentStorageId++), jobObject);
             storage.Process();
             _storages.Add(storage);
         }
