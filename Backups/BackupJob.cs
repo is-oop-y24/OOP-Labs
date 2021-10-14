@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Backups.FileSystem;
 
 namespace Backups
 {
@@ -8,11 +9,13 @@ namespace Backups
     {
         private readonly List<JobObject> _jobObjects = new List<JobObject>();
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
+        private readonly IFileRepository _fileRepository;
         private readonly string _jobPath;
 
-        public BackupJob(string jobPath)
+        public BackupJob(string jobPath, IFileRepository fileRepository)
         {
             _jobPath = jobPath;
+            _fileRepository = fileRepository;
         }
         
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
@@ -24,7 +27,7 @@ namespace Backups
 
         public void MakeRestorePoint()
         {
-            var restorePoint = new RestorePoint(_jobPath);
+            var restorePoint = new RestorePoint(Path.Combine(_jobPath, DateTime.Now.ToString()), _fileRepository);
             switch (StorageMode)
             {
                 case StorageMode.SingleStorage:
