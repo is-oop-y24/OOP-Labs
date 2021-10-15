@@ -17,9 +17,9 @@ namespace Backups.FileSystem
 
         public string Name => _name.GetName();
 
-        public MemoryStream GetMemoryStream()
+        public ReadOnlySpan<byte> GetBytes()
         {
-            return new MemoryStream(_content, writable: false);
+            return _content;
         }
     }
 }

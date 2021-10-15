@@ -23,7 +23,7 @@ namespace Backups
             using var memoryStream = new MemoryStream();
             foreach (File file in _files)
             {
-                using MemoryStream fileMemoryStream = file.GetMemoryStream();
+                using var fileMemoryStream = new MemoryStream(file.GetBytes().ToArray());
                 byte[] offsetBytes = BitConverter.GetBytes(fileMemoryStream.Length);
                 memoryStream.Write(offsetBytes);
                 fileMemoryStream.CopyTo(memoryStream);
