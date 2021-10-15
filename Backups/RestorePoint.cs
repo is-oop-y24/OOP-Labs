@@ -17,7 +17,7 @@ namespace Backups
             _path = path;
             _fileRepository = fileRepository;
         }
-        
+
         public DateTime Date { get; }
 
         public void AddStorage(List<JobObject> jobObjects)
@@ -26,7 +26,7 @@ namespace Backups
             storage.Process();
             _storages.Add(storage);
         }
-        
+
         public void AddStorage(JobObject jobObject)
         {
             var storage = new Storage(_path, jobObject, _fileRepository, new FileName(_currentStorageId++.ToString()));

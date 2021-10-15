@@ -17,7 +17,7 @@ namespace Backups
             _jobPath = jobPath;
             _fileRepository = fileRepository;
         }
-        
+
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
 
         public void AddFile(JobObject jobObject)
@@ -37,6 +37,7 @@ namespace Backups
                     _jobObjects.ForEach(jobObject => restorePoint.AddStorage(jobObject));
                     break;
             }
+
             _restorePoints.Add(restorePoint);
         }
     }
