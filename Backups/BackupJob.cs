@@ -27,7 +27,8 @@ namespace Backups
 
         public void MakeRestorePoint()
         {
-            var restorePoint = new RestorePoint(Path.Combine(_jobPath, DateTime.Now.ToString()), _fileRepository);
+            var date = DateTime.Now;
+            var restorePoint = new RestorePoint(Path.Combine(_jobPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}]"), _fileRepository);
             switch (StorageMode)
             {
                 case StorageMode.SingleStorage:
