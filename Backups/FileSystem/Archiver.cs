@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Backups.FileSystem;
 using Microsoft.Win32.SafeHandles;
 using File = Backups.FileSystem.File;
@@ -23,7 +24,7 @@ namespace Backups
             using var memoryStream = new MemoryStream();
             foreach (File file in _files)
             {
-                using var fileMemoryStream = new MemoryStream(file.GetBytes().ToArray());
+                using var fileMemoryStream = new MemoryStream(file.Content.ToArray());
                 byte[] offsetBytes = BitConverter.GetBytes(fileMemoryStream.Length);
                 memoryStream.Write(offsetBytes);
                 fileMemoryStream.CopyTo(memoryStream);

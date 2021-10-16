@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Backups;
 using Backups.FileSystem;
 using File = Backups.FileSystem.File;
@@ -26,7 +27,7 @@ namespace Isu
             string absFilePath = Path.Combine(absDirPath, file.Name);
             Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
-            fileStream.Write(file.GetBytes());
+            fileStream.Write(file.Content.ToArray());
         }
 
         public File GetFile(string filePath)

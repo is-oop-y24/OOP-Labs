@@ -4,6 +4,7 @@ using System.IO;
 
 namespace Backups.FileSystem
 {
+    [Serializable]
     public class File
     {
         private readonly byte[] _content;
@@ -16,10 +17,6 @@ namespace Backups.FileSystem
         }
 
         public string Name => _name.GetName();
-
-        public ReadOnlySpan<byte> GetBytes()
-        {
-            return _content;
-        }
+        public ReadOnlyCollection<byte> Content => Array.AsReadOnly(_content);
     }
 }
