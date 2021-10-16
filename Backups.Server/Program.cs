@@ -8,7 +8,7 @@ namespace Backups.Server
     {
         static void Main(string[] args)
         {
-            
+            new Server().Configure().Run();
         }
     }
 }
