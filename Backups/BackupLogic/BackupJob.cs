@@ -21,9 +21,15 @@ namespace Backups
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
         public string Name { get; }
 
-        public void AddFile(JobObject jobObject)
+        public void AddObject(JobObject jobObject)
         {
             _jobObjects.Add(jobObject);
+        }
+
+        public void DeleteObject(string jobName)
+        {
+            if (_jobObjects.RemoveAll(job => job.Name == jobName) == 0)
+                throw new BackupException("File doesnt exist.");
         }
 
         public void MakeRestorePoint()

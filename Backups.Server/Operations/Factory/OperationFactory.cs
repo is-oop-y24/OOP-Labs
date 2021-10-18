@@ -23,6 +23,10 @@ namespace Backups.Server
                     return new ObserveFileOperation(_services.GetService<IBackup>(), request.RequestData);
                 case RequestType.UploadFile:
                     return new UploadFileOperation(_services.GetService<IFileRepository>(), request.RequestData);
+                case RequestType.CreateJob:
+                    return new CreateJobOperation(_services.GetService<IBackup>(), request.RequestData);
+                case RequestType.DeleteJobObject:
+                    return new DeleteJobObjectOperation(_services.GetService<IBackup>(), request.RequestData);
                 default:
                     throw new Exception("Incorrect operation type.");
             }

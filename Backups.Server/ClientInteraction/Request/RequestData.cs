@@ -10,5 +10,8 @@ namespace Backups.Server
         public string Path { get; init; }
         public File File { get; init; }
         public string JobName { get; init; }
+        
+        public string ObjectName { get; init; }
+        public StorageMode StorageMode { get; init; }
     }
 }

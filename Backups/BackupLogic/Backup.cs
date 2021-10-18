@@ -14,14 +14,21 @@ namespace Backups
             _path = path;
             _repository = repository;
         }
-        
-        public BackupJob CreateJob(string jobName)
+
+        public BackupJob CreateJob(string jobName, StorageMode storageMode)
         {
             if (_jobs.Exists(job => job.Name == jobName))
                 throw new BackupException("Job already exists.");
-            var job = new BackupJob(_path, jobName, _repository);
+            var job = new BackupJob(_path, jobName, _repository) {StorageMode = storageMode};
             _jobs.Add(job);
             return job;
+        }
+
+        public BackupJob GetJob(string jobName)
+        {
+            if (_jobs.Exists(job => job.Name == jobName))
+                throw new BackupException("Job doesnt exist.");
+            return _jobs.Find(job => job.Name == jobName);
         }
     }
 }

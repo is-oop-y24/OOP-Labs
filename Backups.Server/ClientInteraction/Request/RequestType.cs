@@ -5,5 +5,7 @@ namespace Backups.Server
         UploadFile,
         ObserveFile,
         MakeRestorePoint,
+        CreateJob,
+        DeleteJobObject,
     }
 }
