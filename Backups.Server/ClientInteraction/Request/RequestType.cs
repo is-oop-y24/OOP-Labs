@@ -1,0 +1,9 @@
+namespace Backups.Server
+{
+    public enum RequestType
+    {
+        UploadFile,
+        ObserveFile,
+        MakeRestorePoint,
+    }
+}
