@@ -37,7 +37,10 @@ namespace Backups
             IArchiver archiver = new Archiver();
             foreach (JobObject jobObject in _jobObjects)
             {
-                archiver.AddFile(_fileRepository.GetFile(jobObject.Path));
+                foreach (string path in jobObject.Paths)
+                {
+                    archiver.AddFile(_fileRepository.GetFile(path));
+                }
             }
 
             _fileRepository.AddFile(archiver.MakeArchive(_name), _path);

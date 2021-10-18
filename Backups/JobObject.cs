@@ -1,14 +1,17 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace Backups
 {
     public class JobObject
     {
-        private readonly string _path;
+        private readonly List<string> _paths = new List<string>();
 
-        public JobObject(string path)
+        public JobObject(List<string> paths)
         {
-            _path = path;
+            _paths.InsertRange(0, paths);
         }
 
-        public string Path => _path;
+        public ReadOnlyCollection<string> Paths => _paths.AsReadOnly();
     }
 }
