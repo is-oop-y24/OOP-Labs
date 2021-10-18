@@ -1,6 +1,6 @@
 namespace Backups.Server
 {
-    public interface IOperationFabric
+    public interface IOperationFactory
     {
         IOperation GetOperation(Request request);
     }

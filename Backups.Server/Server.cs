@@ -31,7 +31,7 @@ namespace Backups.Server
             
             serviceCollection.AddSingleton(typeof(IFileRepository), repository);
             serviceCollection.AddSingleton(typeof(IBackup), new Backup("", repository));
-            serviceCollection.AddScoped(typeof(IOperationFabric), typeof(OperationFabric));
+            serviceCollection.AddScoped(typeof(IOperationFactory), typeof(OperationFactory));
             _services = serviceCollection.BuildServiceProvider();
             
             return this;
@@ -53,7 +53,7 @@ namespace Backups.Server
                     requestString.Append(Encoding.Default.GetString(buffer, 0, bytesRead));
                     
                     Request request = JsonSerializer.Deserialize<Request>(requestString.ToString());
-                    IOperation operation = _services.GetService<IOperationFabric>().GetOperation(request);
+                    IOperation operation = _services.GetService<IOperationFactory>().GetOperation(request);
 
                     Response response = operation.Execute();
                     string responseString = JsonSerializer.Serialize(response);

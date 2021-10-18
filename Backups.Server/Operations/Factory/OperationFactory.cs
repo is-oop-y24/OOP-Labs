@@ -4,11 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Backups.Server
 {
-    public class OperationFabric : IOperationFabric
+    public class OperationFactory : IOperationFactory
     {
         private readonly ServiceProvider _services;
 
-        public OperationFabric(ServiceProvider services)
+        public OperationFactory(ServiceProvider services)
         {
             _services = services;
         }
