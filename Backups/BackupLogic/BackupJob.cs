@@ -10,15 +10,16 @@ namespace Backups
         private readonly List<JobObject> _jobObjects = new List<JobObject>();
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
-        private readonly string _jobPath;
+        private readonly string _fullPath;
 
-        public BackupJob(string jobPath, IFileRepository fileRepository)
+        public BackupJob(string path, string jobName, IFileRepository fileRepository)
         {
-            _jobPath = jobPath;
+            _fullPath = Path.Combine(path, jobName);
             _fileRepository = fileRepository;
         }
 
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
+        public string Name { get; }
 
         public void AddFile(JobObject jobObject)
         {
@@ -28,7 +29,7 @@ namespace Backups
         public void MakeRestorePoint()
         {
             var date = DateTime.Now;
-            var restorePoint = new RestorePoint(Path.Combine(_jobPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}]"), _fileRepository);
+            var restorePoint = new RestorePoint(Path.Combine(_fullPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}]"), _fileRepository);
             switch (StorageMode)
             {
                 case StorageMode.SingleStorage:
