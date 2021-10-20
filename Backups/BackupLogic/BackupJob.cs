@@ -36,7 +36,7 @@ namespace Backups
         public void MakeRestorePoint()
         {
             var date = DateTime.Now;
-            var restorePoint = new RestorePoint(Path.Combine(_fullPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}]"), _fileRepository);
+            var restorePoint = new RestorePoint(Path.Combine(_fullPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}.{date.Second}]"), _fileRepository);
             switch (StorageMode)
             {
                 case StorageMode.SingleStorage:
@@ -45,6 +45,8 @@ namespace Backups
                 case StorageMode.SplitStorage:
                     _jobObjects.ForEach(jobObject => restorePoint.AddStorage(jobObject));
                     break;
+                default:
+                    throw new BackupException("Incorrect storage mode.");
             }
 
             _restorePoints.Add(restorePoint);

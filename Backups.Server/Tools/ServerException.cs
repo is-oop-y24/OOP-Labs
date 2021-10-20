@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Backups.Server.Tools
 {

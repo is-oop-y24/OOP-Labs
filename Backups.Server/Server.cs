@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Unicode;
 using Backups.FileSystem;
+using Backups.Server.Tools;
 using Isu;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -54,17 +55,22 @@ namespace Backups.Server
                     logger.Log($"{bytesRead} bytes read.");
                     requestString.Append(Encoding.Default.GetString(buffer, 0, bytesRead));
                     logger.Log(requestString.ToString());
-                    
-                    Request request = JsonSerializer.Deserialize<Request>(requestString.ToString());
+
+                    var options = new JsonSerializerOptions();
+                    options.Converters.Add(new ServerExceptionConverter());
+                    Request request = JsonSerializer.Deserialize<Request>(requestString.ToString(), options);
                     logger.Log($"Request deserialized. Command type {request.RequestType}");
                     IOperation operation = _services.GetService<IOperationFactory>().GetOperation(request);
 
                     Response response = operation.Execute();
-                    string responseString = JsonSerializer.Serialize(response);
+                    if (response.ResponseCode == ResponseCode.Error)
+                        logger.Log($"Error: {response.ResponseData.Exception}");
+                    string responseString = JsonSerializer.Serialize(response, options);
                     logger.Log("Response serialized.");
+                    logger.Log(responseString);
                     byte[] responseBytes = Encoding.Default.GetBytes(responseString);
                     networkStream.Write(responseBytes);
-                    logger.Log("");
+                    logger.Log("Response sent.\n");
                 }
             }
             catch (Exception e)

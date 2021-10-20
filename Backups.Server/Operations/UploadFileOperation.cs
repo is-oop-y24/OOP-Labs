@@ -21,9 +21,9 @@ namespace Backups.Server
                 _fileRepository.AddFile(_data.File ?? throw new ServerException("Request must have File argument."),
                     _data.Path ?? throw new ServerException("Request must have JobName argument."));
             }
-            catch (Exception exception)
+            catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = new ServerException(exception.Message)});
+                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
             }
 
             return new Response(ResponseCode.Success, new ResponseData());
