@@ -19,12 +19,12 @@ namespace Isu
 
         public void AddFile(File file, string path)
         {
-            string filePath = Path.Combine(path, file.Name);
+            string filePath = Path.Combine(path, file.Name.Name);
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File with such name already exists.");
 
             string absDirPath = Path.Combine(_realPath, path);
-            string absFilePath = Path.Combine(absDirPath, file.Name);
+            string absFilePath = Path.Combine(absDirPath, file.Name.Name);
             Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
             fileStream.Write(file.Content.ToArray());

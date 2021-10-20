@@ -1,5 +1,6 @@
 using System;
 using Backups.FileSystem;
+using Backups.Server.Tools;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Backups.Server
@@ -8,9 +9,9 @@ namespace Backups.Server
     {
         private readonly ServiceProvider _services;
 
-        public OperationFactory(ServiceProvider services)
+        public OperationFactory(ServiceCollection servicesCollection)
         {
-            _services = services;
+            _services = servicesCollection.BuildServiceProvider();
         }
         
         public IOperation GetOperation(Request request)
@@ -28,7 +29,7 @@ namespace Backups.Server
                 case RequestType.DeleteJobObject:
                     return new DeleteJobObjectOperation(_services.GetService<IBackup>(), request.RequestData);
                 default:
-                    throw new Exception("Incorrect operation type.");
+                    throw new ServerException("Incorrect operation type.");
             }
         }
     }

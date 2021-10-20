@@ -1,5 +1,6 @@
 using System;
 using Backups.FileSystem;
+using Backups.Server.Tools;
 
 namespace Backups.Server
 {
@@ -7,6 +8,6 @@ namespace Backups.Server
     public class ResponseData
     {
         public File File { get; init; }
-        public Exception Exception { get; init; }
+        public ServerException Exception { get; init; }
     }
 }

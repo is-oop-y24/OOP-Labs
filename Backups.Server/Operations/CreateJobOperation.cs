@@ -1,4 +1,5 @@
 using System;
+using Backups.Server.Tools;
 
 namespace Backups.Server
 {
@@ -19,9 +20,16 @@ namespace Backups.Server
             {
                 _backup.CreateJob(_data.JobName, _data.StorageMode);
             }
-            catch (Exception exception)
+            catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = exception});
+                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
+            }
+            catch (BackupException backupException)
+            {
+                return new Response(ResponseCode.Success, new ResponseData
+                {
+                    Exception = new ServerException("Backup exception occured.")
+                });
             }
 
             return new Response(ResponseCode.Success, new ResponseData());

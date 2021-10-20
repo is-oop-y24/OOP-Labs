@@ -31,7 +31,7 @@ namespace Backups.Server
             
             serviceCollection.AddSingleton(typeof(IFileRepository), repository);
             serviceCollection.AddSingleton(typeof(IBackup), new Backup("", repository));
-            serviceCollection.AddScoped(typeof(IOperationFactory), typeof(OperationFactory));
+            serviceCollection.AddSingleton(typeof(IOperationFactory), new OperationFactory(serviceCollection));
             _services = serviceCollection.BuildServiceProvider();
             
             return this;
@@ -43,6 +43,7 @@ namespace Backups.Server
             try
             {
                 _listener.Start();
+                var logger = new Logger();
                 while (true)
                 {
                     var requestString = new StringBuilder();
@@ -50,15 +51,20 @@ namespace Backups.Server
                     using NetworkStream networkStream = client.GetStream();
                     byte[] buffer = new byte[buffSize];
                     int bytesRead = networkStream.Read(buffer, 0, buffer.Length);
+                    logger.Log($"{bytesRead} bytes read.");
                     requestString.Append(Encoding.Default.GetString(buffer, 0, bytesRead));
+                    logger.Log(requestString.ToString());
                     
                     Request request = JsonSerializer.Deserialize<Request>(requestString.ToString());
+                    logger.Log($"Request deserialized. Command type {request.RequestType}");
                     IOperation operation = _services.GetService<IOperationFactory>().GetOperation(request);
 
                     Response response = operation.Execute();
                     string responseString = JsonSerializer.Serialize(response);
+                    logger.Log("Response serialized.");
                     byte[] responseBytes = Encoding.Default.GetBytes(responseString);
                     networkStream.Write(responseBytes);
+                    logger.Log("");
                 }
             }
             catch (Exception e)

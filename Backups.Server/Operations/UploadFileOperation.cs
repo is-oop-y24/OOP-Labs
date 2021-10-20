@@ -1,5 +1,6 @@
 using System;
 using Backups.FileSystem;
+using Backups.Server.Tools;
 
 namespace Backups.Server
 {
@@ -19,9 +20,9 @@ namespace Backups.Server
             {
                 _fileRepository.AddFile(_data.File, _data.Path);
             }
-            catch (Exception exception)
+            catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData(){Exception = exception});
+                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
             }
 
             return new Response(ResponseCode.Success, new ResponseData());
