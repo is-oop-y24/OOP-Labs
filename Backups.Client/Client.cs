@@ -16,7 +16,7 @@ namespace Backups.Client
     {
         private const string _hostname = "localhost";
         private const int _port = 8888;
-        private readonly Logger _logger = new Logger();
+        private readonly ILogger _logger = new Logger();
 
 
         private Response MakeRequest(Request request)

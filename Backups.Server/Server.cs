@@ -26,13 +26,13 @@ namespace Backups.Server
             const string localPath = @"F:\Repository";
             const int port = 8888;
             _listener = new TcpListener(localIp, port);
-
             var repository = new LocalRepository(localPath);
             var serviceCollection = new ServiceCollection();
             
             serviceCollection.AddSingleton(typeof(IFileRepository), repository);
             serviceCollection.AddSingleton(typeof(IBackup), new Backup("", repository));
             serviceCollection.AddSingleton(typeof(IOperationFactory), new OperationFactory(serviceCollection));
+            serviceCollection.AddScoped(typeof(ILogger), typeof(Logger));
             _services = serviceCollection.BuildServiceProvider();
             
             return this;
@@ -41,10 +41,10 @@ namespace Backups.Server
         public void Run()
         {
             const int buffSize = 1024;
+            ILogger logger = _services.GetService<ILogger>();
             try
             {
                 _listener.Start();
-                var logger = new Logger();
                 while (true)
                 {
                     var requestString = new StringBuilder();

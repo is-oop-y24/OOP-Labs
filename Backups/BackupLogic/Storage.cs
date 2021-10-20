@@ -11,7 +11,7 @@ namespace Backups
         private readonly List<JobObject> _jobObjects = new List<JobObject>();
         private readonly IFileRepository _fileRepository;
         private readonly string _path;
-        private FileName _name;
+        private readonly FileName _name;
 
         public Storage(string path, List<JobObject> jobObjects, IFileRepository fileRepository, FileName storageName)
             : this(path, fileRepository, storageName)
