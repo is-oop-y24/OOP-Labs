@@ -20,7 +20,8 @@ namespace Backups.Server
             {
 
                 _backup.CreateJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."),
-                    _data.StorageMode);
+                    _data.StorageMode,
+                    _data.Path);
             }
             catch (ServerException serverException)
             {

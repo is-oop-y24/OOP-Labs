@@ -15,11 +15,11 @@ namespace Backups
             _repository = repository;
         }
 
-        public BackupJob CreateJob(string jobName, StorageMode storageMode)
+        public BackupJob CreateJob(string jobName, StorageMode storageMode, string jobPath = null)
         {
             if (_jobs.Exists(job => job.Name == jobName))
                 throw new BackupException("Job already exists.");
-            var job = new BackupJob(_path, jobName, _repository) { StorageMode = storageMode };
+            var job = new BackupJob(jobPath ?? _path, jobName, _repository) { StorageMode = storageMode };
             _jobs.Add(job);
             return job;
         }

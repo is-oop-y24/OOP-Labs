@@ -34,25 +34,57 @@ namespace Backups.Client
             Response response = JsonSerializer.Deserialize<Response>(responseString, options);
             return response;
         }
-        
-        public void Run()
+
+        public void TestCase1()
         {
             var file1 = new File(new FileName("file1"), new byte []{1,2,3});
             var file2 = new File(new FileName("file2"), new byte []{4,5,6});
             const string jobName = "Job1";
             
-            var createRequest = new Request(RequestType.CreateJob, new RequestData() {JobName = jobName, StorageMode = StorageMode.SplitStorage});
-            var addFileRequest1 = new Request(RequestType.UploadFile, new RequestData() {File = file1, Path = ""});
-            var addFileRequest2 = new Request(RequestType.UploadFile, new RequestData() {File = file2, Path = ""});
-            var observeFileRequest1 = new Request(RequestType.ObserveFile, new RequestData {Path = "file1", JobName = jobName});
-            var observeFileRequest2 = new Request(RequestType.ObserveFile, new RequestData {Path = "file2", JobName = jobName});
-            var deleteFileRequest =
-                new Request(RequestType.DeleteJobObject, new RequestData() {ObjectName = file2.Name.Name, JobName = jobName});
-            var makePointRequest = new Request(RequestType.MakeRestorePoint, new RequestData{JobName = jobName});
+            var createJobRequest = new Request(RequestType.CreateJob, new RequestData()
+            {
+                JobName = jobName, 
+                StorageMode = StorageMode.SingleStorage
+            });
+            
+            var addFileRequest1 = new Request(RequestType.UploadFile, new RequestData()
+            {
+                File = file1, 
+                Path = ""
+            });
+            
+            var addFileRequest2 = new Request(RequestType.UploadFile, new RequestData()
+            {
+                File = file2, 
+                Path = ""
+            });
+            
+            var observeFileRequest1 = new Request(RequestType.ObserveFile, new RequestData
+            {
+                Path = "file1", 
+                JobName = jobName
+            });
+            
+            var observeFileRequest2 = new Request(RequestType.ObserveFile, new RequestData
+            {
+                Path = "file2",
+                JobName = jobName
+            });
+            
+            var deleteFileRequest = new Request(RequestType.DeleteJobObject, new RequestData()
+            {
+                ObjectName = file2.Name.Name,
+                JobName = jobName
+            });
+            
+            var makePointRequest = new Request(RequestType.MakeRestorePoint, new RequestData
+            {
+                JobName = jobName
+            });
 
             var requests = new List<Request>()
             {
-                createRequest,
+                createJobRequest,
                 addFileRequest1,
                 addFileRequest2,
                 observeFileRequest1,
@@ -68,6 +100,74 @@ namespace Backups.Client
                 if (response.ResponseCode == ResponseCode.Error)
                     Console.WriteLine("Error: " + response.ResponseData.Exception.Message);
             }
+        }
+
+        public void TestCase2()
+        {
+            var file1 = new File(new FileName("file3"), new byte []{1,2,3});
+            var file2 = new File(new FileName("file4"), new byte []{4,5,6});
+            const string jobName = "Job1";
+            const string jobPath = "jobDirectory"; 
+            
+            var createJobRequest = new Request(RequestType.CreateJob, new RequestData()
+            {
+                JobName = jobName, 
+                StorageMode = StorageMode.SplitStorage,
+                Path = jobPath
+            });
+            
+            var addFileRequest1 = new Request(RequestType.UploadFile, new RequestData()
+            {
+                File = file1, 
+                Path = ""
+            });
+            
+            var addFileRequest2 = new Request(RequestType.UploadFile, new RequestData()
+            {
+                File = file2, 
+                Path = ""
+            });
+            
+            var observeFileRequest1 = new Request(RequestType.ObserveFile, new RequestData
+            {
+                Path = "file3", 
+                JobName = jobName
+            });
+            
+            var observeFileRequest2 = new Request(RequestType.ObserveFile, new RequestData
+            {
+                Path = "file4",
+                JobName = jobName
+            });
+            
+            
+            var makePointRequest = new Request(RequestType.MakeRestorePoint, new RequestData
+            {
+                JobName = jobName
+            });
+
+            var requests = new List<Request>
+            {
+                createJobRequest,
+                addFileRequest1,
+                addFileRequest2,
+                observeFileRequest1,
+                observeFileRequest2,
+                makePointRequest
+            };
+            
+            foreach (Request request in requests)
+            {
+                Response response = MakeRequest(request);
+                if (response.ResponseCode == ResponseCode.Error)
+                    Console.WriteLine("Error: " + response.ResponseData.Exception.Message);
+            }
+        }
+        
+        public void Run()
+        {
+            //TestCase1();
+            TestCase2();
         }
     }
 }
