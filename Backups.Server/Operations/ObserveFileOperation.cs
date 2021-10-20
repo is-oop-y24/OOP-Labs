@@ -21,19 +21,12 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backup.GetJob(_data.JobName);
+                BackupJob job = _backup.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
                 job.AddObject(new JobObject(new List<string> {_data.Path}, Path.GetFileName(_data.Path)));
             }
-            catch (ServerException serverException)
+            catch (Exception exception)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
-            }
-            catch (BackupException backupException)
-            {
-                return new Response(ResponseCode.Success, new ResponseData
-                {
-                    Exception = new ServerException("Backup exception occured.")
-                });
+                return new Response(ResponseCode.Error, new ResponseData {Exception = new ServerException(exception.Message)});
             }
 
             return new Response(ResponseCode.Success, new ResponseData());

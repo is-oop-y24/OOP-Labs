@@ -18,18 +18,13 @@ namespace Backups.Server
         {
             try
             {
-                _backup.CreateJob(_data.JobName, _data.StorageMode);
+                
+                _backup.CreateJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."),
+                    _data.StorageMode);
             }
-            catch (ServerException serverException)
+            catch (Exception exception)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
-            }
-            catch (BackupException backupException)
-            {
-                return new Response(ResponseCode.Success, new ResponseData
-                {
-                    Exception = new ServerException("Backup exception occured.")
-                });
+                return new Response(ResponseCode.Error, new ResponseData {Exception = new ServerException(exception.Message)});
             }
 
             return new Response(ResponseCode.Success, new ResponseData());

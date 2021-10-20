@@ -15,6 +15,7 @@ namespace Backups
         public BackupJob(string path, string jobName, IFileRepository fileRepository)
         {
             _fullPath = Path.Combine(path, jobName);
+            Name = jobName;
             _fileRepository = fileRepository;
         }
 

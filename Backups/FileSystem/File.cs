@@ -7,16 +7,13 @@ namespace Backups.FileSystem
     [Serializable]
     public class File
     {
-        private readonly byte[] _content;
-        private readonly FileName _name;
-
         public File(FileName name, byte[] content)
         {
-            _name = name;
-            _content = content;
+            Name = name;
+            Content = content;
         }
 
-        public string Name => _name.GetName();
-        public ReadOnlyCollection<byte> Content => Array.AsReadOnly(_content);
+        public FileName Name { get; }
+        public byte[] Content { get; set; }
     }
 }
