@@ -8,7 +8,7 @@ namespace Backups.Server
     public class RequestData
     {
         public string Path { get; init; }
-        public File File { get; init; }
+        public BackupFile BackupFile { get; init; }
         public string JobName { get; init; }
         
         public string ObjectName { get; init; }

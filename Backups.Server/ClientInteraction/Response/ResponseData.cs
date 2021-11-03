@@ -7,7 +7,7 @@ namespace Backups.Server
     [Serializable]
     public class ResponseData
     {
-        public File File { get; init; }
+        public BackupFile BackupFile { get; init; }
         public ServerException Exception { get; init; }
     }
 }

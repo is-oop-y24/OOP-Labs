@@ -5,12 +5,12 @@ namespace Backups.Server
 {
     public class MakeRestorePointOperation : IOperation
     {
-        private IBackup _backup;
+        private IBackupService _backupService;
         private RequestData _data;
 
-        public MakeRestorePointOperation(IBackup backup, RequestData requestData)
+        public MakeRestorePointOperation(IBackupService backupService, RequestData requestData)
         {
-            _backup = backup;
+            _backupService = backupService;
             _data = requestData;
         }
         
@@ -18,7 +18,7 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backup.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
                 job.MakeRestorePoint();
             }
             catch (ServerException serverException)

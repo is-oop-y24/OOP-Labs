@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using Backups;
 using Backups.FileSystem;
-using File = Backups.FileSystem.File;
 
 namespace Isu
 {
@@ -17,20 +16,20 @@ namespace Isu
             _realPath = path;
         }
 
-        public void AddFile(File file, string path)
+        public void AddFile(BackupFile backupFile, string path)
         {
-            string filePath = Path.Combine(path, file.Name.Name);
+            string filePath = Path.Combine(path, backupFile.Name.Name);
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File with such name already exists.");
 
             string absDirPath = Path.Combine(_realPath, path);
-            string absFilePath = Path.Combine(absDirPath, file.Name.Name);
+            string absFilePath = Path.Combine(absDirPath, backupFile.Name.Name);
             Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
-            fileStream.Write(file.Content.ToArray());
+            fileStream.Write(backupFile.Content.ToArray());
         }
 
-        public File GetFile(string filePath)
+        public BackupFile GetFile(string filePath)
         {
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File doesnt exist.");
@@ -39,7 +38,7 @@ namespace Isu
             using FileStream fileStream = System.IO.File.OpenRead(absFilePath);
             using MemoryStream memoryStream = new MemoryStream();
             fileStream.CopyTo(memoryStream);
-            return new File(new FileName(Path.GetFileName(filePath)), memoryStream.GetBuffer());
+            return new BackupFile(new FileName(Path.GetFileName(filePath)), memoryStream.GetBuffer());
         }
     }
 }

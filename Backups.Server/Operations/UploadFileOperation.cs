@@ -18,7 +18,7 @@ namespace Backups.Server
         {
             try
             {
-                _fileRepository.AddFile(_data.File ?? throw new ServerException("Request must have File argument."),
+                _fileRepository.AddFile(_data.BackupFile ?? throw new ServerException("Request must have File argument."),
                     _data.Path ?? throw new ServerException("Request must have JobName argument."));
             }
             catch (ServerException serverException)

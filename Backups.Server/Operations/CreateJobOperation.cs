@@ -5,12 +5,12 @@ namespace Backups.Server
 {
     public class CreateJobOperation : IOperation
     {
-        private IBackup _backup;
+        private IBackupService _backupService;
         private RequestData _data;
 
-        public CreateJobOperation(IBackup backup, RequestData requestData)
+        public CreateJobOperation(IBackupService backupService, RequestData requestData)
         {
-            _backup = backup;
+            _backupService = backupService;
             _data = requestData;
         }
         
@@ -19,7 +19,7 @@ namespace Backups.Server
             try
             {
 
-                _backup.CreateJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."),
+                _backupService.CreateJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."),
                     _data.StorageMode,
                     _data.Path);
             }

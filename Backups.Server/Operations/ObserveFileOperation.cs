@@ -8,12 +8,12 @@ namespace Backups.Server
 {
     public class ObserveFileOperation : IOperation
     {
-        private readonly IBackup _backup;
+        private readonly IBackupService _backupService;
         private readonly RequestData _data;
 
-        public ObserveFileOperation(IBackup backup, RequestData requestData)
+        public ObserveFileOperation(IBackupService backupService, RequestData requestData)
         {
-            _backup = backup;
+            _backupService = backupService;
             _data = requestData;
         }
             
@@ -21,8 +21,8 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backup.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
-                job.AddObject(new JobObject(new List<string> {_data.Path}, Path.GetFileName(_data.Path)));
+                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                job.AddObject(new JobDirectory(new List<string> {_data.Path}, Path.GetFileName(_data.Path)));
             }
             catch (ServerException serverException)
             {

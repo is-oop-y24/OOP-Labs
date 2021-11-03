@@ -5,12 +5,12 @@ namespace Backups.Server
 {
     public class DeleteJobObjectOperation : IOperation
     {
-        private IBackup _backup;
+        private IBackupService _backupService;
         private RequestData _data;
 
-        public DeleteJobObjectOperation(IBackup backup, RequestData requestData)
+        public DeleteJobObjectOperation(IBackupService backupService, RequestData requestData)
         {
-            _backup = backup;
+            _backupService = backupService;
             _data = requestData;
         }
         
@@ -18,7 +18,7 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backup.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
                 job.DeleteObject(_data.ObjectName ?? throw new ServerException("Request must have JobObjectName argument."));
             }
             catch (ServerException serverException)
