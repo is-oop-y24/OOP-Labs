@@ -6,15 +6,14 @@ namespace Backups.Server
 {
     public class Connection : IDisposable
     {
-        private TcpListener _listener;
+        private IConnector _connector;
         private const int _buffSize = 1024;
         private NetworkStream _networkStream;
         
-        public Connection(IPAddress ip, int port)
+        public Connection(IConnector connector)
         {
-            _listener = new TcpListener(ip, port);
-            _listener.Start();
-            _networkStream = _listener.AcceptTcpClient().GetStream();
+            _connector = connector;
+            _networkStream = _connector.GetStream();
         }
 
         public BytesData GetData()
@@ -31,7 +30,7 @@ namespace Backups.Server
 
         public void Dispose() {
             _networkStream.Dispose();
-            _listener.Stop();
+            _connector.Dispose();
         }
     }
 }

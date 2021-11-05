@@ -43,7 +43,7 @@ namespace Backups.Server
         {
             while (true)
             {
-                using var connection = new Connection(_ip, _port);
+                using var connection = new Connection(new ServerConnector(_ip, _port));
                 BytesData requestData = connection.GetData();
                 Request request = _decoder.Decode<Request>(requestData);
                 IOperation operation = _operationFactory.GetOperation(request);
