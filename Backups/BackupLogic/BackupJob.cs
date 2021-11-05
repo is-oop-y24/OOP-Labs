@@ -7,7 +7,7 @@ namespace Backups
 {
     public class BackupJob
     {
-        private readonly List<JobObject> _jobObjects = new List<JobObject>();
+        private readonly List<IJobObject> _jobObjects = new List<IJobObject>();
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
         private readonly string _fullPath;
@@ -22,9 +22,9 @@ namespace Backups
         public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
         public string Name { get; }
 
-        public void AddObject(JobObject jobObject)
+        public void AddObject(JobDirectory jobDirectory)
         {
-            _jobObjects.Add(jobObject);
+            _jobObjects.Add(jobDirectory);
         }
 
         public void DeleteObject(string jobName)

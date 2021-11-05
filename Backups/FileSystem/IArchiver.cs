@@ -4,7 +4,7 @@ namespace Backups
 {
     public interface IArchiver
     {
-        void AddFile(File file);
-        File MakeArchive(FileName archiveName);
+        void AddFile(BackupFile backupFile);
+        BackupFile MakeArchive(FileName archiveName);
     }
 }

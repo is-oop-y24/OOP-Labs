@@ -3,13 +3,13 @@ using Backups.FileSystem;
 
 namespace Backups
 {
-    public class Backup : IBackup
+    public class BackupService : IBackupService
     {
         private readonly List<BackupJob> _jobs = new List<BackupJob>();
         private readonly string _path;
         private readonly IFileRepository _repository;
 
-        public Backup(string path, IFileRepository repository)
+        public BackupService(string path, IFileRepository repository)
         {
             _path = path;
             _repository = repository;

@@ -16,18 +16,12 @@ namespace Backups
         {
             _path = path;
             _fileRepository = fileRepository;
+            Date = DateTime.Now;
         }
 
         public DateTime Date { get; }
 
-        public void AddStorage(List<JobObject> jobObjects)
-        {
-            var storage = new Storage(_path, jobObjects, _fileRepository, new FileName(_currentStorageId++.ToString()));
-            storage.Process();
-            _storages.Add(storage);
-        }
-
-        public void AddStorage(JobObject jobObject)
+        public void AddStorage(IJobObject jobObject)
         {
             var storage = new Storage(_path, jobObject, _fileRepository, new FileName(_currentStorageId++.ToString()));
             storage.Process();

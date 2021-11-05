@@ -8,7 +8,6 @@ using Backups.FileSystem;
 using Backups.Server;
 using Backups.Server.Tools;
 using Microsoft.Extensions.DependencyInjection;
-using File = Backups.FileSystem.File;
 
 namespace Backups.Client
 {
@@ -16,7 +15,7 @@ namespace Backups.Client
     {
         private const string _hostname = "localhost";
         private const int _port = 8888;
-        private readonly ILogger _logger = new Logger();
+        private readonly ILogger _logger = new ConsoleLogger();
 
 
         private Response MakeRequest(Request request)
@@ -37,8 +36,8 @@ namespace Backups.Client
 
         public void TestCase1()
         {
-            var file1 = new File(new FileName("file1"), new byte []{1,2,3});
-            var file2 = new File(new FileName("file2"), new byte []{4,5,6});
+            var file1 = new BackupFile(new FileName("file1"), new byte []{1,2,3});
+            var file2 = new BackupFile(new FileName("file2"), new byte []{4,5,6});
             const string jobName = "Job1";
             
             var createJobRequest = new Request(RequestType.CreateJob, new RequestData()
@@ -49,13 +48,13 @@ namespace Backups.Client
             
             var addFileRequest1 = new Request(RequestType.UploadFile, new RequestData()
             {
-                File = file1, 
+                BackupFile = file1, 
                 Path = ""
             });
             
             var addFileRequest2 = new Request(RequestType.UploadFile, new RequestData()
             {
-                File = file2, 
+                BackupFile = file2, 
                 Path = ""
             });
             
@@ -104,8 +103,8 @@ namespace Backups.Client
 
         public void TestCase2()
         {
-            var file1 = new File(new FileName("file3"), new byte []{1,2,3});
-            var file2 = new File(new FileName("file4"), new byte []{4,5,6});
+            var file1 = new BackupFile(new FileName("file3"), new byte []{1,2,3});
+            var file2 = new BackupFile(new FileName("file4"), new byte []{4,5,6});
             const string jobName = "Job1";
             const string jobPath = "jobDirectory"; 
             
@@ -118,13 +117,13 @@ namespace Backups.Client
             
             var addFileRequest1 = new Request(RequestType.UploadFile, new RequestData()
             {
-                File = file1, 
+                BackupFile = file1, 
                 Path = ""
             });
             
             var addFileRequest2 = new Request(RequestType.UploadFile, new RequestData()
             {
-                File = file2, 
+                BackupFile = file2, 
                 Path = ""
             });
             

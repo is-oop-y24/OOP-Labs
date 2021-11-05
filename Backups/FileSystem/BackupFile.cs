@@ -5,9 +5,9 @@ using System.IO;
 namespace Backups.FileSystem
 {
     [Serializable]
-    public class File
+    public class BackupFile
     {
-        public File(FileName name, byte[] content)
+        public BackupFile(FileName name, byte[] content)
         {
             Name = name;
             Content = content;
