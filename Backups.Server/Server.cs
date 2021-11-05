@@ -18,11 +18,11 @@ namespace Backups.Server
         private IPAddress _ip;
         private int _port;
         
-        private IFileRepository _repository;
-        private IBackupService _backupService;
-        private IOperationFactory _operationFactory;
-        private ILogger _logger;
-        private IBytesDecoder _decoder;
+        private readonly IFileRepository _repository;
+        private readonly IBackupService _backupService;
+        private readonly IOperationFactory _operationFactory;
+        private readonly ILogger _logger;
+        private readonly IBytesDecoder _decoder;
         
         public Server(string ipString, int port)
         {
