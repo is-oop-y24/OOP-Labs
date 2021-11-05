@@ -13,24 +13,29 @@ namespace Backups.Client
 {
     public class Client
     {
-        private const string _hostname = "localhost";
-        private const int _port = 8888;
-        private readonly ILogger _logger = new ConsoleLogger();
+        private string _hostname;
+        private int _port;
+        private readonly ILogger _logger;
+        private readonly IBytesDecoder _decoder;
+            
+        public Client(string hostname, int port, ILogger logger)
+        {
+            _hostname = hostname;
+            _port = port;
+            _logger = logger;
+            
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ServerExceptionConverter());
+            _decoder = new BytesDecoder(options);
+        }
 
 
         private Response MakeRequest(Request request)
         {
-            using var tcpClient = new TcpClient(_hostname, _port);
-            NetworkStream networkStream = tcpClient.GetStream();
-            networkStream.Write(Encoding.Default.GetBytes(JsonSerializer.Serialize(request)));
-
-            byte[] buffer = new byte[1024];
-            int bytesRead = networkStream.Read(buffer);
-            string responseString = Encoding.Default.GetString(buffer, 0, bytesRead);
-            _logger.Log(responseString);
-            var options = new JsonSerializerOptions();
-            options.Converters.Add(new ServerExceptionConverter());
-            Response response = JsonSerializer.Deserialize<Response>(responseString, options);
+            using var connection = new Connection(new ClientConnector(_hostname, _port));
+            connection.SendData(_decoder.Encode(request));
+            BytesData responseBytes = connection.GetData();
+            Response response = _decoder.Decode<Response>(responseBytes);
             return response;
         }
 
