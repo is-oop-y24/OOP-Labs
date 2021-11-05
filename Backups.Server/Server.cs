@@ -44,12 +44,11 @@ namespace Backups.Server
             while (true)
             {
                 using var connection = new Connection(new ServerConnector(_ip, _port));
-                BytesData requestData = connection.GetData();
-                Request request = _decoder.Decode<Request>(requestData);
+                BytesData requestBytes = connection.GetData();
+                Request request = _decoder.Decode<Request>(requestBytes);
                 IOperation operation = _operationFactory.GetOperation(request);
                 Response response = operation.Execute();
-                BytesData responseData = _decoder.Encode(response);
-                connection.SendData(responseData);
+                connection.SendData(_decoder.Encode(response));
             }
         }
     }
