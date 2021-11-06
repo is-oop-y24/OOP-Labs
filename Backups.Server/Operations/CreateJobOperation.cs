@@ -18,9 +18,20 @@ namespace Backups.Server
         {
             try
             {
-
+                IStoragePacker storagePacker;
+                switch (_data.StorageMode)
+                {
+                    case StorageMode.SingleStorage:
+                        storagePacker = new SingleStoragePacker();
+                        break;
+                    case StorageMode.SplitStorage:
+                        storagePacker = new SplitStoragePacker();
+                        break;
+                    default:
+                        throw new BackupException("Storage mode is not supported");
+                }
                 _backupService.CreateJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."),
-                    _data.StorageMode,
+                    storagePacker,
                     _data.Path);
             }
             catch (ServerException serverException)

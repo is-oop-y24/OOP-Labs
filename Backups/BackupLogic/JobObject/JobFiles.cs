@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace Backups
 {
-    public class JobFile : IJobObject
+    public class JobFiles : IJobObject
     {
-        private string _path;
+        private readonly List<string> _paths;
 
-        public JobFile(string path, string name)
+        public JobFiles(List<string> paths, string name)
         {
-            _path = path;
+            _paths = paths;
             Name = name;
         }
 
@@ -17,7 +17,7 @@ namespace Backups
 
         public ReadOnlyCollection<string> GetPathList()
         {
-            return new List<string>{_path}.AsReadOnly();
+            return _paths.AsReadOnly();
         }
     }
 }

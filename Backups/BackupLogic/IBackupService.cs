@@ -2,7 +2,7 @@ namespace Backups
 {
     public interface IBackupService
     {
-        BackupJob CreateJob(string jobName, StorageMode storageMode, string jobPath = null);
+        BackupJob CreateJob(string jobName, IStoragePacker storagePacker, string jobPath = null);
         BackupJob GetJob(string jobName);
     }
 }

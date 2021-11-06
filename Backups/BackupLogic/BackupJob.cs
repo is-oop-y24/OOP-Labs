@@ -10,21 +10,21 @@ namespace Backups
         private readonly List<IJobObject> _jobObjects = new List<IJobObject>();
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
-        private readonly string _fullPath;
+        private readonly IStoragePacker _storagePacker;
+        private readonly string _path;
 
-        public BackupJob(string path, string jobName, IFileRepository fileRepository)
+        public BackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker)
         {
-            _fullPath = Path.Combine(path, jobName);
+            _path = Path.Combine(destinationPath, jobName);
             Name = jobName;
             _fileRepository = fileRepository;
+            _storagePacker = storagePacker;
         }
-
-        public StorageMode StorageMode { get; set; } = StorageMode.SingleStorage;
         public string Name { get; }
 
-        public void AddObject(JobDirectory jobDirectory)
+        public void AddObject(IJobObject jobObject)
         {
-            _jobObjects.Add(jobDirectory);
+            _jobObjects.Add(jobObject);
         }
 
         public void DeleteObject(string jobName)
@@ -35,21 +35,7 @@ namespace Backups
 
         public void MakeRestorePoint()
         {
-            var date = DateTime.Now;
-            var restorePoint = new RestorePoint(Path.Combine(_fullPath, $"{date.Day}.{date.Month}.{date.Year} [Time {date.Hour}.{date.Minute}.{date.Second}]"), _fileRepository);
-            switch (StorageMode)
-            {
-                case StorageMode.SingleStorage:
-                    restorePoint.AddStorage(_jobObjects);
-                    break;
-                case StorageMode.SplitStorage:
-                    _jobObjects.ForEach(jobObject => restorePoint.AddStorage(jobObject));
-                    break;
-                default:
-                    throw new BackupException("Incorrect storage mode.");
-            }
-
-            _restorePoints.Add(restorePoint);
+            _restorePoints.Add(new RestorePoint(_path, _jobObjects, _storagePacker, _fileRepository));
         }
     }
 }
