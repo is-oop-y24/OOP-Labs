@@ -9,7 +9,8 @@ namespace Backups.Client
     {
         static void Main(string[] args)
         {
-            new Client("localhost", 8888, new ConsoleLogger()).Run();
+            //var client = new Client("localhost", 8888, new ConsoleLogger());
+            //client.MakeRequest();
         }
     }
 }

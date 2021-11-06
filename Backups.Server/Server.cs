@@ -28,10 +28,7 @@ namespace Backups.Server
         {
             _ip = IPAddress.Parse(ipString);
             _port = port;
-
-            var options = new JsonSerializerOptions();
-            options.Converters.Add(new ServerExceptionConverter());
-            _decoder = new BytesDecoder(options);
+            _decoder = new BytesDecoder();
         }
 
         public IFileRepository FileRepository { init => _repository = value; }

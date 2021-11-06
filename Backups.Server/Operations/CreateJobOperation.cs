@@ -36,13 +36,13 @@ namespace Backups.Server
             }
             catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
+                return new Response(ResponseCode.Error, new ResponseData {Error = new Error{Message = serverException.Message}});
             }
             catch (BackupException backupException)
             {
                 return new Response(ResponseCode.Error, new ResponseData
                 {
-                    Exception = new ServerException("Backup error: " + backupException)
+                    Error = new Error { Message = "Backup error: " + backupException}
                 });
             }
 

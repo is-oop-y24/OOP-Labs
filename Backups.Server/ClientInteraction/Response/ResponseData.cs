@@ -8,6 +8,6 @@ namespace Backups.Server
     public class ResponseData
     {
         public BackupFile BackupFile { get; init; }
-        public ServerException Exception { get; init; }
+        public Error Error { get; init; }
     }
 }

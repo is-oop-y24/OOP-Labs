@@ -23,7 +23,7 @@ namespace Backups.Server
             }
             catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Exception = serverException});
+                return new Response(ResponseCode.Error, new ResponseData {Error = new Error{Message = serverException.Message}});
             }
 
             return new Response(ResponseCode.Success, new ResponseData());
