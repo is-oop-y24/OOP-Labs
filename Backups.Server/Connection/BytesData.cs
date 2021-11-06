@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 
 namespace Backups.Server
 {
@@ -9,16 +10,18 @@ namespace Backups.Server
     {
         public BytesData(byte[] buffer, int bytesCount)
         {
-            Array.Copy(buffer, Bytes, bytesCount);
             Size = bytesCount;
+            Bytes = new byte[Size];
+            Array.Copy(buffer, Bytes, bytesCount);
         }
 
         public BytesData(byte[] bytes)
         {
-            Array.Copy(bytes, Bytes, bytes.Length);
             Size = bytes.Length;
+            Bytes = new byte[Size];
+            Array.Copy(bytes, Bytes, bytes.Length);
         }
-        
+
         public byte[] Bytes { get; }
         public int Size { get; }
     }

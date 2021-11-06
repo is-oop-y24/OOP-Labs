@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Backups.FileSystem;
 
@@ -20,6 +21,9 @@ namespace Backups
             _fileRepository = fileRepository;
             _storagePacker = storagePacker;
         }
+
+        public ReadOnlyCollection<RestorePoint> RestorePoints => _restorePoints.AsReadOnly();
+
         public string Name { get; }
 
         public void AddObject(IJobObject jobObject)
@@ -35,7 +39,9 @@ namespace Backups
 
         public void MakeRestorePoint()
         {
-            _restorePoints.Add(new RestorePoint(_path, _jobObjects, _storagePacker, _fileRepository));
+            var restorePoint = new RestorePoint(_path, _jobObjects, _storagePacker, _fileRepository);
+            restorePoint.Process();
+            _restorePoints.Add(restorePoint);
         }
     }
 }

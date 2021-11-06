@@ -10,16 +10,18 @@ namespace Backups
     {
         private readonly List<IJobObject> _jobObjects;
         private readonly IFileRepository _fileRepository;
-        private readonly string _path;
+        private readonly string _destinationPath;
         private readonly FileName _name;
 
         public SingleStorage(string destinationPath, List<IJobObject> jobObjects, IFileRepository fileRepository, FileName storageName)
         {
-            _path = Path.Combine(destinationPath, storageName.Name);
+            _destinationPath = destinationPath;
             _name = storageName;
             _fileRepository = fileRepository;
             _jobObjects = jobObjects;
         }
+
+        public string StoragePath => Path.Combine(_destinationPath, _name.Name);
 
         public void Process()
         {
@@ -32,7 +34,7 @@ namespace Backups
                 }
             }
 
-            _fileRepository.AddFile(archiver.MakeArchive(_name), _path);
+            _fileRepository.AddFile(archiver.MakeArchive(_name), _destinationPath);
         }
     }
 }

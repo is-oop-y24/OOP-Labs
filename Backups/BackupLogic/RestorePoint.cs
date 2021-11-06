@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using Backups.FileSystem;
 
@@ -18,5 +20,11 @@ namespace Backups
         }
 
         public DateTime Date { get; }
+        public ReadOnlyCollection<IStorage> Storages => _storages.AsReadOnly();
+
+        public void Process()
+        {
+            _storages.ForEach(storage => storage.Process());
+        }
     }
 }

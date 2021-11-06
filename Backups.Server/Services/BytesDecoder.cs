@@ -19,9 +19,9 @@ namespace Backups.Server
             return new BytesData(Encoding.Default.GetBytes(serialized));
         }
 
-        public TData Decode<TData>(BytesData data)
+        public TData Decode<TData>(BytesData bytesData)
         {
-            string serialized = Encoding.Default.GetString(data.Bytes);
+            string serialized = Encoding.Default.GetString(bytesData.Bytes);
             return JsonSerializer.Deserialize<TData>(serialized);
         }
     }

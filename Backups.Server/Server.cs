@@ -44,8 +44,11 @@ namespace Backups.Server
             while (true)
             {
                 using var connection = new Connection(new ServerConnector(_ip, _port));
+                _logger.Log("Connection set.");
                 BytesData requestBytes = connection.GetData();
+                _logger.Log($"Bytes read. Bytes count: {requestBytes.Size}.");
                 Request request = _decoder.Decode<Request>(requestBytes);
+                _logger.Log($"Request decoded. Type is {request.RequestType}.");
                 IOperation operation = _operationFactory.GetOperation(request);
                 Response response = operation.Execute();
                 connection.SendData(_decoder.Encode(response));

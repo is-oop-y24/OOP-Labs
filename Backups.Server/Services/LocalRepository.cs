@@ -9,20 +9,20 @@ namespace Isu
 {
     public class LocalRepository : IFileRepository
     {
-        private readonly string _realPath;
+        private readonly string _path;
 
         public LocalRepository(string path)
         {
-            _realPath = path;
+            _path = path;
         }
 
-        public void AddFile(BackupFile backupFile, string path)
+        public void AddFile(BackupFile backupFile, string destinationPath)
         {
-            string filePath = Path.Combine(path, backupFile.Name.Name);
+            string filePath = Path.Combine(destinationPath, backupFile.Name.Name);
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File with such name already exists.");
 
-            string absDirPath = Path.Combine(_realPath, path);
+            string absDirPath = Path.Combine(_path, destinationPath);
             string absFilePath = Path.Combine(absDirPath, backupFile.Name.Name);
             Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
@@ -34,7 +34,7 @@ namespace Isu
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File doesnt exist.");
             
-            string absFilePath = Path.Combine(_realPath, filePath);
+            string absFilePath = Path.Combine(_path, filePath);
             using FileStream fileStream = System.IO.File.OpenRead(absFilePath);
             using MemoryStream memoryStream = new MemoryStream();
             fileStream.CopyTo(memoryStream);
