@@ -17,31 +17,21 @@
     <projectFile>Backups.Client/Backups.Client.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Banks.BusinessLogic.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Banks.DataAccessLayer.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Class1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kek" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Account.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/AccountOptions/CreditOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/AccountOptions/CreditOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/AccountOptions/DebitOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/AccountOptions/DebitOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/AccountOptions/DepositOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/AccountOptions/DepositOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/AccountOptions/IAccountOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/AccountOptions/IAccountOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Bank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/BankId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/BankId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/Banks.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Banks.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/CentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/CentralBank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/ClientId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/ClientId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/ICentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/ICentralBank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OopLabs.sln" beforeDir="false" afterPath="$PROJECT_DIR$/OopLabs.sln" afterDir="false" />
+    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="refactor: separated to 3 projects and added classes">
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Models/AccountModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Models/AccountOptionsModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Models/BankModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Models/ClientModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Models/TransactionModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbBankRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbClientRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IBankRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IClientRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/ITransactionRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Banks.DataAccessLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/Banks.DataAccessLayer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.DataAccessLayer/BankContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,31 +74,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks/DebitOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks/CreditOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks/DepositOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks/AccountOptions.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/Connector.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/Connection.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/IConnector.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/ServerConnector.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/Connection/ServerConnector.cs" />
-      <option value="$PROJECT_DIR$/Backups.Server/Connection/Connection.cs" />
-      <option value="$PROJECT_DIR$/Banks/Bank.cs" />
-      <option value="$PROJECT_DIR$/Backups.Client/ClientConnector.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/JobObject/JobFiles.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storage.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/IStorage.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/SplitStorage.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/SingleStorage.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/IStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/SplitStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/SupportServices/StorageMode.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/SingleStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/IStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/StoragePacker/IStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/StoragePacker/SplitStoragePacker.cs" />
-      <option value="$PROJECT_DIR$/Backups/BackupLogic/BackupService.cs" />
       <option value="$PROJECT_DIR$/Backups/BackupLogic/IBackupService.cs" />
       <option value="$PROJECT_DIR$/Backups/BackupLogic/Storages/StoragePacker/SingleStoragePacker.cs" />
       <option value="$PROJECT_DIR$/Backups.Server/Operations/Services/BytesDecoder.cs" />
@@ -135,6 +100,31 @@
       <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Class1.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Class1.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Class1.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Transaction.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/IAccountOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/DebitOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/CreditOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/DepositOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/BankContext.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Models/BankModel.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Models/ClientModel.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Models/TransactionModel.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Models/AccountOptionsModel.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/IBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Models/AccountModel.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/IRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/IBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/IClientRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/ITransactionInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/Repositories.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Interfaces/Repositories/BankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/BankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/ClientRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbClientRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IClientRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/ITransactionInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/ITransactionRepository.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -468,14 +458,7 @@
       <workItem from="1636195505884" duration="14058000" />
       <workItem from="1636230208914" duration="3356000" />
       <workItem from="1636288870957" duration="281000" />
-      <workItem from="1636822077520" duration="297000" />
-    </task>
-    <task id="LOCAL-00149" summary="fix: made worth setter internal">
-      <created>1632136391240</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1632136391241</updated>
+      <workItem from="1636822077520" duration="5204000" />
     </task>
     <task id="LOCAL-00150" summary="fix: made worth setter internal">
       <created>1632136600877</created>
@@ -813,7 +796,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636232985805</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="refactor: separated to 3 projects and added classes">
+      <created>1636822611449</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1636822611449</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -847,7 +837,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat: created basic server structure" />
     <MESSAGE value="fix: fixed restore point naming" />
     <MESSAGE value="fix: made File serializable" />
     <MESSAGE value="feat: changed JobObject structure" />
@@ -872,7 +861,8 @@
     <MESSAGE value="test: implemented tests" />
     <MESSAGE value="fix: changed Exception in ResponseData to Error class" />
     <MESSAGE value="doc: added diagramms" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: added diagramms" />
+    <MESSAGE value="refactor: separated to 3 projects and added classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: separated to 3 projects and added classes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
