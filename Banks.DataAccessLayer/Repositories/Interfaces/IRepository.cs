@@ -4,7 +4,7 @@ namespace Banks.DataAccessLayer.Interfaces
     {
         void Add(TModel model);
         void Update(TModel model);
-        void Get(int id);
+        TModel GetModel(int id);
         void Delete(int id);
     }
 }

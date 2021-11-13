@@ -1,28 +1,41 @@
+using System.Data;
+using System.Linq;
 using Banks.DataAccessLayer.Interfaces;
 using Banks.DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banks.DataAccessLayer.Repositories
 {
     public class DbBankRepository : IBankRepository
     {
+        private BankContext _bankContext = BankContext.GetInstance;
         public void Add(BankModel model)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Banks.Add(model);
+            _bankContext.SaveChanges();
         }
 
         public void Update(BankModel model)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Banks.Update(model);
+            _bankContext.SaveChanges();
         }
 
-        public void Get(int id)
+        public BankModel GetModel(int id)
         {
-            throw new System.NotImplementedException();
+            BankModel bankModel = _bankContext.Banks
+                .Where(bank => bank.Id == id)
+                .Select(bank => bank)
+                .SingleOrDefault();
+            if (bankModel == null)
+                throw new DataException("Bank doesnt exist.");
+            return bankModel;
         }
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Banks.Remove(GetModel(id));
+            _bankContext.SaveChanges();
         }
     }
 }

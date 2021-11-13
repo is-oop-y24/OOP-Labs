@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using Banks.DataAccessLayer.Interfaces;
 using Banks.DataAccessLayer.Models;
 
@@ -6,29 +8,40 @@ namespace Banks.DataAccessLayer.Repositories
 {
     public class DbClientRepository : IClientRepository
     {
+        private BankContext _bankContext = BankContext.GetInstance;
         public void Add(ClientModel model)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Clients.Add(model);
+            _bankContext.SaveChanges();
         }
 
         public void Update(ClientModel model)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Clients.Update(model);
+            _bankContext.SaveChanges();
         }
 
-        public void Get(int id)
+        public ClientModel GetModel(int id)
         {
-            throw new System.NotImplementedException();
+            ClientModel clientModel = _bankContext.Clients
+                .Where(client => client.Id == id)
+                .Select(client => client)
+                .SingleOrDefault();
+            if (clientModel == null)
+                throw new DataException("Client doesnt exist.");
+            return clientModel;
         }
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            _bankContext.Clients.Remove(GetModel(id));
         }
 
         public List<ClientModel> Find(int bankId)
         {
-            throw new System.NotImplementedException();
+            return _bankContext.Clients
+                .Where(client => client.Bank.Id == bankId)
+                .ToList();
         }
     }
 }
