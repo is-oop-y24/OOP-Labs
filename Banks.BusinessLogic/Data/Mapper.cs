@@ -1,15 +1,18 @@
+using System.Collections.Generic;
 using Banks.DataAccessLayer.Models;
 
 namespace Banks
 {
     public class Mapper : IMapper
     {
-        public AccountModel GetAccountModel(Account account)
+        public AccountModel GetAccountModel(Account account, Bank bank)
         {
-            throw new System.NotImplementedException();
+            return new AccountModel{
+                Bank = GetBankModel(bank),
+                Client = account.Client, }
         }
 
-        public Account GetAccount(AccountModel accountModel)
+        public Account GetAccount(AccountModel accountModel, IAccountOptions accountOptions)
         {
             throw new System.NotImplementedException();
         }
@@ -19,7 +22,12 @@ namespace Banks
             throw new System.NotImplementedException();
         }
 
-        public Bank GetBank(BankModel bankModel)
+        public Bank GetBank(BankModel bankModel, List<Client> clients, List<Transaction> transactions)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Bank GetBank(BankModel bankModel, List<Client> clients, List<Account> accounts, List<Transaction> transactions)
         {
             throw new System.NotImplementedException();
         }
@@ -29,7 +37,7 @@ namespace Banks
             throw new System.NotImplementedException();
         }
 
-        public Client GetClient(ClientModel clientModel)
+        public Client GetClient(ClientModel clientModel, List<Account> accounts)
         {
             throw new System.NotImplementedException();
         }
@@ -39,7 +47,27 @@ namespace Banks
             throw new System.NotImplementedException();
         }
 
-        public Transaction GetTransaction(TransactionModel transactionModel)
+        public Transaction GetTransaction(TransactionModel transactionModel, Client source, Client destination)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public AccountOptionsModel GetAccountOptionsModel(IAccountOptions accountOptions)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IAccountOptions GetAccountOptions(AccountOptionsModel accountOptionsModel)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string GetIntervalsString(PercentIntervals intervals)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public PercentIntervals GetIntervals(string intervalsString)
         {
             throw new System.NotImplementedException();
         }

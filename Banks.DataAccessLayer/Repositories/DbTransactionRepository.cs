@@ -37,10 +37,10 @@ namespace Banks.DataAccessLayer.Repositories
             _bankContext.Transactions.Remove(GetModel(id));
         }
 
-        public List<TransactionModel> Find(int bankId)
+        public List<TransactionModel> Find(BankModel bank)
         {
             return _bankContext.Transactions
-                .Where(transaction => transaction.Bank.Id == bankId)
+                .Where(transaction => transaction.Bank == bank)
                 .ToList();
         }
     }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Banks.BusinessLogic.Tools;
 
 namespace Banks
@@ -16,6 +18,7 @@ namespace Banks
         public int Id { get; init; }
         
         public decimal Sum { get; private set; }
+        
         public Client Client { get; init; }
         public IAccountOptions Options
         {

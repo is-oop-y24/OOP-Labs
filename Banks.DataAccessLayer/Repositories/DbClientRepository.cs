@@ -37,10 +37,10 @@ namespace Banks.DataAccessLayer.Repositories
             _bankContext.Clients.Remove(GetModel(id));
         }
 
-        public List<ClientModel> Find(int bankId)
+        public List<ClientModel> Find(BankModel bank)
         {
             return _bankContext.Clients
-                .Where(client => client.Bank.Id == bankId)
+                .Where(client => client.Bank == bank)
                 .ToList();
         }
     }

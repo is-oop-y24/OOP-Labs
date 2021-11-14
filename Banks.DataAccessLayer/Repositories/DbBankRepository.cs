@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Banks.DataAccessLayer.Interfaces;
@@ -36,6 +37,11 @@ namespace Banks.DataAccessLayer.Repositories
         {
             _bankContext.Banks.Remove(GetModel(id));
             _bankContext.SaveChanges();
+        }
+
+        public List<BankModel> GetAll()
+        {
+            return _bankContext.Banks.Select(bank => bank).ToList();
         }
     }
 }

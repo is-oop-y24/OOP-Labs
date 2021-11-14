@@ -5,6 +5,6 @@ namespace Banks.DataAccessLayer.Interfaces
 {
     public interface ITransactionRepository : IRepository<TransactionModel>
     {
-        List<TransactionModel> Find(int bankId);
+        List<TransactionModel> Find(BankModel bankModel);
     }
 }

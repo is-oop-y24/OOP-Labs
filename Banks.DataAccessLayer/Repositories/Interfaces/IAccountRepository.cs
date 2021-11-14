@@ -3,8 +3,8 @@ using Banks.DataAccessLayer.Models;
 
 namespace Banks.DataAccessLayer.Interfaces
 {
-    public interface IClientRepository : IRepository<ClientModel>
+    public interface IAccountRepository : IRepository<AccountModel>
     {
-        List<ClientModel> Find(BankModel bankModel);
+        public List<AccountModel> Find(ClientModel client);
     }
 }

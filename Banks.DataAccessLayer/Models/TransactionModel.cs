@@ -1,8 +1,9 @@
 using System;
+using Banks.DataAccessLayer.Interfaces;
 
 namespace Banks.DataAccessLayer.Models
 {
-    public class TransactionModel
+    public class TransactionModel : IDbModel
     {
         public int Id { get; set; }
         public BankModel Bank { get; set; }

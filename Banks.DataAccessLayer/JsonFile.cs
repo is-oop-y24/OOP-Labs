@@ -13,7 +13,7 @@ namespace Banks.DataAccessLayer
         
         public JsonFile(string path)
         {
-            using var stream = new FileStream("config.json", FileMode.Open);
+            using var stream = new FileStream(path, FileMode.Open);
             byte[] bytes = new byte[_bufferSize];
             stream.Read(bytes);
             string jsonString = Encoding.Default.GetString(bytes);

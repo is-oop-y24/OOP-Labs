@@ -1,6 +1,8 @@
+using Banks.DataAccessLayer.Interfaces;
+
 namespace Banks.DataAccessLayer.Models
 {
-    public class AccountOptionsModel
+    public class AccountOptionsModel : IDbModel
     {
         public int Id { get; set; }
         public string Type { get; set; }
