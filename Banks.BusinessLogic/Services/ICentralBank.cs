@@ -5,6 +5,6 @@ namespace Banks
         void MakePayouts();
         Bank RegisterBank(string bankName);
         Bank FindBank(string bankName);
-        Bank GetBank(BankId bankId);
+        Bank GetBank(int bankId);
     }
 }

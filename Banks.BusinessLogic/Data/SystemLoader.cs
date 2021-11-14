@@ -6,5 +6,10 @@ namespace Banks
         {
             throw new System.NotImplementedException();
         }
+
+        public void Save(ICentralBank centralBank)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

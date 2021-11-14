@@ -17,7 +17,7 @@ namespace Banks
             throw new System.NotImplementedException();
         }
 
-        public Bank GetBank(BankId bankId)
+        public Bank GetBank(int bankId)
         {
             throw new System.NotImplementedException();
         }
