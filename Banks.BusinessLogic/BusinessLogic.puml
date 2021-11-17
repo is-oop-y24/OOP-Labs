@@ -11,10 +11,6 @@ interface ICentralBank {
  GetBank() : Bank
 }
 
-interface ISystemLoader {
- Load() : ICentralBank
-}
-
 class Bank {
  MakePayouts() : void
  Refresh() : void
@@ -48,8 +44,8 @@ IAccountOptions <|-- DebitOptions
 IAccountOptions <|-- CreditOptions
 IAccountOptions <|-- DepositOptions
 
-PercentIntervals o-- PercentInterval
-CreditOptions o-- PercentIntervals
+IntervalSequence o-- PercentInterval
+CreditOptions o-- IntervalSequence
 
 ICentralBank <|-- CentralBank
 CentralBank o-- Bank
@@ -59,6 +55,4 @@ Bank o-- Transaction
 Account o-l- IAccountOptions
 Account o-r- Client
 Client o-- ClientId
-
-ISystemLoader <|-- SystemLoader
 @enduml

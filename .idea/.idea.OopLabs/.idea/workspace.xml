@@ -17,42 +17,14 @@
     <projectFile>Backups.Client/Backups.Client.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="feat: added NullCheckingExtension to common utilities">
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/Percent.cs" afterDir="false" />
+    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="fix: refactored and fixed project for correct EF work">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/IAccountOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Banks.BusinessLogic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Banks.BusinessLogic.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/IMapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/ISystemLoader.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/Mapper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/SystemLoader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentInterval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentIntervals.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/DecimalComparer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/BankContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/JsonFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/JsonFile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbAccountRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbBankRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbClientRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/DbTransactionRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IAccountRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IBankRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IClientRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/IRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.DataAccessLayer/Repositories/Interfaces/ITransactionRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Tests/AccountOptionsTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Tests/AccountOptionsTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OopLabs.sln" beforeDir="false" afterPath="$PROJECT_DIR$/OopLabs.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,23 +112,23 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentInterval.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
       <option value="$PROJECT_DIR$/Utility/Class1.cs" />
       <option value="$PROJECT_DIR$/Utility/NullChechinkExtensions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/Percent.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" />
       <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTest.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -503,21 +475,7 @@
       <workItem from="1636978918652" duration="552000" />
       <workItem from="1636982644220" duration="153000" />
       <workItem from="1637135374455" duration="1575000" />
-      <workItem from="1637137000339" duration="1410000" />
-    </task>
-    <task id="LOCAL-00158" summary="feat: added exception">
-      <created>1633124412286</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1633124412286</updated>
-    </task>
-    <task id="LOCAL-00159" summary="feat: added GsaCourses property to service">
-      <created>1633124835911</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1633124835911</updated>
+      <workItem from="1637137000339" duration="3527000" />
     </task>
     <task id="LOCAL-00160" summary="fix: few fixed">
       <created>1633127094993</created>
@@ -848,7 +806,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637137566080</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="fix: refactored and fixed project for correct EF work">
+      <created>1637138528290</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1637138528290</updated>
+    </task>
+    <task id="LOCAL-00208" summary="fix: refactored and fixed project for correct EF work">
+      <created>1637138566935</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1637138566935</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -882,7 +854,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="fix: changed exception handling" />
     <MESSAGE value="fix: changed ServerException serialization" />
     <MESSAGE value="test: implemented second test case" />
     <MESSAGE value="feat: added ILogger interface" />
@@ -907,7 +878,8 @@
     <MESSAGE value="feat: implemented entities data structure" />
     <MESSAGE value="feat: implemented Load method" />
     <MESSAGE value="feat: added NullCheckingExtension to common utilities" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added NullCheckingExtension to common utilities" />
+    <MESSAGE value="fix: refactored and fixed project for correct EF work" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: refactored and fixed project for correct EF work" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

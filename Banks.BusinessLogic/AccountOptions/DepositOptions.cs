@@ -1,23 +1,42 @@
 using System;
+using Banks.BusinessLogic.Tools;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
     public class DepositOptions : AccountOptions
     {
         public IntervalSequence Intervals { get; private init; }
+        public DateTime ExpiringDate { get; private init; }
 
         private DepositOptions()
         {
         }
-        
-        public override decimal CalculateAccumulated(DateTime calculateUntil)
+
+        private decimal DailyPercentMultiplier(decimal sum)
         {
-            throw new NotImplementedException();
+            return Intervals.GetPercent(sum) / 365 / 100;
+        }
+        
+        public DepositOptions(IntervalSequence sequence, DateTime expiringDate)
+        {
+            if (expiringDate < DateTime.Now)
+                throw new BankException("Incorrect expiring date.");
+            ExpiringDate = expiringDate;
+            Intervals = sequence.ThrowIfNull(nameof(sequence));
+        }
+        
+        public override decimal CalculateAccumulated(DateTime startDate, DateTime finishDate, decimal sum)
+        {
+            decimal daysPassed = (decimal)(finishDate - startDate).TotalDays;
+            if (daysPassed < 0)
+                throw new BankException("Incorrect interval.");
+            return sum * DailyPercentMultiplier(sum) * daysPassed;
         }
 
         public override decimal MaxWithdrawSum(decimal currentSum)
         {
-            throw new NotImplementedException();
+            return ExpiringDate < DateTime.Now ? currentSum : 0;
         }
     }
 }

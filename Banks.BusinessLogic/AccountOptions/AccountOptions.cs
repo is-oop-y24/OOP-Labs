@@ -1,16 +1,22 @@
 using System;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
     public abstract class AccountOptions
     {
         public int Id { get; private init; }
+        
+        protected AccountOptions()
+        {
+        }
 
         /// <summary>
-        /// Calculate accumulated money from the last update date to calculateUntil param.
+        /// Calculate a sum accumulated on the account in days between startDate and finishDate.
         /// </summary>
-        /// <returns>Accumulated payout.</returns>
-        public abstract decimal CalculateAccumulated(DateTime calculateUntil);
+        /// <param name="sum">Sum that constant in given days.</param>
+        /// <returns></returns>
+        public abstract decimal CalculateAccumulated(DateTime startDate, DateTime finishDate, decimal sum);
         public abstract decimal MaxWithdrawSum(decimal currentSum);
     }
 }

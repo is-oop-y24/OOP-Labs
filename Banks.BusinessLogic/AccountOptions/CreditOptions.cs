@@ -6,10 +6,6 @@ namespace Banks
 {
     public class CreditOptions : AccountOptions
     {
-        private CreditOptions()
-        {
-        }
-
         public CreditOptions(decimal commission, decimal limit)
         {
             if (limit <= 0)
@@ -18,17 +14,24 @@ namespace Banks
             Limit = limit;
         }
         
+        private CreditOptions()
+        {
+        }
+        
         public decimal Commission { get; private init; }
         public decimal Limit { get; private init; }
         
-        public override decimal CalculateAccumulated(DateTime calculateUntil)
+        public override decimal CalculateAccumulated(DateTime startDate, DateTime finishDate, decimal sum)
         {
-            throw new NotImplementedException();
+            decimal daysPassed = (decimal)(finishDate - startDate).TotalDays;
+            if (daysPassed < 0)
+                throw new BankException("Incorrect interval.");
+            return (sum < -Limit) ? Commission * daysPassed : 0;
         }
 
         public override decimal MaxWithdrawSum(decimal currentSum)
         {
-            throw new NotImplementedException();
+            return currentSum + Limit;
         }
     }
 }

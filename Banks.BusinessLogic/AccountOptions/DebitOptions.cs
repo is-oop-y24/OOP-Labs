@@ -5,24 +5,34 @@ namespace Banks
 {
     public class DebitOptions : AccountOptions
     {
-        private DebitOptions()
-        {
-        }
         public DebitOptions(Percent percent)
         {
             Percent = percent.Value;
         }
         
-        public decimal Percent { get; private init; }
-        
-        public override decimal CalculateAccumulated(DateTime calculateUntil)
+        private DebitOptions()
         {
-            throw new NotImplementedException();
+        }
+
+        public decimal Percent { get; private init; }
+        private decimal DailyPercentMultiplier()
+        {
+            return Percent / 365 / 100;
+        }
+        
+        public override decimal CalculateAccumulated(DateTime startDate, DateTime finishDate, decimal sum)
+        {
+            decimal daysPassed = (decimal)(finishDate - startDate).TotalDays;
+            if (daysPassed < 0)
+                throw new BankException("Incorrect interval.");
+            return sum * DailyPercentMultiplier() * daysPassed;
         }
 
         public override decimal MaxWithdrawSum(decimal currentSum)
         {
-            throw new NotImplementedException();
+            if (currentSum < 0)
+                throw new BankException("Deposit account sum cannot be negative.");
+            return currentSum;
         }
     }
 }

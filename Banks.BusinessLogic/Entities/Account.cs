@@ -20,7 +20,6 @@ namespace Banks
         public decimal Sum { get; private set; }
         public bool Notify { get; private set; }
         public decimal NextPayout { get; private set; }
-        
 
         public AccountOptions Options
         {
