@@ -1,25 +1,32 @@
 using System;
+using Banks.BusinessLogic.Tools;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
-    public class CreditOptions : IAccountOptions
+    public class CreditOptions : AccountOptions
     {
+        private CreditOptions()
+        {
+        }
+
         public CreditOptions(decimal commission, decimal limit)
         {
-            Commission = commission;
+            if (limit <= 0)
+                throw new BankException("Credit limit must be a positive number.");
+            Commission = commission.ThrowIfNull(nameof(commission));
             Limit = limit;
         }
         
-        public int Id { get; }
-        public decimal Commission { get; }
-        public decimal Limit { get; }
+        public decimal Commission { get; private init; }
+        public decimal Limit { get; private init; }
         
-        public decimal CalculateAccumulated(DateTime calculateUntil)
+        public override decimal CalculateAccumulated(DateTime calculateUntil)
         {
             throw new NotImplementedException();
         }
 
-        public decimal MaxWithdrawSum(decimal currentSum)
+        public override decimal MaxWithdrawSum(decimal currentSum)
         {
             throw new NotImplementedException();
         }

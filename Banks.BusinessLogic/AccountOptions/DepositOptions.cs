@@ -2,17 +2,20 @@ using System;
 
 namespace Banks
 {
-    public class DepositOptions : IAccountOptions
+    public class DepositOptions : AccountOptions
     {
-        public int Id { get; init; }
-        public PercentIntervals Intervals { get; init; }
+        public IntervalSequence Intervals { get; private init; }
+
+        private DepositOptions()
+        {
+        }
         
-        public decimal CalculateAccumulated(DateTime calculateUntil)
+        public override decimal CalculateAccumulated(DateTime calculateUntil)
         {
             throw new NotImplementedException();
         }
 
-        public decimal MaxWithdrawSum(decimal currentSum)
+        public override decimal MaxWithdrawSum(decimal currentSum)
         {
             throw new NotImplementedException();
         }

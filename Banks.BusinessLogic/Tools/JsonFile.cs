@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Banks.DataAccessLayer
+namespace Banks.BusinessLogic.Data
 {
     public class JsonFile
     {

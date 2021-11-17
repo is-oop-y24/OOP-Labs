@@ -1,37 +1,38 @@
-using System;
-using System.Collections.Generic;
 using Banks.BusinessLogic.Tools;
 
 namespace Banks
 {
     public class Account
     {
-        private IAccountOptions _options;
-        private decimal _nextPayout = 0;
+        private AccountOptions _options;
 
-        public Account(Client client, IAccountOptions options)
+        private Account()
+        {
+        }
+        public Account(Client client, AccountOptions options)
         {
             Client = client;
             Options = options;
         }
         
         public int Id { get; init; }
-        
+        public Client Client { get; private init; }
         public decimal Sum { get; private set; }
+        public bool Notify { get; private set; }
+        public decimal NextPayout { get; private set; }
         
-        public Client Client { get; init; }
-        public IAccountOptions Options
+
+        public AccountOptions Options
         {
             get => _options;
-            set
-            {
-                if (value == null)
-                    throw new BankException("Account options cannot be null.");
-                _options = value;
-                // TODO Notify logic
-            }
+            private set => _options = value ?? throw new BankException("Account options cannot be null.");
         }
-        
+
+        public void ChangeOptions(AccountOptions options)
+        {
+            Options = options;
+            // TODO Notify logic
+        }
         
     }
 }

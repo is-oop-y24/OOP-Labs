@@ -2,15 +2,15 @@ using System;
 
 namespace Banks
 {
-    public interface IAccountOptions
+    public abstract class AccountOptions
     {
-        int Id { get; }
+        public int Id { get; private init; }
 
         /// <summary>
         /// Calculate accumulated money from the last update date to calculateUntil param.
         /// </summary>
         /// <returns>Accumulated payout.</returns>
-        decimal CalculateAccumulated(DateTime calculateUntil);
-        decimal MaxWithdrawSum(decimal currentSum);
+        public abstract decimal CalculateAccumulated(DateTime calculateUntil);
+        public abstract decimal MaxWithdrawSum(decimal currentSum);
     }
 }

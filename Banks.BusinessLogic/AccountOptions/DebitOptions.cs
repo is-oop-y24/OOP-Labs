@@ -1,23 +1,26 @@
 using System;
+using Banks.BusinessLogic.Tools;
 
 namespace Banks
 {
-    public class DebitOptions : IAccountOptions
+    public class DebitOptions : AccountOptions
     {
-        public DebitOptions(decimal percent)
+        private DebitOptions()
         {
-            Percent = percent;
+        }
+        public DebitOptions(Percent percent)
+        {
+            Percent = percent.Value;
         }
         
-        public int Id { get; }
-        public decimal Percent { get; }
+        public decimal Percent { get; private init; }
         
-        public decimal CalculateAccumulated(DateTime calculateUntil)
+        public override decimal CalculateAccumulated(DateTime calculateUntil)
         {
             throw new NotImplementedException();
         }
 
-        public decimal MaxWithdrawSum(decimal currentSum)
+        public override decimal MaxWithdrawSum(decimal currentSum)
         {
             throw new NotImplementedException();
         }

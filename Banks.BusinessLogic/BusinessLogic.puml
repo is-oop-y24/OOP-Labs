@@ -1,0 +1,64 @@
+@startuml
+interface IAccountOptions {
+ MaxWithdrawSum() : float
+}
+
+interface ICentralBank {
+ MakePayouts() : void
+ Refresh() : void
+ RegisterBank() : Bank
+ FindBank() : Bank
+ GetBank() : Bank
+}
+
+interface ISystemLoader {
+ Load() : ICentralBank
+}
+
+class Bank {
+ MakePayouts() : void
+ Refresh() : void
+ RegisterClient() : Client
+ UpdateClient() : void
+ RegisterAccount() : Account
+ UpdateAccount() : void
+}
+
+class Account {
+ Refresh() : void
+ MakePayout() : void
+ TopUp() : void
+ Withdraw() : void
+ TransferTo() : void
+}
+
+class ClientId {
+ IsDoubtful : bool
+}
+
+class Transaction {
+ Id : int
+ Date : DateTime
+ Source : Account
+ Destination : Account
+ IsAborted : bool
+}
+
+IAccountOptions <|-- DebitOptions
+IAccountOptions <|-- CreditOptions
+IAccountOptions <|-- DepositOptions
+
+PercentIntervals o-- PercentInterval
+CreditOptions o-- PercentIntervals
+
+ICentralBank <|-- CentralBank
+CentralBank o-- Bank
+Bank o-- Client
+Bank o-- Account
+Bank o-- Transaction
+Account o-l- IAccountOptions
+Account o-r- Client
+Client o-- ClientId
+
+ISystemLoader <|-- SystemLoader
+@enduml

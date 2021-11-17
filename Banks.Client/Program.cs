@@ -1,4 +1,7 @@
-﻿using Banks.DataAccessLayer.Repositories;
+﻿using System;
+using System.Linq;
+using Banks.BusinessLogic.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banks
 {
