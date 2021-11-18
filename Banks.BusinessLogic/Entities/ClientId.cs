@@ -1,9 +1,14 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Banks
 {
     public class ClientId
     {
+        public ClientId()
+        {
+        }
+        
         public int Id { get; private init; }
         public string Passport { get; init; }
         public string Address { get; init; }

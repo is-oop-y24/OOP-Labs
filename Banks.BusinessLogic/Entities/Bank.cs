@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Banks.BusinessLogic.Tools;
 using Kfc.Utility.Extensions;
@@ -12,13 +13,9 @@ namespace Banks
         
         public Bank()
         {
-        }
-
-        internal Bank(List<Client> clients, List<Account> accounts, List<Transaction> transactions)
-        {
-            _clients = clients; 
-            _accounts = accounts;
-            _transactions = transactions;
+            _clients = new List<Client>();
+            _accounts = new List<Account>();
+            _transactions = new List<Transaction>();
         }
 
         public int Id { get; private init; }

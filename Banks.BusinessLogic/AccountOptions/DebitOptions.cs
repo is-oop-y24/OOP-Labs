@@ -1,5 +1,6 @@
 using System;
 using Banks.BusinessLogic.Tools;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
@@ -7,6 +8,7 @@ namespace Banks
     {
         public DebitOptions(Percent percent)
         {
+            percent.ThrowIfNull(nameof(percent));
             Percent = percent.Value;
         }
         

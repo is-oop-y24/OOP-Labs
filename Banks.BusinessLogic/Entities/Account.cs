@@ -21,7 +21,7 @@ namespace Banks
             _lastUpdate = DateTime.Now;
         }
 
-        public int Id { get; init; }
+        public int Id { get; private init; }
         public Client Client { get; private init; }
         public decimal Sum { get; private set; }
         public bool ChangesNotify { get; private set; }

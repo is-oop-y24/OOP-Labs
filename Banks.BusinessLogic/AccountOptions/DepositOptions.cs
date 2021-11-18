@@ -8,7 +8,16 @@ namespace Banks
     {
         public IntervalSequence Intervals { get; private init; }
         public DateTime ExpiringDate { get; private init; }
-
+        
+        public DepositOptions(IntervalSequence sequence, DateTime expiringDate)
+        {
+            if (expiringDate < DateTime.Now)
+                throw new BankException("Incorrect expiring date.");
+            
+            ExpiringDate = expiringDate;
+            Intervals = sequence.ThrowIfNull(nameof(sequence));
+        }
+        
         private DepositOptions()
         {
         }
@@ -17,15 +26,7 @@ namespace Banks
         {
             return Intervals.GetPercent(sum) / 365 / 100;
         }
-        
-        public DepositOptions(IntervalSequence sequence, DateTime expiringDate)
-        {
-            if (expiringDate < DateTime.Now)
-                throw new BankException("Incorrect expiring date.");
-            ExpiringDate = expiringDate;
-            Intervals = sequence.ThrowIfNull(nameof(sequence));
-        }
-        
+
         public override decimal CalculateAccumulated(DateTime startDate, DateTime finishDate, decimal sum)
         {
             decimal daysPassed = (decimal)(finishDate - startDate).TotalDays;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Banks.BusinessLogic.Tools;
@@ -13,6 +14,7 @@ namespace Banks.BusinessLogic.Data
 
         public DbBankRepository(BankContext bankContext)
         {
+            bankContext.ThrowIfNull(nameof(bankContext));
             _bankContext = bankContext;
         }
         
@@ -36,6 +38,12 @@ namespace Banks.BusinessLogic.Data
         {
             return GetBanks().Find(bank => bank.Id == id) 
                    ?? throw new BankException("Bank doesnt exist.");
+        }
+
+        public void Dispose()
+        {
+            _bankContext.SaveChanges();
+            _bankContext.Dispose();
         }
     }
 }
