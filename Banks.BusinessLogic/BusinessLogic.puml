@@ -1,43 +1,49 @@
 @startuml
 interface IAccountOptions {
- MaxWithdrawSum() : float
+    MaxWithdrawSum() : float
 }
 
 interface ICentralBank {
- MakePayouts() : void
- Refresh() : void
- RegisterBank() : Bank
- FindBank() : Bank
- GetBank() : Bank
+    MakePayouts() : void
+    Refresh() : void
+    RegisterBank() : Bank
+    FindBank() : Bank
+    GetBank() : Bank
 }
 
 class Bank {
- MakePayouts() : void
- Refresh() : void
- RegisterClient() : Client
- UpdateClient() : void
- RegisterAccount() : Account
- UpdateAccount() : void
+    MakePayouts() : void
+    Refresh() : void
+    RegisterClient() : Client
+    UpdateClient() : void
+    RegisterAccount() : Account
+    UpdateAccount() : void
 }
 
 class Account {
- Refresh() : void
- MakePayout() : void
- TopUp() : void
- Withdraw() : void
- TransferTo() : void
+    Refresh() : void
+    MakePayout() : void
+    TopUp() : void
+    Withdraw() : void
+    TransferTo() : void
 }
 
 class ClientId {
- IsDoubtful : bool
+    IsDoubtful : bool
 }
 
 class Transaction {
- Id : int
- Date : DateTime
- Source : Account
- Destination : Account
- IsAborted : bool
+    Id : int
+    Date : DateTime
+    Source : Account
+    Destination : Account
+    IsAborted : bool
+}
+
+interface IBankRepository {
+    AddBank() : void
+    GetBanks() List<Bank>
+    GetBank() : Bank
 }
 
 IAccountOptions <|-- DebitOptions
@@ -49,6 +55,7 @@ CreditOptions o-- IntervalSequence
 
 ICentralBank <|-- CentralBank
 CentralBank o-- Bank
+CentralBank o-- IBankRepository
 Bank o-- Client
 Bank o-- Account
 Bank o-- Transaction
