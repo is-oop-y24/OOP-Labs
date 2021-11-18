@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using Banks.BusinessLogic.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace Banks
+﻿namespace Banks
 {
     internal static class Program
     {

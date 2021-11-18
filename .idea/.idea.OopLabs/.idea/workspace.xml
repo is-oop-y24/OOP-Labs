@@ -17,16 +17,8 @@
     <projectFile>Backups.Client/Backups.Client.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" afterDir="false" />
+    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="feat: defined client structure">
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Application.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +72,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentIntervals.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IMapper.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/SystemLoader.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Mapper.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Banks.BusinessLogic.csproj" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbAccountRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbClientRepository.cs" />
@@ -113,7 +100,6 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/Percent.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
       <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTests.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" />
@@ -131,6 +117,12 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/IUserInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/ConsoleInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Application.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -482,13 +474,6 @@
       <workItem from="1637262750054" duration="5882000" />
       <workItem from="1637268711217" duration="1214000" />
     </task>
-    <task id="LOCAL-00166" summary="refactor: created directory SupportServices">
-      <created>1634137299991</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1634137299991</updated>
-    </task>
     <task id="LOCAL-00167" summary="feat: added file system">
       <created>1634145501974</created>
       <option name="number" value="00167" />
@@ -825,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637262791505</updated>
     </task>
-    <option name="localTasksCounter" value="215" />
+    <task id="LOCAL-00215" summary="feat: defined client structure">
+      <created>1637276967859</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1637276967860</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -859,7 +851,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="doc: added diagrams" />
     <MESSAGE value="fix: decomposed server code" />
     <MESSAGE value="fix: made fixes" />
     <MESSAGE value="feat: decomposed Connection" />
@@ -884,7 +875,8 @@
     <MESSAGE value="feat: implemented account options" />
     <MESSAGE value="test: refactored tests and added AccountOptions test" />
     <MESSAGE value="feat: implemented DbBankRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented DbBankRepository" />
+    <MESSAGE value="feat: defined client structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: defined client structure" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
