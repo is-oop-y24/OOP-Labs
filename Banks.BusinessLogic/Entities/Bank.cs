@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Banks.BusinessLogic.Tools;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
@@ -19,7 +21,7 @@ namespace Banks
             _transactions = transactions;
         }
 
-        public int Id { get; init; }
+        public int Id { get; private init; }
 
         public List<Client> Clients
         {
@@ -39,24 +41,35 @@ namespace Banks
             private init => _transactions = new List<Transaction>(value);
         }
 
+        private void TransactionMade(Transaction transaction)
+        {
+            _transactions.Add(transaction);
+        }
+
+        public void Refresh()
+        {
+            _accounts.ForEach(acc => acc.Refresh());
+        }
+        
         public void MakePayouts()
         {
-            throw new System.NotImplementedException();
+            _accounts.ForEach(acc => acc.MakePayout());
         }
 
-        public Client RegisterClient(Client client)
+        public Client RegisterClient(IClientBuilder clientBuilder)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void UpdateClient(Client client)
-        {
-            throw new System.NotImplementedException();
+            clientBuilder.ThrowIfNull(nameof(clientBuilder));
+            clientBuilder.SetBank(this);
+            Client client = clientBuilder.GetClient();
+            _clients.Add(client);
+            return client;
         }
 
         public void RegisterAccount(Client client, AccountOptions options)
         {
-            throw new System.NotImplementedException();
+            var account = new Account(client, options);
+            account.TransactionMade += TransactionMade;
+            _accounts.Add(account);
         }
     }
 }

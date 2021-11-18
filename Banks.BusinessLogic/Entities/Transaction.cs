@@ -1,4 +1,5 @@
 using System;
+using Banks.BusinessLogic.Tools;
 
 namespace Banks
 {
@@ -22,7 +23,17 @@ namespace Banks
         public DateTime Date { get; private init; }
         public Account Source { get; private init; }
         public Account Destination { get; private init; }
-        public bool IsAborted { get; private init; }
+        public bool IsAborted { get; private set; }
         public decimal Sum { get; private init; }
+
+        internal void Abort()
+        {
+            if (IsAborted)
+                throw new BankException("Transaction cannot be aborted twice.");
+
+            Destination?.Withdraw(Sum, notify: false);
+            Source?.TopUp(Sum, notify: false);
+            IsAborted = true;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Kfc.Utility.Extensions;
 
 namespace Banks
 {
@@ -12,10 +13,11 @@ namespace Banks
         {
         }
 
-        public Client(string name, Bank bank)
+        public Client(string name, Bank bank, ClientId identifier)
         {
             Name = name;
-            Bank = bank;
+            Bank = bank.ThrowIfNull(nameof(bank));
+            Identifier = identifier.ThrowIfNull(nameof(identifier));
             Accounts = new List<Account>();
         }
 
@@ -29,9 +31,9 @@ namespace Banks
         }
         
         [NotMapped]
-        public bool IsDoubtful => (Identifier != null) && Identifier.IsIdentified;
+        public bool IsDoubtful => Identifier.IsIdentified;
 
-        public void Notify()
+        public void OptionsChanged(Account account, string message)
         {
             // Some notify logic
         }

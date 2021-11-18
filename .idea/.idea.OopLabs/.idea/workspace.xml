@@ -18,10 +18,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Data/IBankRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,14 +59,12 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/79148/RiderProjects/Learn/OOP_Lessons/kawwik/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/346AC160-1803-412E-B0A1-21046C4AC027/2D/IServiceProviderEngine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backups/obj/Debug/netcoreapp3.1/Backups.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/346AC160-1803-412E-B0A1-21046C4AC027/8/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E99F433-39E6-42AF-832C-2F931A8312C2/26/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E99F433-39E6-42AF-832C-2F931A8312C2/1C/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/80/ITypeRegistrar.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/79148/RiderProjects/Learn/OOP_Lessons/kawwik/Banks.Tests/AccountOptionsTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/1A3/Table.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0E99F433-39E6-42AF-832C-2F931A8312C2/f3/60edfb22/NetworkStream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/3D/CommandExecutor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -77,8 +80,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionTest.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/DecimalComparer.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentIntervals.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IMapper.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/SystemLoader.cs" />
@@ -107,18 +108,12 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentInterval.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
       <option value="$PROJECT_DIR$/Utility/Class1.cs" />
       <option value="$PROJECT_DIR$/Utility/NullChechinkExtensions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/Percent.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTests.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" />
@@ -128,6 +123,14 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -476,13 +479,8 @@
       <workItem from="1637135374455" duration="1575000" />
       <workItem from="1637137000339" duration="6766000" />
       <workItem from="1637222353734" duration="2102000" />
-    </task>
-    <task id="LOCAL-00165" summary="feat: implemented MakeRestorePoint() method">
-      <created>1633971194273</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1633971194273</updated>
+      <workItem from="1637262750054" duration="5882000" />
+      <workItem from="1637268711217" duration="1214000" />
     </task>
     <task id="LOCAL-00166" summary="refactor: created directory SupportServices">
       <created>1634137299991</created>
@@ -820,7 +818,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637222605158</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="feat: implemented DbBankRepository">
+      <created>1637262791505</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1637262791505</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -854,7 +859,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat: added ILogger interface" />
     <MESSAGE value="doc: added diagrams" />
     <MESSAGE value="fix: decomposed server code" />
     <MESSAGE value="fix: made fixes" />
@@ -879,7 +883,8 @@
     <MESSAGE value="fix: refactored and fixed project for correct EF work" />
     <MESSAGE value="feat: implemented account options" />
     <MESSAGE value="test: refactored tests and added AccountOptions test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: refactored tests and added AccountOptions test" />
+    <MESSAGE value="feat: implemented DbBankRepository" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented DbBankRepository" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
