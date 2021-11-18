@@ -1,38 +1,41 @@
 using System.Collections.Generic;
+using Banks.BusinessLogic.Data;
 
 namespace Banks
 {
     public class CentralBank : ICentralBank
     {
-        private List<Bank> _banks;
+        private IBankRepository _bankRepository;
 
-        public CentralBank()
+        public CentralBank(IBankRepository bankRepository)
         {
+            _bankRepository = bankRepository;
         }
-        
-        internal CentralBank(List<Bank> banks)
-        {
-            _banks = banks;
-        }
-
         public void MakePayouts()
         {
-            throw new System.NotImplementedException();
+            _bankRepository.GetBanks().ForEach(bank => bank.MakePayouts());
         }
 
-        public Bank RegisterBank(string bankName)
+        public Bank RegisterBank()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Bank FindBank(int bankId)
-        {
-            throw new System.NotImplementedException();
+            var bank = new Bank();
+            _bankRepository.AddBank(new Bank());
+            return bank;
         }
 
         public Bank GetBank(int bankId)
         {
-            throw new System.NotImplementedException();
+            return _bankRepository.GetBank(bankId);
+        }
+
+        public void Refresh()
+        {
+            _bankRepository.GetBanks().ForEach(bank => bank.Refresh());
+        }
+
+        public void Dispose()
+        {
+            _bankRepository.Dispose();
         }
     }
 }

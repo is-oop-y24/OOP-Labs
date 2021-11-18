@@ -1,10 +1,12 @@
+using System;
+
 namespace Banks
 {
-    public interface ICentralBank
+    public interface ICentralBank : IDisposable
     {
         void MakePayouts();
-        Bank RegisterBank(string bankName);
-        Bank FindBank(int bankId);
+        Bank RegisterBank();
         Bank GetBank(int bankId);
+        void Refresh();
     }
 }
