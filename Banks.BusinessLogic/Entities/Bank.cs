@@ -11,14 +11,20 @@ namespace Banks
         private readonly List<Account> _accounts;
         private readonly List<Transaction> _transactions;
         
-        public Bank()
+        public Bank(decimal maxWithdrawForDoubtful)
         {
             _clients = new List<Client>();
             _accounts = new List<Account>();
             _transactions = new List<Transaction>();
+            MaxWithdrawForDoubtful = maxWithdrawForDoubtful;
+        }
+
+        private Bank()
+        {
         }
 
         public int Id { get; private init; }
+        public decimal MaxWithdrawForDoubtful { get; private init; }
 
         public List<Client> Clients
         {
@@ -36,11 +42,6 @@ namespace Banks
         {
             get => new (_transactions);
             private init => _transactions = new List<Transaction>(value);
-        }
-
-        private void TransactionMade(Transaction transaction)
-        {
-            _transactions.Add(transaction);
         }
 
         public void Refresh()
@@ -62,10 +63,51 @@ namespace Banks
             return client;
         }
 
+        public void TopUp(Account account, decimal sum)
+        {
+            account.ThrowIfNull(nameof(account));
+            if (account.Client.Bank != this)
+                throw new BankException("Account doesnt belong to bank");
+            
+            Transactions.Add(account.TopUp(sum));
+        }
+
+        public void Withdraw(Account account, decimal sum)
+        {
+            account.ThrowIfNull(nameof(account));
+            if (account.Client.Bank != this)
+                throw new BankException("Account doesnt belong to bank");
+            if (account.IsDoubtful && sum > MaxWithdrawForDoubtful)
+                throw new BankException("Sum exceed maximum withdraw sum for doubtful account.");
+
+            Transactions.Add(account.Withdraw(sum));
+        }
+
+        public void Transfer(Account source, Account destination, decimal sum)
+        {
+            source.ThrowIfNull(nameof(source));
+            destination.ThrowIfNull(nameof(source));
+            if (!_accounts.Contains(source) || !_accounts.Contains(destination))
+                throw new BankException("One of accounts doesnt belong to bank");
+            if (source.IsDoubtful && sum > MaxWithdrawForDoubtful)
+                throw new BankException("Sum exceed maximum withdraw sum for doubtful account.");
+            
+            Transactions.Add(source.TransferTo(destination, sum));
+        }
+
+        public void Abort(Transaction transaction)
+        {
+            transaction.ThrowIfNull(nameof(transaction));
+            if (!_transactions.Contains(transaction))
+                throw new BankException("Transaction doesnt belong to bank.");
+            
+            transaction.Abort();
+        }
+        
+
         public void RegisterAccount(Client client, AccountOptions options)
         {
             var account = new Account(client, options);
-            account.TransactionMade += TransactionMade;
             _accounts.Add(account);
         }
     }

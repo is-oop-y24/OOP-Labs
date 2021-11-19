@@ -16,10 +16,10 @@ namespace Banks
             _bankRepository.GetBanks().ForEach(bank => bank.MakePayouts());
         }
 
-        public Bank RegisterBank()
+        public Bank RegisterBank(decimal maxWithdrawForDoubtful)
         {
-            var bank = new Bank();
-            _bankRepository.AddBank(new Bank());
+            var bank = new Bank(maxWithdrawForDoubtful);
+            _bankRepository.AddBank(new Bank(maxWithdrawForDoubtful));
             return bank;
         }
 

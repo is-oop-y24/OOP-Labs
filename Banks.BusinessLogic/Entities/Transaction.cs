@@ -29,10 +29,10 @@ namespace Banks
         internal void Abort()
         {
             if (IsAborted)
-                throw new BankException("Transaction cannot be aborted twice.");
+                throw new BankException("Transaction is already aborted.");
 
-            Destination?.Withdraw(Sum, notify: false);
-            Source?.TopUp(Sum, notify: false);
+            Destination?.Withdraw(Sum);
+            Source?.TopUp(Sum);
             IsAborted = true;
         }
     }

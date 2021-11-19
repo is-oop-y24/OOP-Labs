@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Banks.BusinessLogic.Tools;
 using Kfc.Utility.Extensions;
 
@@ -15,7 +16,7 @@ namespace Banks
         {
             Client = client.ThrowIfNull(nameof(client));
             Options = options.ThrowIfNull(nameof(options));
-            
+
             Sum = 0;
             ChangesNotify = false;
             _lastUpdate = DateTime.Now;
@@ -26,11 +27,11 @@ namespace Banks
         public decimal Sum { get; private set; }
         public bool ChangesNotify { get; private set; }
         public decimal NextPayout { get; private set; }
-        
-        public delegate void AccountHandler(Transaction transaction);
-        public event AccountHandler TransactionMade;
+
+        [NotMapped] public bool IsDoubtful => Client.IsDoubtful;
 
         public delegate void ChangesHandler(Account sender, string message);
+
         public event ChangesHandler OptionsChanged;
 
         public AccountOptions Options
@@ -69,66 +70,37 @@ namespace Banks
             Sum += NextPayout;
             NextPayout = 0;
         }
+        
 
-        public void TopUp(decimal sum)
-        {
-            TopUp(sum, notify: true);
-        }
-
-        internal void TopUp(decimal sum, bool notify)
+        internal Transaction TopUp(decimal sum)
         {
             if (sum <= 0)
                 throw new BankException("Sum to top up must be a positive number.");
 
             Sum += sum;
             Refresh();
-            
-            if (notify)
-            {
-                var transaction = new Transaction(DateTime.Now, source: null, destination: this, sum);
-                TransactionMade?.Invoke(transaction);   
-            }
+            return new Transaction(DateTime.Now, source: null, destination: this, sum);
         }
 
-        public void Withdraw(decimal sum)
-        {
-            Withdraw(sum, notify: true);
-        }
-
-        internal void Withdraw(decimal sum, bool notify)
+        internal Transaction Withdraw(decimal sum)
         {
             if (sum <= 0)
                 throw new BankException("Sum to withdraw up must be a positive number.");
             if (sum > Options.MaxWithdrawSum(sum))
                 throw new BankException("Sum is greater than possible one to withdraw.");
-            
+
             Sum -= sum;
             Refresh();
-
-            if (notify)
-            {
-                var transaction = new Transaction(DateTime.Now, source: this, destination: null, sum);
-                TransactionMade?.Invoke(transaction);
-            }
+            return new Transaction(DateTime.Now, source: this, destination: null, sum);
         }
 
-        public void TransferTo(Account destination, decimal sum)
-        {
-            TransferTo(destination, sum, notify: true);
-        }
-
-        internal void TransferTo(Account destination, decimal sum, bool notify)
+        internal Transaction TransferTo(Account destination, decimal sum)
         {
             destination.ThrowIfNull(nameof(destination));
-            Withdraw(sum, notify: false);
-            destination.TopUp(sum, notify: false);
+            Withdraw(sum);
+            destination.TopUp(sum);
             Refresh();
-            
-            if (notify)
-            {
-                var transaction = new Transaction(DateTime.Now, source: this, destination, sum);
-                TransactionMade?.Invoke(transaction);
-            }
+            return new Transaction(DateTime.Now, source: this, destination, sum);
         }
     }
 }

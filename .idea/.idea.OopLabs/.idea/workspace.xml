@@ -17,8 +17,13 @@
     <projectFile>Backups.Client/Backups.Client.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="feat: defined client structure">
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Application.cs" afterDir="false" />
+    <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +77,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbAccountRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbClientRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbTransactionRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/IAccountRepository.cs" />
@@ -112,17 +115,19 @@
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/IUserInterface.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/ConsoleInterface.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Application.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -473,13 +478,7 @@
       <workItem from="1637222353734" duration="2102000" />
       <workItem from="1637262750054" duration="5882000" />
       <workItem from="1637268711217" duration="1214000" />
-    </task>
-    <task id="LOCAL-00167" summary="feat: added file system">
-      <created>1634145501974</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1634145501974</updated>
+      <workItem from="1637313271565" duration="1555000" />
     </task>
     <task id="LOCAL-00168" summary="feat: implemented file logic">
       <created>1634216114591</created>
@@ -817,7 +816,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637276967860</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="feat: defined client structure">
+      <created>1637277091914</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1637277091914</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
