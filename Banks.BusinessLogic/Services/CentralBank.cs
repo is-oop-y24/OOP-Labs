@@ -28,14 +28,19 @@ namespace Banks
             return _bankRepository.GetBank(bankId);
         }
 
+        public List<Bank> GetBanks()
+        {
+            return _bankRepository.GetBanks();
+        }
+
         public void Refresh()
         {
             _bankRepository.GetBanks().ForEach(bank => bank.Refresh());
         }
 
-        public void Dispose()
+        public void Save()
         {
-            _bankRepository.Dispose();
+            _bankRepository.Save();
         }
     }
 }

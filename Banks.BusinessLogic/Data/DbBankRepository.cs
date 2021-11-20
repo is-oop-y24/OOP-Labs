@@ -15,7 +15,7 @@ namespace Banks.BusinessLogic.Data
         public DbBankRepository(BankContext bankContext)
         {
             bankContext.ThrowIfNull(nameof(bankContext));
-            _bankContext = bankContext;
+            _bankContext = bankContext; 
         }
         
         public void AddBank(Bank bank)
@@ -40,10 +40,9 @@ namespace Banks.BusinessLogic.Data
                    ?? throw new BankException("Bank doesnt exist.");
         }
 
-        public void Dispose()
+        public void Save()
         {
             _bankContext.SaveChanges();
-            _bankContext.Dispose();
         }
     }
 }

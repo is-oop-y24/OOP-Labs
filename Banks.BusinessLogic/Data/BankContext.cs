@@ -4,13 +4,11 @@ namespace Banks.BusinessLogic.Data
 {
     public class BankContext : DbContext
     {
-        private static BankContext _instance;
-        private BankContext()
+        public BankContext()
         {
             Database.EnsureCreated();
         }
         
-        public static BankContext GetInstance => _instance ??= new BankContext();
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Client> Clients { get; set; }
