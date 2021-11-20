@@ -18,12 +18,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/AbortTransactionCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/MakePayoutsCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RefreshCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RegisterBankCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RegisterClientCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowAccountsCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowBanksCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowClientsCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactionsCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/SubscribeToChangesCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/TopUpCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/TransferCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/WithdrawCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Tools/ITableMaker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Application.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Banks.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Banks.Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/ConsoleInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/ConsoleInterface.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/IUserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/IUserInterface.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/TypeRegistrar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/TypeResolver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,63 +95,64 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/1C/CommandApp.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D6296F6C-DF30-4565-A019-FE157B0236A8/70/JsonConverterOfT.ReadCore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/20/CommandContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/879E6415-0FE4-4207-9FAD-D555EDE677AA/4e/ec4bad1b/IDisposable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B678633A-0BE7-4263-90BD-59ACE0B66DEC/b2/79caeea5/IRenderable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/7F/IRemainingArguments.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D6296F6C-DF30-4565-A019-FE157B0236A8/6/ThrowHelper.Serialization.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbClientRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/DbTransactionRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/IAccountRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/IBankRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/IClientRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/IRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/Repositories/Interfaces/ITransactionRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/JsonFile.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/PercentIntervals.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/Account.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/Bank.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/Client.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/EfEntities/PercentInterval.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptionsBase.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptionsBase.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptionsBase.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptionsBase.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/PercentInterval.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Utility/Class1.cs" />
-      <option value="$PROJECT_DIR$/Utility/NullChechinkExtensions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/Percent.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" />
-      <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTests.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DebitOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/CreditOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTest.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/ISystemLoader.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IBankRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
-      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/IUserInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/ConsoleInterface.cs" />
-      <option value="$PROJECT_DIR$/Banks.Client/Application.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/CreateBankCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowBanks.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Tools.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Tools/ITableMaker.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Tools/ConsoleInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Tools/IUserInterface.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowBanksCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/RegisterClient.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ExitCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/IBankService.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowAccounts.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactions.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Transaction.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/refresh.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/MakePayouts.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/MakePayoutsCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/AbortTransactionCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/RegisterBankCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/RegisterClientCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowClientsCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactionsCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/RefreshCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/SubscribeToChangesCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/TopUpCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/TransferCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowAccountsCommands.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/WithdrawCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Application.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -478,35 +503,10 @@
       <workItem from="1637222353734" duration="2102000" />
       <workItem from="1637262750054" duration="5882000" />
       <workItem from="1637268711217" duration="1214000" />
-      <workItem from="1637313271565" duration="1555000" />
-    </task>
-    <task id="LOCAL-00168" summary="feat: implemented file logic">
-      <created>1634216114591</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1634216114592</updated>
-    </task>
-    <task id="LOCAL-00169" summary="style: fitted code to right style">
-      <created>1634331174344</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1634331174345</updated>
-    </task>
-    <task id="LOCAL-00170" summary="fix: fixed File">
-      <created>1634335504715</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1634335504715</updated>
-    </task>
-    <task id="LOCAL-00171" summary="feat: implemented server LocalRepository">
-      <created>1634335614768</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1634335614768</updated>
+      <workItem from="1637313271565" duration="3393000" />
+      <workItem from="1637397458697" duration="3636000" />
+      <workItem from="1637416235508" duration="8207000" />
+      <workItem from="1637430587441" duration="4888000" />
     </task>
     <task id="LOCAL-00172" summary="feat: implemented server LocalRepository">
       <created>1634335672583</created>
@@ -823,7 +823,35 @@
       <option name="project" value="LOCAL" />
       <updated>1637277091914</updated>
     </task>
-    <option name="localTasksCounter" value="217" />
+    <task id="LOCAL-00217" summary="feat: changed bank transactions logic">
+      <created>1637314895130</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1637314895130</updated>
+    </task>
+    <task id="LOCAL-00218" summary="fix: canceled using BankContext as singleton and added Save method to repository">
+      <created>1637420601682</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1637420601683</updated>
+    </task>
+    <task id="LOCAL-00219" summary="fix: canceled using BankContext as singleton and added Save method to repository">
+      <created>1637420638517</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1637420638517</updated>
+    </task>
+    <task id="LOCAL-00220" summary="fix: fixed ClientBuilder">
+      <created>1637420684333</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1637420684333</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -857,9 +885,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="fix: decomposed server code" />
-    <MESSAGE value="fix: made fixes" />
-    <MESSAGE value="feat: decomposed Connection" />
     <MESSAGE value="feat: defined basic structure" />
     <MESSAGE value="fixed: made client OOP" />
     <MESSAGE value="refactor: refactored Server.Run() method" />
@@ -882,7 +907,10 @@
     <MESSAGE value="test: refactored tests and added AccountOptions test" />
     <MESSAGE value="feat: implemented DbBankRepository" />
     <MESSAGE value="feat: defined client structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: defined client structure" />
+    <MESSAGE value="feat: changed bank transactions logic" />
+    <MESSAGE value="fix: canceled using BankContext as singleton and added Save method to repository" />
+    <MESSAGE value="fix: fixed ClientBuilder" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed ClientBuilder" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

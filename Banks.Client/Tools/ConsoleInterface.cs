@@ -1,4 +1,5 @@
 using System;
+using Spectre.Console;
 
 namespace Banks
 {
@@ -6,8 +7,13 @@ namespace Banks
     {
         public void WriteMessage(params object[] parameters)
         {
-            foreach (object parameter in parameters) 
+            foreach (object parameter in parameters)
                 Console.WriteLine(parameter);
+        }
+
+        public void ShowTable(Table table)
+        {
+            AnsiConsole.Write(table);
         }
 
         public string Read()

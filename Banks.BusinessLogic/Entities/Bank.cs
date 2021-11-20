@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Banks.BusinessLogic.Tools;
 using Kfc.Utility.Extensions;
 
@@ -64,6 +65,20 @@ namespace Banks
             Client client = clientBuilder.GetClient(bank: this);
             _clients.Add(client);
             return client;
+        }
+
+        public Client GetClient(int clientId)
+        {
+            Client client = _clients
+                .FirstOrDefault(client => client.Id == clientId);
+            return client ?? throw new BankException("Client is not registered.");
+        }
+        
+        public Account GetAccount(int accountId)
+        {
+            Account account = _accounts
+                .FirstOrDefault(acc => acc.Id == accountId);
+            return account ?? throw new BankException("Account is not registered");
         }
 
         public void TopUp(Account account, decimal sum)

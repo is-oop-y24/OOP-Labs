@@ -27,7 +27,7 @@ namespace Banks
         public decimal Sum { get; private set; }
         public bool ChangesNotify { get; private set; }
         public decimal NextPayout { get; private set; }
-
+        
         [NotMapped] public bool IsDoubtful => Client.IsDoubtful;
 
         public delegate void ChangesHandler(Account sender, string message);

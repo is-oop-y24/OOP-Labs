@@ -36,7 +36,7 @@ namespace Banks.BusinessLogic.Data
 
         public Bank GetBank(int id)
         {
-            return GetBanks().Find(bank => bank.Id == id) 
+            return GetBanks().FirstOrDefault(bank => bank.Id == id) 
                    ?? throw new BankException("Bank doesnt exist.");
         }
 
