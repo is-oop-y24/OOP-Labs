@@ -4,8 +4,7 @@ namespace Banks.BusinessLogic.Tools
     {
         void SetName(string name);
         void SetAddress(string address);
-        void SetPassport(string passport);
-        void SetBank(Bank bank);
-        Client GetClient();
+        void SetPassport(string passport); 
+        Client GetClient(Bank bank);
     }
 }

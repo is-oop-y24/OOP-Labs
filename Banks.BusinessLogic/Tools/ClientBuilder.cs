@@ -1,5 +1,3 @@
-using Kfc.Utility.Extensions;
-
 namespace Banks.BusinessLogic.Tools
 {
     public class ClientBuilder : IClientBuilder
@@ -7,13 +5,7 @@ namespace Banks.BusinessLogic.Tools
         private string _name;
         private string _address;
         private string _passport;
-        private Bank _bank;
-
-        public ClientBuilder(string name)
-        {
-            SetName(name);
-        }
-
+        
         public void SetName(string name)
         {
             _name = name;
@@ -29,14 +21,10 @@ namespace Banks.BusinessLogic.Tools
             _passport = passport;
         }
 
-        public void SetBank(Bank bank)
+        public Client GetClient(Bank bank)
         {
-            _bank = bank.ThrowIfNull(nameof(bank));
-        }
-
-        public Client GetClient()
-        {
-            return new Client(_name, _bank, new ClientId{Address = _address, Passport = _passport});
+            return new Client(_name, bank,
+                new ClientId { Address = _address, Passport = _passport});
         }
     }
 }

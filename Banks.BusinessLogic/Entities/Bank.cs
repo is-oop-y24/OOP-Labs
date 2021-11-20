@@ -21,6 +21,9 @@ namespace Banks
 
         private Bank()
         {
+            _clients = new List<Client>();
+            _accounts = new List<Account>();
+            _transactions = new List<Transaction>();
         }
 
         public int Id { get; private init; }
@@ -30,8 +33,9 @@ namespace Banks
         {
             get => new (_clients);
             private init => _clients = new List<Client>(value);
+            
         }
-        
+
         public List<Account> Accounts
         {
             get => new (_accounts);
@@ -57,8 +61,7 @@ namespace Banks
         public Client RegisterClient(IClientBuilder clientBuilder)
         {
             clientBuilder.ThrowIfNull(nameof(clientBuilder));
-            clientBuilder.SetBank(this);
-            Client client = clientBuilder.GetClient();
+            Client client = clientBuilder.GetClient(bank: this);
             _clients.Add(client);
             return client;
         }
