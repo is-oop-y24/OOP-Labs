@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Banks.Commands
