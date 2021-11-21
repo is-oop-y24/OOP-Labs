@@ -1,6 +1,7 @@
 using Banks.BusinessLogic.Data;
 using Banks.Commands;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Spectre.Console.Cli;
 
 namespace Banks
@@ -31,10 +32,10 @@ namespace Banks
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserInterface, ConsoleInterface>();
-            services.AddDbContext<BankContext>();
-            services.AddScoped<IBankRepository, DbBankRepository>();
-            services.AddScoped<ICentralBank, CentralBank>();
             services.AddScoped<ITableMaker, TableMaker>();
+            services.AddDbContext<BankContext>();
+            services.AddSingleton<IBankRepository, DbBankRepository>();
+            services.AddSingleton<ICentralBank, CentralBank>();
         }
 
         private void ConfigureCommands(ICommandApp commandApp)
@@ -44,17 +45,20 @@ namespace Banks
                 config.AddCommand<RegisterBankCommand>("/register-bank");
                 config.AddCommand<ShowBanksCommand>("/show-banks");
                 config.AddCommand<RegisterClientCommand>("/register-client");
-                config.AddCommand<AbortTransactionCommand>("/abort-transaction");
                 config.AddCommand<IdentifyClientCommand>("/identify-client");
-                config.AddCommand<MakePayoutsCommand>("/make-payouts");
-                config.AddCommand<RefreshCommand>("/refresh");
-                config.AddCommand<ShowAccountsCommand>("/show-accounts");
                 config.AddCommand<ShowClientsCommand>("/show-clients");
-                config.AddCommand<ShowTransactionsCommand>("/show-transactions");
+                config.AddCommand<RegisterCreditAccountCommand>("/register-credit-account");
+                config.AddCommand<RegisterDebitAccountCommand>("/register-debit-account");
+                config.AddCommand<RegisterDepositAccountCommand>("/register-deposit-account");
                 config.AddCommand<SubscribeToChangesCommand>("/subscribe-to-changes");
                 config.AddCommand<TopUpCommand>("/top-up");
                 config.AddCommand<TransferCommand>("/transfer");
                 config.AddCommand<WithdrawCommand>("/withdraw");
+                config.AddCommand<ShowAccountsCommand>("/show-accounts");
+                config.AddCommand<AbortTransactionCommand>("/abort-transaction");
+                config.AddCommand<RefreshCommand>("/refresh");
+                config.AddCommand<MakePayoutsCommand>("/make-payouts");
+                config.AddCommand<ShowTransactionsCommand>("/show-transactions");
             });
         }
     }

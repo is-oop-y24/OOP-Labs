@@ -88,7 +88,7 @@ namespace Banks
         {
             if (sum <= 0)
                 throw new BankException("Sum to withdraw up must be a positive number.");
-            if (sum > Options.MaxWithdrawSum(sum))
+            if (sum > Options.MaxWithdrawSum(Sum))
                 throw new BankException("Sum is greater than possible one to withdraw.");
 
             Sum -= sum;

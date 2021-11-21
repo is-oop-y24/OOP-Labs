@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Spectre.Console;
 
@@ -44,7 +45,7 @@ namespace Banks
             {
                 accountTable.AddRow(
                     account.Id.ToString(),
-                    account.Options.GetType().ToString(),
+                    account.Options.GetType().Name.Replace("Options", string.Empty),
                     account.Client.Name,
                     $"{account.Sum:F2}",
                     account.ChangesNotify ? "Yes" : "No");
