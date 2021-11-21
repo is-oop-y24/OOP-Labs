@@ -18,36 +18,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa933e65-f13d-4b47-a368-5f0344a55fe0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/AbortTransactionCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/MakePayoutsCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RefreshCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RegisterBankCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/RegisterClientCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowAccountsCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowBanksCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowClientsCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactionsCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/SubscribeToChangesCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/TopUpCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/TransferCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Commands/WithdrawCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Tools/ITableMaker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OopLabs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Application.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Banks.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Banks.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/ConsoleInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/ConsoleInterface.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/IUserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/IUserInterface.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/TypeRegistrar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/TypeResolver.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banks.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/ClientId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/ClientIdentifier.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/IntervalSequence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.BusinessLogic/Entities/PercentInterval.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +63,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/346AC160-1803-412E-B0A1-21046C4AC027/2D/IServiceProviderEngine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/79148/RiderProjects/Learn/OOP_Lessons/kawwik/Banks.BusinessLogic/Data/DbBankRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Backups/obj/Debug/netcoreapp3.1/Backups.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/346AC160-1803-412E-B0A1-21046C4AC027/8/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0E99F433-39E6-42AF-832C-2F931A8312C2/26/TCPClient.cs" root0="SKIP_HIGHLIGHTING" />
@@ -99,14 +82,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B678633A-0BE7-4263-90BD-59ACE0B66DEC/b2/79caeea5/IRenderable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/B678633A-0BE7-4263-90BD-59ACE0B66DEC/7F/IRemainingArguments.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D6296F6C-DF30-4565-A019-FE157B0236A8/6/ThrowHelper.Serialization.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/01C5D6F4-3BE9-4E51-B2FD-5DE7067828D8/ED/SingleQueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/79148/RiderProjects/Learn/OOP_Lessons/kawwik/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Banks.Tests/AccountOptionsTest.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/ISystemLoader.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/BusinessLogic.puml" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ClientId.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/AccountOptions.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeRegistrar.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Infrastructure/TypeResolver.cs" />
@@ -122,17 +102,14 @@
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowBanksCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/RegisterClient.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ExitCommand.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/IBankService.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/IBankRepository.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IClientBuilder.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/ClientBuilder.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/ICentralBank.cs" />
       <option value="$PROJECT_DIR$/Banks.BusinessLogic/Services/CentralBank.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowAccounts.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactions.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/refresh.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/MakePayouts.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/MakePayoutsCommand.cs" />
@@ -141,7 +118,6 @@
       <option value="$PROJECT_DIR$/Banks.Client/Commands/RegisterClientCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowClientsCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowTransactionsCommand.cs" />
-      <option value="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/RefreshCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/SubscribeToChangesCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/TopUpCommand.cs" />
@@ -149,10 +125,19 @@
       <option value="$PROJECT_DIR$/Banks.Client/Commands/ShowAccountsCommands.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Commands/WithdrawCommand.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Application.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" />
-      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs" />
+      <option value="$PROJECT_DIR$/Banks.Client/Commands/IdentifyClientCommand.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/ClientId.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/ClientIdentifier.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/BankContext.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/PercentInterval.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Tools/IntervalSequence.cs" />
       <option value="$PROJECT_DIR$/Banks.Client/Program.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Data/DbBankRepository.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Account.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Bank.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/Entities/Client.cs" />
+      <option value="$PROJECT_DIR$/Banks.BusinessLogic/AccountOptions/DepositOptions.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xlRr1IAqc18lJqL0TPm4qM3EKS" />
@@ -506,14 +491,8 @@
       <workItem from="1637313271565" duration="3393000" />
       <workItem from="1637397458697" duration="3636000" />
       <workItem from="1637416235508" duration="8207000" />
-      <workItem from="1637430587441" duration="4888000" />
-    </task>
-    <task id="LOCAL-00172" summary="feat: implemented server LocalRepository">
-      <created>1634335672583</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1634335672583</updated>
+      <workItem from="1637430587441" duration="9518000" />
+      <workItem from="1637497582821" duration="676000" />
     </task>
     <task id="LOCAL-00173" summary="feat: created basic server structure">
       <created>1634403908447</created>
@@ -851,7 +830,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637420684333</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="feat: implemented commands">
+      <created>1637437901193</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1637437901194</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +871,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat: defined basic structure" />
     <MESSAGE value="fixed: made client OOP" />
     <MESSAGE value="refactor: refactored Server.Run() method" />
     <MESSAGE value="refactor: add readonly modifiers" />
@@ -910,9 +895,27 @@
     <MESSAGE value="feat: changed bank transactions logic" />
     <MESSAGE value="fix: canceled using BankContext as singleton and added Save method to repository" />
     <MESSAGE value="fix: fixed ClientBuilder" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed ClientBuilder" />
+    <MESSAGE value="feat: implemented commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implemented commands" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Banks.Client/Tools/TableMaker.cs</url>
+          <line>27</line>
+          <properties documentPath="C:\Users\79148\RiderProjects\Learn\OOP_Lessons\kawwik\Banks.Client\Tools\TableMaker.cs" initialLine="27" containingFunctionPresentation="method 'MakeClientTable'">
+            <startOffsets>
+              <option value="814" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1072" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Backups.Server.ResponseData" memberName="Exception" />

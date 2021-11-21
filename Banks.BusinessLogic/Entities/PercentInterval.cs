@@ -19,6 +19,7 @@ namespace Banks
         public int Id { get; private init; }
         public decimal MaxSum { get; private init; }
         public decimal Percent { get; private init; }
+        public IntervalSequence IntervalSequence { get; private init; }
 
         public bool Contains(decimal number)
         {

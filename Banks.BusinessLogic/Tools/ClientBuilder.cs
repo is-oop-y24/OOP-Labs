@@ -24,7 +24,7 @@ namespace Banks.BusinessLogic.Tools
         public Client GetClient(Bank bank)
         {
             return new Client(_name, bank,
-                new ClientId { Address = _address, Passport = _passport});
+                new ClientIdentifier { Address = _address, Passport = _passport});
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Banks
                     client.Name,
                     client.Identifier.Address ?? "-",
                     client.Identifier.Passport ?? "-",
-                    !client.IsDoubtful ? "Yes" : "No");
+                    client.IsDoubtful ? "No" : "Yes");
             }
 
             return clientTable;
@@ -61,8 +61,8 @@ namespace Banks
             {
                 transactionTable.AddRow(
                     transaction.Id.ToString(),
-                    $"{transaction.Source?.Id.ToString() ?? "-"}",
-                    $"{transaction.Destination?.Id.ToString() ?? "-"}",
+                    transaction.Source == null ? "-" : transaction.Source.Id.ToString(),
+                    transaction.Destination == null ? "-" : transaction.Destination.Id.ToString(),
                     $"{transaction.Sum:F2}",
                     transaction.Date.ToShortDateString());
             }

@@ -8,15 +8,12 @@ namespace Banks
     public class Client
     {
         private List<Account> _accounts;
-        private ClientId _identifier;
         
         private Client()
         {
-            _accounts = new List<Account>();
-            _identifier = new ClientId();
         }
 
-        public Client(string name, Bank bank, ClientId identifier)
+        public Client(string name, Bank bank, ClientIdentifier identifier)
         {
             bank.ThrowIfNull(nameof(bank));
             identifier.ThrowIfNull(nameof(bank));
@@ -28,16 +25,8 @@ namespace Banks
 
         public int Id { get; private init; }
         public string Name { get; private init; }
-
-        public ClientId Identifier
-        {
-            get => _identifier;
-            set
-            {
-                value.ThrowIfNull(nameof(Identifier));
-                _identifier = value;
-            }
-        }
+        public ClientIdentifier Identifier { get; private init; }
+        
         public Bank Bank { get; private init; }
         public List<Account> Accounts { 
             get => new (_accounts); 
@@ -45,7 +34,7 @@ namespace Banks
         }
         
         [NotMapped]
-        public bool IsDoubtful => Identifier.IsIdentified;
+        public bool IsDoubtful => !Identifier.IsIdentified;
 
         public void OptionsChanged(Account account, string message)
         {

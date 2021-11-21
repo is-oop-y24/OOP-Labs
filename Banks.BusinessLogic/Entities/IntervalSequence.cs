@@ -24,8 +24,9 @@ namespace Banks
         
         public int Id { get; private init; }
         public decimal MaxPercent { get; private init; }
+        public AccountOptions AccountOptions { get; private init; }
 
-        private List<PercentInterval> PercentIntervals
+        public List<PercentInterval> PercentIntervals
         {
             get => _intervals.Values.ToList();
             init

@@ -10,7 +10,9 @@ namespace Banks
         private AccountOptions _options;
         private DateTime _lastUpdate;
 
-        private Account() { }
+        private Account()
+        {
+        }
 
         public Account(Client client, AccountOptions options)
         {

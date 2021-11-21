@@ -22,9 +22,6 @@ namespace Banks
 
         private Bank()
         {
-            _clients = new List<Client>();
-            _accounts = new List<Account>();
-            _transactions = new List<Transaction>();
         }
 
         public int Id { get; private init; }

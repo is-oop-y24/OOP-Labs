@@ -16,6 +16,19 @@ namespace Banks.BusinessLogic.Data
         {
             bankContext.ThrowIfNull(nameof(bankContext));
             _bankContext = bankContext; 
+
+            _bankContext.DepositOptions
+                .Include(options => options.IntervalSequence)
+                    .ThenInclude(intervals => intervals.PercentIntervals)
+                .Load();
+
+            _bankContext.Banks
+                .Include(bank => bank.Accounts)
+                    .ThenInclude(account => account.Options)
+                .Include(bank => bank.Clients)
+                    .ThenInclude(client => client.Identifier)
+                .Include(bank => bank.Transactions)
+                .Load();
         }
         
         public void AddBank(Bank bank)
@@ -27,11 +40,7 @@ namespace Banks.BusinessLogic.Data
 
         public List<Bank> GetBanks()
         {
-            return _bankContext.Banks
-                .Include(bank => bank.Accounts)
-                .Include(bank => bank.Clients)
-                .Include(bank => bank.Transactions)
-                .ToList();
+            return _bankContext.Banks.ToList();
         }
 
         public Bank GetBank(int id)
