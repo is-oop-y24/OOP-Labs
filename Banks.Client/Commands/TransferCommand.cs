@@ -18,7 +18,7 @@ namespace Banks.Commands
             using (_centralBank)
             {
                 Account source = _centralBank.GetAccount(settings.SourceAccountId);
-                Account destination = _centralBank.GetAccount(settings.SourceAccountId);
+                Account destination = _centralBank.GetAccount(settings.DestinationAccountId);
                 source.Client.Bank.Transfer(source, destination, settings.Sum);
             }
 

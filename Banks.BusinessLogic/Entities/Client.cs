@@ -19,7 +19,7 @@ namespace Banks
             Name = name;
             Bank = bank.ThrowIfNull(nameof(bank));
             Identifier = identifier.ThrowIfNull(nameof(identifier));
-            Accounts = new List<Account>();
+            _accounts = new List<Account>();
         }
 
         public int Id { get; private init; }

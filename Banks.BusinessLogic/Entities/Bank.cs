@@ -30,7 +30,6 @@ namespace Banks
         {
             get => new (_clients);
             private init => _clients = new List<Client>(value);
-            
         }
 
         public List<Account> Accounts
@@ -83,7 +82,7 @@ namespace Banks
             if (account.Client.Bank != this)
                 throw new BankException("Account doesnt belong to bank");
             
-            Transactions.Add(account.TopUp(sum));
+            _transactions.Add(account.TopUp(sum));
         }
 
         public void Withdraw(Account account, decimal sum)
@@ -94,7 +93,7 @@ namespace Banks
             if (account.IsDoubtful && sum > MaxWithdrawForDoubtful)
                 throw new BankException("Sum exceed maximum withdraw sum for doubtful account.");
 
-            Transactions.Add(account.Withdraw(sum));
+            _transactions.Add(account.Withdraw(sum));
         }
 
         public void Transfer(Account source, Account destination, decimal sum)
@@ -106,7 +105,7 @@ namespace Banks
             if (source.IsDoubtful && sum > MaxWithdrawForDoubtful)
                 throw new BankException("Sum exceed maximum withdraw sum for doubtful account.");
             
-            Transactions.Add(source.TransferTo(destination, sum));
+            _transactions.Add(source.TransferTo(destination, sum));
         }
 
         public void Abort(Transaction transaction)
