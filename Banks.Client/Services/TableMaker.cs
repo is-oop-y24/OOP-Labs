@@ -57,7 +57,7 @@ namespace Banks
         public Table MakeTransactionTable(List<Transaction> transactions)
         {
             var transactionTable = new Table();
-            transactionTable.AddColumns("ID", "Source account ID", "Recipient account ID", "Sum", "Date");
+            transactionTable.AddColumns("ID", "Source account ID", "Recipient account ID", "Sum", "Date", "Aborted");
             foreach (Transaction transaction in transactions)
             {
                 transactionTable.AddRow(
@@ -65,7 +65,8 @@ namespace Banks
                     transaction.Source == null ? "-" : transaction.Source.Id.ToString(),
                     transaction.Destination == null ? "-" : transaction.Destination.Id.ToString(),
                     $"{transaction.Sum:F2}",
-                    transaction.Date.ToShortDateString());
+                    transaction.Date.ToShortDateString(),
+                    transaction.IsAborted ? "Yes" : "No");
             }
 
             return transactionTable;

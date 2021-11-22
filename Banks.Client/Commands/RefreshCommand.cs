@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using Spectre.Console.Cli;
 
 namespace Banks.Commands
@@ -16,7 +18,7 @@ namespace Banks.Commands
         public override int Execute(CommandContext context, Settings settings)
         {
             using (_centralBank)
-                _centralBank.Refresh();
+                _centralBank.Refresh(DateTime.Parse(settings.FinishDateString));
 
             _userInterface.WriteMessage("Successfully refreshed.");
             return 0;
@@ -24,6 +26,9 @@ namespace Banks.Commands
 
         public class Settings : CommandSettings
         {
+            [CommandArgument(0, "<dd.mm.yyyy>")]
+            [Description("Finish date to refresh")]
+            public string FinishDateString { get; init; }
         }
     }
 }
