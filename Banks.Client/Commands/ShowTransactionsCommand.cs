@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Spectre.Console.Cli;
 
 namespace Banks.Commands
@@ -18,7 +19,7 @@ namespace Banks.Commands
 
         public override int Execute(CommandContext context, Settings settings)
         {
-            List<Transaction> transactions = _centralBank.GetBank(settings.BankId).Transactions;
+            var transactions = _centralBank.GetBank(settings.BankId).Transactions.ToList();
             _userInterface.ShowTable(_tableMaker.MakeTransactionTable(transactions));
             return 0;
         }

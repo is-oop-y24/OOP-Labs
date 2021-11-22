@@ -13,19 +13,34 @@ namespace Banks.BusinessLogic.Data
         public DbBankRepository(BankContext bankContext)
         {
             bankContext.ThrowIfNull(nameof(bankContext));
-            _bankContext = bankContext; 
-
-            _bankContext.DepositOptions
-                .Include(options => options.IntervalSequence)
-                    .ThenInclude(intervals => intervals.PercentIntervals)
+            _bankContext = bankContext;
+            
+            bankContext.Banks
+                .Include("_clients")
+                .Include("_accounts")
+                .Include("_transactions")
+                .Load();
+            
+            bankContext.Clients
+                .Include("_accounts")
+                .Include(client => client.Identifier)
                 .Load();
 
-            _bankContext.Banks
-                .Include(bank => bank.Accounts)
-                    .ThenInclude(account => account.Options)
-                .Include(bank => bank.Clients)
-                    .ThenInclude(client => client.Identifier)
-                .Include(bank => bank.Transactions)
+            var unusedIdentifiers = _bankContext.ClientIdentifiers
+                .Except(
+                    _bankContext.Clients
+                        .Select(client => client.Identifier)
+                )
+                .ToList();
+            _bankContext.RemoveRange(unusedIdentifiers);
+
+            bankContext.Accounts
+                .Include(acc => acc.Options)
+                .Load();
+
+            bankContext.DepositOptions
+                .Include(options => options.IntervalSequence)
+                    .ThenInclude(sequence => sequence.PercentIntervals)
                 .Load();
         }
         

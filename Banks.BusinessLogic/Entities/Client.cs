@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using Kfc.Utility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banks
 {
@@ -24,18 +26,27 @@ namespace Banks
 
         public int Id { get; private init; }
         public string Name { get; private init; }
-        public ClientIdentifier Identifier { get; private init; }
+        public ClientIdentifier Identifier { get; private set; }
         
         public Bank Bank { get; private init; }
-        public List<Account> Accounts { 
-            get => new (_accounts); 
-            init => _accounts = new List<Account>(value); 
-        }
+
+        [NotMapped]
+        public ReadOnlyCollection<Account> Accounts => _accounts.AsReadOnly();
         
         [NotMapped]
         public bool IsDoubtful => !Identifier.IsIdentified;
 
-        public void OptionsChanged(Account account, string message)
+        public void AddAccount(Account account)
+        {
+            _accounts.Add(account);
+        }
+
+        public void ChangeIdentifier(ClientIdentifier identifier)
+        {
+            Identifier = identifier.ThrowIfNull(nameof(identifier));
+        }
+        
+        internal void OptionsChanged(Account account, string message)
         {
             // Some notify logic
         }

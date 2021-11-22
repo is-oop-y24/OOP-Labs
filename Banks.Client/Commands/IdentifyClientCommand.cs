@@ -18,8 +18,11 @@ namespace Banks.Commands
             using (_centralBank)
             {
                 Client client = _centralBank.GetClient(settings.ClientId);
-                client.Identifier.Address ??= settings.Address;
-                client.Identifier.Passport ??= settings.Passport;
+                client.ChangeIdentifier(new ClientIdentifier
+                {
+                    Address = settings.Address,
+                    Passport = settings.Passport,
+                });
             }
 
             _userInterface.WriteMessage("Client identifier successfully changed.");

@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Banks.BusinessLogic.Tools;
 using Kfc.Utility.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banks
 {
@@ -27,23 +30,12 @@ namespace Banks
         public int Id { get; private init; }
         public decimal MaxWithdrawForDoubtful { get; private init; }
 
-        public List<Client> Clients
-        {
-            get => new (_clients);
-            private init => _clients = new List<Client>(value);
-        }
-
-        public List<Account> Accounts
-        {
-            get => new (_accounts);
-            private init => _accounts = new List<Account>(value);
-        }
-        
-        public List<Transaction> Transactions
-        {
-            get => new (_transactions);
-            private init => _transactions = new List<Transaction>(value);
-        }
+        [NotMapped]
+        public ReadOnlyCollection<Client> Clients => _clients.AsReadOnly();
+        [NotMapped]
+        public ReadOnlyCollection<Account> Accounts => _accounts.AsReadOnly();
+        [NotMapped]
+        public ReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();
 
         public void Refresh(DateTime finishDate)
         {
@@ -109,7 +101,7 @@ namespace Banks
             _transactions.Add(source.TransferTo(destination, sum));
         }
 
-        public void Abort(Transaction transaction)
+        public void AbortTransaction(Transaction transaction)
         {
             transaction.ThrowIfNull(nameof(transaction));
             if (!_transactions.Contains(transaction))
@@ -123,6 +115,7 @@ namespace Banks
         {
             var account = new Account(client, options);
             _accounts.Add(account);
+            client.AddAccount(account);
         }
     }
 }

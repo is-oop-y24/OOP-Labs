@@ -8,7 +8,6 @@ namespace Banks
     public class Account
     {
         private AccountOptions _options;
-        private DateTime _lastUpdate;
 
         private Account()
         {
@@ -21,14 +20,17 @@ namespace Banks
 
             Sum = 0;
             ChangesNotify = false;
-            _lastUpdate = DateTime.Now;
+            LastUpdate = DateTime.Now;
         }
 
         public int Id { get; private init; }
         public Client Client { get; private init; }
+        
+        [Column()]
         public decimal Sum { get; private set; }
         public bool ChangesNotify { get; private set; }
         public decimal NextPayout { get; private set; }
+        public DateTime LastUpdate { get; private set; }
         
         [NotMapped] public bool IsDoubtful => Client.IsDoubtful;
 
@@ -62,8 +64,8 @@ namespace Banks
 
         public void Refresh(DateTime finishDate)
         {
-            NextPayout += Options.CalculateAccumulated(_lastUpdate, finishDate, Sum);
-            _lastUpdate = finishDate;
+            NextPayout += Options.CalculateAccumulated(LastUpdate, finishDate, Sum);
+            LastUpdate = finishDate;
         }
 
         public void MakePayout()

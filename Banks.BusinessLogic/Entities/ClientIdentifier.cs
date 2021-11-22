@@ -9,10 +9,8 @@ namespace Banks
         }
         
         public int Id { get; private init; }
-        public string Passport { get; set; }
-        public string Address { get; set; }
-        public int ClientId { get; private init; }
-        public Client Client { get; private init; }
+        public string Passport { get; init; }
+        public string Address { get; init; }
         
         [NotMapped]
         public bool IsIdentified => Passport != null && Address != null;

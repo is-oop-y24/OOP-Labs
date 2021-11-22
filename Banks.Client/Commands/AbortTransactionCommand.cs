@@ -22,7 +22,7 @@ namespace Banks.Commands
                 Bank bank = transaction?.Source?.Client?.Bank ??
                             transaction?.Destination?.Client?.Bank ??
                             throw new BankException("Cannot resolve bank of transaction.");
-                bank.Abort(transaction);
+                bank.AbortTransaction(transaction);
             }
 
             _userInterface.WriteMessage("Transaction successfully aborted.");
