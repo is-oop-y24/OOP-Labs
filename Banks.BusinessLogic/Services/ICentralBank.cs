@@ -12,7 +12,7 @@ namespace Banks
         Client GetClient(int clientId);
         Account GetAccount(int accountId);
         Transaction GetTransaction(int transactionId);
-        void Refresh();
+        void Refresh(DateTime finishDate);
         void Save();
     }
 }

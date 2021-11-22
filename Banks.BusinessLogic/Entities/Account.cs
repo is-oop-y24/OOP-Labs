@@ -60,11 +60,10 @@ namespace Banks
             ChangesNotify = false;
         }
 
-        public void Refresh()
+        public void Refresh(DateTime finishDate)
         {
-            DateTime now = DateTime.Now;
-            NextPayout += Options.CalculateAccumulated(_lastUpdate, now, Sum);
-            _lastUpdate = now;
+            NextPayout += Options.CalculateAccumulated(_lastUpdate, finishDate, Sum);
+            _lastUpdate = finishDate;
         }
 
         public void MakePayout()
@@ -80,7 +79,7 @@ namespace Banks
                 throw new BankException("Sum to top up must be a positive number.");
 
             Sum += sum;
-            Refresh();
+            Refresh(DateTime.Now);
             return new Transaction(DateTime.Now, source: null, destination: this, sum);
         }
 
@@ -92,7 +91,7 @@ namespace Banks
                 throw new BankException("Sum is greater than possible one to withdraw.");
 
             Sum -= sum;
-            Refresh();
+            Refresh(DateTime.Now);
             return new Transaction(DateTime.Now, source: this, destination: null, sum);
         }
 
@@ -101,7 +100,7 @@ namespace Banks
             destination.ThrowIfNull(nameof(destination));
             Withdraw(sum);
             destination.TopUp(sum);
-            Refresh();
+            Refresh(DateTime.Now);
             return new Transaction(DateTime.Now, source: this, destination, sum);
         }
     }

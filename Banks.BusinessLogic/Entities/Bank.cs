@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Banks.BusinessLogic.Tools;
@@ -44,9 +45,9 @@ namespace Banks
             private init => _transactions = new List<Transaction>(value);
         }
 
-        public void Refresh()
+        public void Refresh(DateTime finishDate)
         {
-            _accounts.ForEach(acc => acc.Refresh());
+            _accounts.ForEach(acc => acc.Refresh(finishDate));
         }
         
         public void MakePayouts()

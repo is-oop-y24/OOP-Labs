@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Banks.BusinessLogic.Data;
@@ -80,9 +81,9 @@ namespace Banks
             return transaction ?? throw new BankException("Transaction does not exist.");
         }
 
-        public void Refresh()
+        public void Refresh(DateTime finishDate)
         {
-            _bankRepository.GetBanks().ForEach(bank => bank.Refresh());
+            _bankRepository.GetBanks().ForEach(bank => bank.Refresh(finishDate));
         }
 
         public void Save()
