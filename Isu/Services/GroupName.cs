@@ -7,7 +7,7 @@ namespace Isu.Services
     public class GroupName
     {
         private const int _maxGroupNameLength = 5;
-        private const string _specialization = "M3";
+        private int _secondSymbol;
         private int _number;
 
         /// <param name="groupName">Group name in the format M3XYY. Where X - course number, YY - group number.</param>
@@ -16,8 +16,12 @@ namespace Isu.Services
             if (groupName.Length != _maxGroupNameLength)
                 throw new IsuException("Group name has incorrect length.");
 
-            if (groupName[..2] != _specialization)
-                throw new IsuException("Specialization is not supported");
+            MfTag = new MfTag(groupName[0]);
+
+            if (!char.IsDigit(groupName[1]))
+                throw new IsuException("Second symbol in group name should be a number;");
+
+            _secondSymbol = groupName[1] - '0';
 
             if (!char.IsDigit(groupName[2]))
                 throw new IsuException("Third symbol in a group name is not a correct course number.");
@@ -29,9 +33,11 @@ namespace Isu.Services
 
         public CourseNumber Course { get; }
 
+        public MfTag MfTag { get; }
+
         public string GetName()
         {
-            return _specialization + Course.GetNumber() + $"{2:_number}";
+            return MfTag.GetCharTag() + _secondSymbol.ToString() + Course.GetNumber() + $"{2:_number}";
         }
     }
 }
