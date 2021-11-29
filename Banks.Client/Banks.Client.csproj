@@ -5,6 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <WarningLevel>5</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <RootNamespace>Banks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.42.1-preview.0.15" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Banks.BusinessLogic\Banks.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>

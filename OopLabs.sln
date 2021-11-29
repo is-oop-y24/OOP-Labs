@@ -28,13 +28,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backups.Tests", "Backups.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackupsExtra.Tests", "BackupsExtra.Tests\BackupsExtra.Tests.csproj", "{292B4B3A-0991-4B13-882C-7C297B3882B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banks", "Banks\Banks.csproj", "{F631B30C-A6DE-46B0-99B7-A75FBB6911F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banks.Client", "Banks.Client\Banks.Client.csproj", "{F631B30C-A6DE-46B0-99B7-A75FBB6911F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banks.Tests", "Banks.Tests\Banks.Tests.csproj", "{3845CD18-DD04-4B8F-B0DC-74EF9354F6DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backups.Server", "Backups.Server\Backups.Server.csproj", "{888EF2B7-0786-4805-ADDA-8107AB079545}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backups.Client", "Backups.Client\Backups.Client.csproj", "{596EA3EE-87E8-4AFA-8264-429BCFC3F367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{13924F46-0AE1-4961-8C48-DA838F7B6298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banks.BusinessLogic", "Banks.BusinessLogic\Banks.BusinessLogic.csproj", "{5190FE88-1F0F-479F-A53E-6AFA3A07F612}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +102,14 @@ Global
 		{596EA3EE-87E8-4AFA-8264-429BCFC3F367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596EA3EE-87E8-4AFA-8264-429BCFC3F367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{596EA3EE-87E8-4AFA-8264-429BCFC3F367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13924F46-0AE1-4961-8C48-DA838F7B6298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13924F46-0AE1-4961-8C48-DA838F7B6298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13924F46-0AE1-4961-8C48-DA838F7B6298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13924F46-0AE1-4961-8C48-DA838F7B6298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5190FE88-1F0F-479F-A53E-6AFA3A07F612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5190FE88-1F0F-479F-A53E-6AFA3A07F612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5190FE88-1F0F-479F-A53E-6AFA3A07F612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5190FE88-1F0F-479F-A53E-6AFA3A07F612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
