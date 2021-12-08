@@ -1,0 +1,61 @@
+@startuml
+interface IJobSaver {
+    SaveJob() : void
+    LoadJob() : BackupJob
+}
+
+interface IRestorer {
+    Restore() : void
+}
+
+interface IExcessPointsChooser {
+    ChooseExcessPoints() : RestorePoint[]
+}
+
+interface IJobCleaner {
+    CleanJob() : BackupJob
+}
+
+interface ILogger {
+    Log() : void
+}
+
+interface IServiceBuilder {
+    SetLogger() : void
+    SetPointsMerger() : void
+    SetJobSaver() : void
+    SetJobCleaner() : void
+    SetPointsChooser() : void
+    
+    GetBackupExtraService() : IExtraBackupJob
+}
+
+interface IExtraBackupJob {
+    
+}
+
+RepositoryJobSaver -u-|> IJobSaver
+RepositoryJobSaver o-- IFileRepository
+
+OriginalLocationRestorer -u-|> IRestorer
+SpecifiedLocationRestorer -u-|> IRestorer
+
+IExcessPointsChooser <|- CountPointChooser
+IExcessPointsChooser <|- DatePointChooser
+IExcessPointsChooser <|-- HybridPointChooser
+
+HybridPointChooser o-- CountPointChooser
+HybridPointChooser o-- DatePointChooser
+
+IJobCleaner <|-- MergeJobCleaner
+IJobCleaner <|-- RemoveJobCleaner
+
+ConsoleLogger -u-|> ILogger
+
+ExtraBackupJob -u-|> IExtraBackupJob
+ExtraBackupJob o-- IRestorer
+ExtraBackupJob o-- IJobSaver
+ExtraBackupJob o-- IExcessPointsChooser
+ExtraBackupJob o-- IJobCleaner
+ExtraBackupJob o-l- ILogger
+@enduml
