@@ -8,8 +8,8 @@ namespace Backups
 {
     public class BackupJob
     {
-        private readonly List<IJobObject> _jobObjects = new List<IJobObject>();
-        private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
+        protected readonly List<IJobObject> _jobObjects = new List<IJobObject>();
+        protected readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
         private readonly IStoragePacker _storagePacker;
 
