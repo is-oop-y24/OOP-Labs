@@ -12,17 +12,20 @@ namespace Backups
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
         private readonly IStoragePacker _storagePacker;
-        private readonly string _path;
 
         public BackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker)
         {
-            _path = Path.Combine(destinationPath, jobName);
+            Path = System.IO.Path.Combine(destinationPath, jobName);
             Name = jobName;
             _fileRepository = fileRepository;
             _storagePacker = storagePacker;
         }
 
+        public ReadOnlyCollection<IJobObject> JobObjects => _jobObjects.AsReadOnly();
         public ReadOnlyCollection<RestorePoint> RestorePoints => _restorePoints.AsReadOnly();
+        public IFileRepository FileRepository => _fileRepository;
+        public IStoragePacker StoragePacker => _storagePacker;
+        public string Path { get; }
 
         public string Name { get; }
 
@@ -39,7 +42,7 @@ namespace Backups
 
         public void MakeRestorePoint()
         {
-            var restorePoint = new RestorePoint(_path, _jobObjects, _storagePacker, _fileRepository);
+            var restorePoint = new RestorePoint(Path, _jobObjects, _storagePacker, _fileRepository);
             restorePoint.Process();
             _restorePoints.Add(restorePoint);
         }

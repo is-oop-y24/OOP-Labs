@@ -8,7 +8,6 @@ namespace Backups
 {
     public class SingleStorage : IStorage
     {
-        private readonly List<IJobObject> _jobObjects;
         private readonly IFileRepository _fileRepository;
         private readonly string _destinationPath;
         private readonly FileName _name;
@@ -18,15 +17,16 @@ namespace Backups
             _destinationPath = destinationPath;
             _name = storageName;
             _fileRepository = fileRepository;
-            _jobObjects = jobObjects;
+            JobObjects = jobObjects;
         }
 
         public string StoragePath => Path.Combine(_destinationPath, _name.Name);
+        public List<IJobObject> JobObjects { get; }
 
         public void Process()
         {
             IArchiver archiver = new Archiver();
-            foreach (IJobObject jobObject in _jobObjects)
+            foreach (IJobObject jobObject in JobObjects)
             {
                 foreach (string path in jobObject.GetPathList())
                 {
