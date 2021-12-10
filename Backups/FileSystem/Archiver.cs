@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Backups.FileSystem;
 using Microsoft.Win32.SafeHandles;
 
@@ -20,16 +21,21 @@ namespace Backups
 
         public BackupFile MakeArchive(FileName archiveName)
         {
-            using var memoryStream = new MemoryStream();
+            using var archiveDataStream = new MemoryStream();
             foreach (BackupFile file in _files)
             {
-                using var fileMemoryStream = new MemoryStream(file.Content.ToArray());
-                byte[] offsetBytes = BitConverter.GetBytes(fileMemoryStream.Length);
-                memoryStream.Write(offsetBytes);
-                fileMemoryStream.CopyTo(memoryStream);
+                long nameLength = file.Name.Name.Length;
+                archiveDataStream.Write(BitConverter.GetBytes(nameLength));
+                archiveDataStream.Write(Encoding.Default.GetBytes(file.Name.Name));
+
+                long fileSize = file.Content.Length;
+                archiveDataStream.Write(BitConverter.GetBytes(fileSize));
+                archiveDataStream.Write(file.Content);
             }
 
-            return new BackupFile(archiveName, memoryStream.GetBuffer());
+            byte[] content = archiveDataStream.GetBuffer();
+            Array.Resize(ref content, (int)archiveDataStream.Position);
+            return new BackupFile(archiveName, content);
         }
     }
 }

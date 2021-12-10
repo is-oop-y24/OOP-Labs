@@ -8,8 +8,8 @@ namespace Backups
 {
     public class BackupJob
     {
-        protected readonly List<IJobObject> _jobObjects = new List<IJobObject>();
-        protected readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
+        private readonly List<IJobObject> _jobObjects = new List<IJobObject>();
+        private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
         private readonly IFileRepository _fileRepository;
         private readonly IStoragePacker _storagePacker;
 
@@ -45,6 +45,11 @@ namespace Backups
             var restorePoint = new RestorePoint(Path, _jobObjects, _storagePacker, _fileRepository);
             restorePoint.Process();
             _restorePoints.Add(restorePoint);
+        }
+
+        protected List<RestorePoint> GetPointsList()
+        {
+            return _restorePoints;
         }
     }
 }
