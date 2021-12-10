@@ -40,11 +40,12 @@ namespace Backups
                 throw new BackupException("File doesnt exist.");
         }
 
-        public void MakeRestorePoint()
+        public RestorePoint MakeRestorePoint()
         {
             var restorePoint = new RestorePoint(Path, _jobObjects, _storagePacker, _fileRepository);
             restorePoint.Process();
             _restorePoints.Add(restorePoint);
+            return restorePoint;
         }
     }
 }
