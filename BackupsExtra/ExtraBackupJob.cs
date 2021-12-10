@@ -22,7 +22,7 @@ namespace BackupsExtra
             _logger = logger.ThrowIfNull(nameof(logger));
             _pointRestorer = pointRestorer.ThrowIfNull(nameof(pointRestorer));
         }
-        
+
         public void Save()
         {
             throw new System.NotImplementedException();

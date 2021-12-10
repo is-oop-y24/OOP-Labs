@@ -17,7 +17,7 @@ namespace BackupsExtra.Services.Implementations.ExcessPointsChoosers
             _dateChooser = dateChooser;
             _hybridMode = hybridMode;
         }
-        
+
         public List<RestorePoint> ChoosePoints(List<RestorePoint> restorePoints)
         {
             List<RestorePoint> countPoints = _countChooser.ChoosePoints(restorePoints);

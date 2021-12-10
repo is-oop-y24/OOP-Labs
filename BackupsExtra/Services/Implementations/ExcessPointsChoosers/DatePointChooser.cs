@@ -12,10 +12,10 @@ namespace BackupsExtra.Services.Implementations.ExcessPointsChoosers
         {
             MaxPointAge = maxPointAge;
         }
-        
+
         public TimeSpan MaxPointAge { get; }
         public DateTime LastAvailableTime => DateTime.Now - MaxPointAge;
-        
+
         public List<RestorePoint> ChoosePoints(List<RestorePoint> restorePoints)
         {
             return restorePoints

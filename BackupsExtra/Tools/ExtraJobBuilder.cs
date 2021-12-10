@@ -72,8 +72,7 @@ namespace BackupsExtra
                 _jobCleaner,
                 _jobSaver,
                 _logger,
-                _pointRestorer
-            );
+                _pointRestorer);
         }
     }
 }

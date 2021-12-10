@@ -14,9 +14,9 @@ namespace BackupsExtra.Services.Implementations.ExcessPointsChoosers
 
             MaxCount = maxCount;
         }
-        
+
         public int MaxCount { get; }
-        
+
         public List<RestorePoint> ChoosePoints(List<RestorePoint> restorePoints)
         {
             return restorePoints

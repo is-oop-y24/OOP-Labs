@@ -26,13 +26,11 @@ interface IServiceBuilder {
     SetJobSaver() : void
     SetJobCleaner() : void
     SetPointsChooser() : void
-    
+
     GetBackupExtraService() : IExtraBackupJob
 }
 
-interface IExtraBackupJob {
-    
-}
+interface IExtraBackupJob { }
 
 RepositoryJobSaver -u-|> IJobSaver
 RepositoryJobSaver o-- IFileRepository

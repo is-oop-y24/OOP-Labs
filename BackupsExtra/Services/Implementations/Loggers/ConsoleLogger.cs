@@ -11,7 +11,7 @@ namespace BackupsExtra.Services.Implementations.Loggers
         {
             _messageMaker = messageMaker;
         }
-        
+
         public void Log(string message)
         {
             Console.WriteLine(

@@ -10,12 +10,12 @@ namespace BackupsExtra.Services.Implementations.Loggers
         {
             _messageMaker = messageMaker;
         }
-        
+
         public string LogFilePath { get; }
-        
+
         public void Log(string message)
         {
-            using var streamWriter = 
+            using var streamWriter =
                 new StreamWriter(File.OpenWrite(LogFilePath));
             streamWriter.Write(_messageMaker.MakeMessage(message));
         }

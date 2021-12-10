@@ -1,7 +1,9 @@
+using Backups;
+
 namespace BackupsExtra.Services.Services
 {
-    public class IPointRestorer
+    public interface IPointRestorer
     {
-        
+        void RestoreThePoint(RestorePoint restorePoint);
     }
 }
