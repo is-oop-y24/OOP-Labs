@@ -46,10 +46,5 @@ namespace Backups
             restorePoint.Process();
             _restorePoints.Add(restorePoint);
         }
-
-        protected List<RestorePoint> GetPointsList()
-        {
-            return _restorePoints;
-        }
     }
 }
