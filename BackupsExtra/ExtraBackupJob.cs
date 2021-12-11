@@ -5,8 +5,9 @@ using Kfc.Utility.Extensions;
 
 namespace BackupsExtra
 {
-    public class ExtraBackupJob : BackupJob
+    public class ExtraBackupJob
     {
+        private readonly BackupJob _backupJob;
         private readonly IExcessPointsChooser _excessPointsChooser;
         private readonly IJobCleaner _jobCleaner;
         private readonly IJobSaver _jobSaver;
@@ -14,13 +15,13 @@ namespace BackupsExtra
         private readonly IPointRestorer _pointRestorer;
 
         public ExtraBackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker, IExcessPointsChooser excessPointsChooser, IJobCleaner jobCleaner, IJobSaver jobSaver, ILogger logger, IPointRestorer pointRestorer)
-            : base(destinationPath, jobName, fileRepository, storagePacker)
         {
             _excessPointsChooser = excessPointsChooser.ThrowIfNull(nameof(excessPointsChooser));
             _jobCleaner = jobCleaner.ThrowIfNull(nameof(jobCleaner));
             _jobSaver = jobSaver.ThrowIfNull(nameof(jobSaver));
             _logger = logger.ThrowIfNull(nameof(logger));
             _pointRestorer = pointRestorer.ThrowIfNull(nameof(pointRestorer));
+            _backupJob = new BackupJob(destinationPath, jobName, fileRepository, storagePacker);
         }
 
         public void Save()
@@ -33,12 +34,12 @@ namespace BackupsExtra
             throw new System.NotImplementedException();
         }
 
-        public void CleanPoints()
+        public void RestorePoint()
         {
             throw new System.NotImplementedException();
         }
-
-        public void RestorePoint()
+        
+        private void CleanPoints()
         {
             throw new System.NotImplementedException();
         }
