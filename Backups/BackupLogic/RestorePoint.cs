@@ -27,6 +27,7 @@ namespace Backups
                 if (storage.GetType() != storageMode)
                     throw new BackupException("Incorrect storage list.");
             }
+
             Date = date;
             Path = System.IO.Path.Combine(path, $"{Date.Day}.{Date.Month}.{Date.Year} [Time {Date.Hour}.{Date.Minute}.{Date.Second}]");
             _storages = storages;

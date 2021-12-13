@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Services;
@@ -10,38 +12,46 @@ namespace BackupsExtra
         private readonly BackupJob _backupJob;
         private readonly IExcessPointsChooser _excessPointsChooser;
         private readonly IJobCleaner _jobCleaner;
-        private readonly IJobSaver _jobSaver;
         private readonly ILogger _logger;
         private readonly IPointRestorer _pointRestorer;
 
-        public ExtraBackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker, IExcessPointsChooser excessPointsChooser, IJobCleaner jobCleaner, IJobSaver jobSaver, ILogger logger, IPointRestorer pointRestorer)
+        private List<RestorePoint> _restorePoints = new List<RestorePoint>();
+
+        public ExtraBackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker, IExcessPointsChooser excessPointsChooser, IJobCleaner jobCleaner, ILogger logger, IPointRestorer pointRestorer)
         {
             _excessPointsChooser = excessPointsChooser.ThrowIfNull(nameof(excessPointsChooser));
             _jobCleaner = jobCleaner.ThrowIfNull(nameof(jobCleaner));
-            _jobSaver = jobSaver.ThrowIfNull(nameof(jobSaver));
             _logger = logger.ThrowIfNull(nameof(logger));
             _pointRestorer = pointRestorer.ThrowIfNull(nameof(pointRestorer));
             _backupJob = new BackupJob(destinationPath, jobName, fileRepository, storagePacker);
+            _logger.Log($"Job {jobName} created.");
         }
 
-        public void Save()
+        public IJobCleaner JobCleaner => _jobCleaner;
+        public ILogger Logger => _logger;
+        public IPointRestorer PointRestorer => _pointRestorer;
+        public string Path => _backupJob.Path;
+        public string Name => _backupJob.Name;
+        public IFileRepository Repository => _backupJob.FileRepository;
+        public IStoragePacker StoragePacker => _backupJob.StoragePacker;
+        public IExcessPointsChooser ExcessPointsChooser => _excessPointsChooser;
+
+        public ReadOnlyCollection<RestorePoint> RestorePoints => _restorePoints.AsReadOnly();
+
+        public void MakeRestorePoint()
         {
-            throw new System.NotImplementedException();
+            _restorePoints.Add(_backupJob.MakeRestorePoint());
+            CleanPoints();
         }
 
-        public void Load()
+        public void RestoreThePoint(RestorePoint restorePoint)
         {
-            throw new System.NotImplementedException();
+            _pointRestorer.RestoreThePoint(restorePoint);
         }
 
-        public void RestorePoint()
-        {
-            throw new System.NotImplementedException();
-        }
-        
         private void CleanPoints()
         {
-            throw new System.NotImplementedException();
+            _restorePoints = _jobCleaner.GetCleanedList(_restorePoints, _excessPointsChooser.ChoosePoints(_restorePoints));
         }
     }
 }

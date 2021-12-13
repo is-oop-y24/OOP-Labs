@@ -9,11 +9,13 @@ namespace BackupsExtra.Services.Implementations.Restorers
     {
         private readonly IFileRepository _repository;
         private readonly IUnarchiver _unarchiver;
+        private readonly ILogger _logger;
 
-        public OriginalLocationRestorer(IFileRepository repository, IUnarchiver unarchiver)
+        public OriginalLocationRestorer(IFileRepository repository, IUnarchiver unarchiver, ILogger logger)
         {
             _repository = repository;
             _unarchiver = unarchiver;
+            _logger = logger;
         }
 
         public void RestoreThePoint(RestorePoint restorePoint)

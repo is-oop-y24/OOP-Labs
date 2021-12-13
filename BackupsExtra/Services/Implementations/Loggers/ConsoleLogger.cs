@@ -5,17 +5,17 @@ namespace BackupsExtra.Services.Implementations.Loggers
 {
     public class ConsoleLogger : ILogger
     {
-        private readonly ILogMessageMaker _messageMaker;
-
         public ConsoleLogger(ILogMessageMaker messageMaker)
         {
-            _messageMaker = messageMaker;
+            MessageMaker = messageMaker;
         }
+
+        public ILogMessageMaker MessageMaker { get; }
 
         public void Log(string message)
         {
             Console.WriteLine(
-                _messageMaker.MakeMessage(message));
+                MessageMaker.MakeMessage(message));
         }
     }
 }

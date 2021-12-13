@@ -1,7 +1,6 @@
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Services;
-using BackupsExtra;
 
 namespace BackupsExtra
 {
@@ -13,7 +12,6 @@ namespace BackupsExtra
         private IStoragePacker _storagePacker;
         private IExcessPointsChooser _excessPointsChooser;
         private IJobCleaner _jobCleaner;
-        private IJobSaver _jobSaver;
         private ILogger _logger;
         private IPointRestorer _pointRestorer;
 
@@ -47,11 +45,6 @@ namespace BackupsExtra
             _jobCleaner = jobCleaner;
         }
 
-        public void SetJobSaver(IJobSaver jobSaver)
-        {
-            _jobSaver = jobSaver;
-        }
-
         public void SetLogger(ILogger logger)
         {
             _logger = logger;
@@ -71,7 +64,6 @@ namespace BackupsExtra
                 _storagePacker,
                 _excessPointsChooser,
                 _jobCleaner,
-                _jobSaver,
                 _logger,
                 _pointRestorer);
         }

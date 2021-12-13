@@ -11,7 +11,7 @@ namespace BackupsExtra.Services.Implementations.JobCleaners
         public List<RestorePoint> GetCleanedList(List<RestorePoint> allPoints, List<RestorePoint> excessivePoints)
         {
             RestorePoint excessivePoint = MergeList(excessivePoints);
-            RestorePoint oldestPoint = allPoints.First(point => point.Date == 
+            RestorePoint oldestPoint = allPoints.First(point => point.Date ==
                                                                  allPoints.Min(point => point.Date));
             var result = new List<RestorePoint>(allPoints);
             allPoints.Remove(oldestPoint);
@@ -23,7 +23,7 @@ namespace BackupsExtra.Services.Implementations.JobCleaners
         {
             return points.Aggregate(MergePoints);
         }
-        
+
         private RestorePoint MergePoints(RestorePoint point1, RestorePoint point2)
         {
             RestorePoint olderPoint = point1.Date < point2.Date ? point1 : point2;
@@ -31,14 +31,14 @@ namespace BackupsExtra.Services.Implementations.JobCleaners
 
             if (olderPoint.Storages[0] is SingleStorage || newerPoint.Storages[0] is SingleStorage)
                 return newerPoint;
-            
+
             var storages = new List<IStorage>();
-            
+
             foreach (IStorage olderStorage in olderPoint.Storages)
             {
                 IStorage newerStorage = newerPoint.Storages
                     .SingleOrDefault(newStorage => newStorage.JobObjects.Single() == olderStorage.JobObjects.Single());
-                
+
                 storages.Add(newerStorage ?? olderStorage);
             }
 
