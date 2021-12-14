@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Backups.FileSystem;
 
 namespace Backups
 {
@@ -7,6 +8,6 @@ namespace Backups
     {
         string StoragePath { get; }
         List<IJobObject> JobObjects { get; }
-        void Process();
+        void Process(IFileRepository fileRepository);
     }
 }

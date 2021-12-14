@@ -42,8 +42,8 @@ namespace Backups
 
         public RestorePoint MakeRestorePoint()
         {
-            var restorePoint = new RestorePoint(Path, _jobObjects, _storagePacker, _fileRepository);
-            restorePoint.Process();
+            var restorePoint = new RestorePoint(Path, _jobObjects, _storagePacker);
+            restorePoint.Process(_fileRepository);
             _restorePoints.Add(restorePoint);
             return restorePoint;
         }
