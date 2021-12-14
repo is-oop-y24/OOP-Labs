@@ -6,6 +6,6 @@ namespace Backups
     public interface IJobObject
     {
         string Name { get; }
-        ReadOnlyCollection<string> GetPathList();
+        ReadOnlyCollection<string> Paths { get; }
     }
 }
