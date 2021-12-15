@@ -30,17 +30,40 @@ namespace BackupsExtra
         public IJobCleaner JobCleaner => _jobCleaner;
         public ILogger Logger => _logger;
         public IPointRestorer PointRestorer => _pointRestorer;
-        public string Path => _backupJob.Path;
-        public string Name => _backupJob.Name;
         public IFileRepository Repository => _backupJob.FileRepository;
         public IStoragePacker StoragePacker => _backupJob.StoragePacker;
         public IExcessPointsChooser ExcessPointsChooser => _excessPointsChooser;
 
-        public ReadOnlyCollection<RestorePoint> RestorePoints => _restorePoints.AsReadOnly();
+        public string Path => _backupJob.Path;
+        public string Name => _backupJob.Name;
+
+        public ReadOnlyCollection<IJobObject> JobObjects
+        {
+            get => _backupJob.JobObjects;
+            init
+            {
+                foreach (IJobObject jobObject in value)
+                    _backupJob.AddObject(jobObject);
+            }
+        }
+
+        public ReadOnlyCollection<RestorePoint> RestorePoints
+        {
+            get => _restorePoints.AsReadOnly();
+            init => _restorePoints = new List<RestorePoint>();
+        }
+
+        public void AddObject(IJobObject jobObject)
+        {
+            _backupJob.AddObject(jobObject);
+            _logger.Log($"Object {jobObject.Name} is added to the job.");
+        }
 
         public void MakeRestorePoint()
         {
+            _logger.Log("Restore point processing begins.");
             _restorePoints.Add(_backupJob.MakeRestorePoint());
+            _logger.Log("Restore point created.");
             CleanPoints();
         }
 
@@ -51,7 +74,11 @@ namespace BackupsExtra
 
         private void CleanPoints()
         {
-            _restorePoints = _jobCleaner.GetCleanedList(_restorePoints, _excessPointsChooser.ChoosePoints(_restorePoints));
+            _logger.Log("Cleaning of points begins");
+            _restorePoints = _jobCleaner.GetCleanedList(
+                _restorePoints,
+                _excessPointsChooser.ChoosePoints(_restorePoints));
+            _logger.Log("Points are cleaned.");
         }
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Services;
@@ -14,6 +16,8 @@ namespace BackupsExtra
         private IJobCleaner _jobCleaner;
         private ILogger _logger;
         private IPointRestorer _pointRestorer;
+        private ReadOnlyCollection<RestorePoint> _restorePoints;
+        private ReadOnlyCollection<IJobObject> _jobObjects;
 
         public void SetDestinationPath(string destinationPath)
         {
@@ -55,6 +59,16 @@ namespace BackupsExtra
             _pointRestorer = pointRestorer;
         }
 
+        public void SetRestorePoints(ReadOnlyCollection<RestorePoint> restorePoints)
+        {
+            _restorePoints = restorePoints;
+        }
+
+        public void SetJobObjects(ReadOnlyCollection<IJobObject> jobObjects)
+        {
+            _jobObjects = jobObjects;
+        }
+
         public ExtraBackupJob GetJob()
         {
             return new ExtraBackupJob(
@@ -65,7 +79,11 @@ namespace BackupsExtra
                 _excessPointsChooser,
                 _jobCleaner,
                 _logger,
-                _pointRestorer);
+                _pointRestorer)
+            {
+                JobObjects = _jobObjects ?? new ReadOnlyCollection<IJobObject>(new List<IJobObject>()),
+                RestorePoints = _restorePoints ?? new ReadOnlyCollection<RestorePoint>(new List<RestorePoint>()),
+            };
         }
     }
 }

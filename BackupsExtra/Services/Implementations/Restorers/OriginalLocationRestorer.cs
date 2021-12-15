@@ -27,7 +27,7 @@ namespace BackupsExtra.Services.Implementations.Restorers
                 foreach (BackupFile file in files)
                 {
                     IJobObject jobObject = storage.JobObjects.Find(obj => obj.Name == file.Name.Name);
-                    _repository.AddFile(file, jobObject.GetPathList()[0]);
+                    _repository.AddFile(file, jobObject.Paths[0]);
                 }
             }
         }

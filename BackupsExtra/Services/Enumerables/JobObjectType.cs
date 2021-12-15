@@ -4,9 +4,8 @@ using Newtonsoft.Json.Converters;
 namespace BackupsExtra.Services.Enumerables
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum JobCleaningMode
+    public enum JobObjectType
     {
-        Merge,
-        Remove,
+        JobFiles,
     }
 }

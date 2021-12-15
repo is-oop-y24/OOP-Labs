@@ -1,11 +1,16 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Enumerables;
 using BackupsExtra.Services.Implementations.ExcessPointsChoosers;
 using BackupsExtra.Services.Implementations.JobCleaners;
+using BackupsExtra.Services.Implementations.JobSavers.DTOs;
 using BackupsExtra.Services.Implementations.Loggers;
 using BackupsExtra.Services.Implementations.Restorers;
 using BackupsExtra.Services.Services;
@@ -15,10 +20,56 @@ namespace BackupsExtra.Services.Implementations.JobSavers
 {
     public class JobSaver : IJobSaver
     {
+        private const string _configFileName = "config.json";
+        private const string _restorePointsFileName = "restorePoints.json";
+        private const string _jobObjectsFileName = "jobObjects.json";
+
+        private readonly SerializerToFile _serializer = new SerializerToFile();
+
         private IFileRepository _fileRepository;
         private ILogger _logger;
 
         public void Save(ExtraBackupJob backupJob, string path)
+        {
+            string jobPath = Path.Combine(path, backupJob.Name);
+            Directory.CreateDirectory(jobPath);
+            SaveConfig(backupJob, jobPath);
+
+            var restorePointDtos = backupJob.RestorePoints
+                .Select(point => new RestorePointDto(point))
+                .ToList();
+            var jobObjectDtos = backupJob.JobObjects
+                .Select(jo => new JobObjectDto(jo))
+                .ToList();
+
+            _serializer.SerializeToFile(restorePointDtos, Path.Combine(jobPath, _restorePointsFileName));
+            _serializer.SerializeToFile(jobObjectDtos, Path.Combine(jobPath, _jobObjectsFileName));
+        }
+
+        public ExtraBackupJob Load(string jobPath)
+        {
+            var builder = new ExtraJobBuilder();
+            LoadConfig(builder, Path.Combine(jobPath, _configFileName));
+
+            List<JobObjectDto> jobObjectDtos =
+                _serializer.DeserializeFromFile<List<JobObjectDto>>(Path.Combine(jobPath, _jobObjectsFileName));
+            List<RestorePointDto> restorePointsDtos =
+                _serializer.DeserializeFromFile<List<RestorePointDto>>(Path.Combine(jobPath, _restorePointsFileName));
+
+            var jobObjects = jobObjectDtos
+                .Select(jod => jod.GetJobObject())
+                .ToList();
+
+            var restorePoints = restorePointsDtos
+                .Select(rpd => rpd.GetRestorePoint())
+                .ToList();
+
+            builder.SetJobObjects(jobObjects.AsReadOnly());
+            builder.SetRestorePoints(restorePoints.AsReadOnly());
+            return builder.GetJob();
+        }
+
+        private void SaveConfig(ExtraBackupJob backupJob, string path)
         {
             var config = new JobConfig();
             config.DestinationPath = Path.GetDirectoryName(backupJob.Path);
@@ -30,13 +81,13 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             ConfigureStoragePacker(backupJob.StoragePacker, config);
             ConfigureExcessPointsChooser(backupJob.ExcessPointsChooser, config);
 
-            File.WriteAllText(path, JsonConvert.SerializeObject(config, Formatting.Indented));
+            string configPath = Path.Combine(path, _configFileName);
+            _serializer.SerializeToFile(config, configPath);
         }
 
-        public ExtraBackupJob Load(string configPath)
+        private void LoadConfig(IExtraJobBuilder builder, string path)
         {
-            JobConfig config = JsonConvert.DeserializeObject<JobConfig>(File.ReadAllText(configPath));
-            var builder = new ExtraJobBuilder();
+            JobConfig config = _serializer.DeserializeFromFile<JobConfig>(path);
             builder.SetDestinationPath(config.DestinationPath);
             builder.SetJobName(config.JobName);
             ResolveLogger(config, builder);
@@ -45,8 +96,6 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             ResolvePointRestorer(config, builder);
             ResolveStoragePacker(config, builder);
             ResolveExcessPointsChooser(config, builder);
-
-            return builder.GetJob();
         }
 
         private IHybridMode ResolveHybridMode(JobConfig config)
@@ -62,7 +111,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             }
         }
 
-        private void ResolveExcessPointsChooser(JobConfig config, ExtraJobBuilder builder)
+        private void ResolveExcessPointsChooser(JobConfig config, IExtraJobBuilder builder)
         {
             IExcessPointsChooser chooser;
 
@@ -87,7 +136,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             builder.SetExcessPointsChooser(chooser);
         }
 
-        private void ResolveStoragePacker(JobConfig config, ExtraJobBuilder builder)
+        private void ResolveStoragePacker(JobConfig config, IExtraJobBuilder builder)
         {
             IStoragePacker storagePacker;
 
@@ -106,7 +155,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             builder.SetStoragePacker(storagePacker);
         }
 
-        private void ResolvePointRestorer(JobConfig config, ExtraJobBuilder builder)
+        private void ResolvePointRestorer(JobConfig config, IExtraJobBuilder builder)
         {
             IPointRestorer pointRestorer;
 
@@ -130,7 +179,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             builder.SetPointsRestorer(pointRestorer);
         }
 
-        private void ResolveJobCleaner(JobConfig config, ExtraJobBuilder builder)
+        private void ResolveJobCleaner(JobConfig config, IExtraJobBuilder builder)
         {
             IJobCleaner jobCleaner;
 
@@ -149,7 +198,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             builder.SetJobCleaner(jobCleaner);
         }
 
-        private void ResolveRepository(JobConfig config, ExtraJobBuilder builder)
+        private void ResolveRepository(JobConfig config, IExtraJobBuilder builder)
         {
             switch (config.RepositoryType)
             {
@@ -194,7 +243,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             return _logger;
         }
 
-        private void ResolveLogger(JobConfig config, ExtraJobBuilder builder)
+        private void ResolveLogger(JobConfig config, IExtraJobBuilder builder)
         {
             builder.SetLogger(InstanceLogger(config));
         }
@@ -266,8 +315,36 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             }
         }
 
+        private ILogMessageMaker GetLogMessageMaker(LogWritingMode logWritingMode)
+        {
+            switch (logWritingMode)
+            {
+                case LogWritingMode.Default:
+                    return new DefaultLogMessageMaker();
+                case LogWritingMode.Time:
+                    return new TimeLogMessageMaker();
+                default:
+                    throw new BackupException("Incorrect log writing mode.");
+            }
+        }
+
+        private LogWritingMode ConfigureLogWritingMode(ILogMessageMaker messageMaker)
+        {
+            switch (messageMaker)
+            {
+                case DefaultLogMessageMaker:
+                    return LogWritingMode.Default;
+                case TimeLogMessageMaker:
+                    return LogWritingMode.Time;
+                default:
+                    throw new BackupException("Incorrect message maker type.");
+            }
+        }
+
         private void ConfigureLogger(ILogger logger, JobConfig config)
         {
+            config.LogWritingMode = ConfigureLogWritingMode(logger.MessageMaker);
+
             switch (logger)
             {
                 case ConsoleLogger:
