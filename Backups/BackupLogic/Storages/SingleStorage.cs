@@ -28,7 +28,7 @@ namespace Backups
             {
                 foreach (string path in jobObject.Paths)
                 {
-                    archiver.AddFile(fileRepository.GetFile(path));
+                    archiver.AddFile(fileRepository.GetFile(path), path);
                 }
             }
 

@@ -20,7 +20,8 @@ namespace Backups.FileSystem
 
             string absDirPath = Path.Combine(RepositoryPath, destinationPath);
             string absFilePath = Path.Combine(absDirPath, backupFile.Name.Name);
-            Directory.CreateDirectory(absDirPath);
+            if (!Directory.Exists(absDirPath))
+                Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
             fileStream.Write(backupFile.Content.ToArray());
         }
@@ -34,7 +35,7 @@ namespace Backups.FileSystem
             using FileStream fileStream = System.IO.File.OpenRead(absFilePath);
             using MemoryStream memoryStream = new MemoryStream();
             fileStream.CopyTo(memoryStream);
-            return new BackupFile(new FileName(Path.GetFileName(filePath)), memoryStream.GetBuffer());
+            return new BackupFile(new FileName(Path.GetFileName(filePath)), memoryStream.ToArray());
         }
     }
 }

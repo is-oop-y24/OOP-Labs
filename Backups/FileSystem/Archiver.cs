@@ -10,23 +10,24 @@ namespace Backups
 {
     public class Archiver : IArchiver
     {
-        private readonly List<BackupFile> _files = new List<BackupFile>();
+        private readonly Dictionary<BackupFile, string> _files = new Dictionary<BackupFile, string>();
 
-        public void AddFile(BackupFile backupFile)
+        public void AddFile(BackupFile backupFile, string filePath)
         {
-            if (_files.Exists(archFile => archFile.Name == backupFile.Name))
+            if (_files.ContainsValue(filePath))
                 throw new FileSystemException("The file with such name is already archived.");
-            _files.Add(backupFile);
+            _files.Add(backupFile, filePath);
         }
 
         public BackupFile MakeArchive(FileName archiveName)
         {
             using var archiveDataStream = new MemoryStream();
-            foreach (BackupFile file in _files)
+            foreach (BackupFile file in _files.Keys)
             {
-                long nameLength = file.Name.Name.Length;
-                archiveDataStream.Write(BitConverter.GetBytes(nameLength));
-                archiveDataStream.Write(Encoding.Default.GetBytes(file.Name.Name));
+                string path = _files[file];
+                long pathLength = path.Length;
+                archiveDataStream.Write(BitConverter.GetBytes(pathLength));
+                archiveDataStream.Write(Encoding.Default.GetBytes(path));
 
                 long fileSize = file.Content.Length;
                 archiveDataStream.Write(BitConverter.GetBytes(fileSize));
