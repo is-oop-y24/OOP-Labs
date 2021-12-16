@@ -46,15 +46,15 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             _serializer.SerializeToFile(jobObjectDtos, Path.Combine(jobPath, _jobObjectsFileName));
         }
 
-        public ExtraBackupJob Load(string jobPath)
+        public ExtraBackupJob Load(string jobSettingsPath)
         {
             var builder = new ExtraJobBuilder();
-            LoadConfig(builder, Path.Combine(jobPath, _configFileName));
+            LoadConfig(builder, Path.Combine(jobSettingsPath, _configFileName));
 
             List<JobObjectDto> jobObjectDtos =
-                _serializer.DeserializeFromFile<List<JobObjectDto>>(Path.Combine(jobPath, _jobObjectsFileName));
+                _serializer.DeserializeFromFile<List<JobObjectDto>>(Path.Combine(jobSettingsPath, _jobObjectsFileName));
             List<RestorePointDto> restorePointsDtos =
-                _serializer.DeserializeFromFile<List<RestorePointDto>>(Path.Combine(jobPath, _restorePointsFileName));
+                _serializer.DeserializeFromFile<List<RestorePointDto>>(Path.Combine(jobSettingsPath, _restorePointsFileName));
 
             var jobObjects = jobObjectDtos
                 .Select(jod => jod.GetJobObject())

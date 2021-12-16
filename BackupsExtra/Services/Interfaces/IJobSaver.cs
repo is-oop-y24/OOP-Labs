@@ -5,6 +5,6 @@ namespace BackupsExtra.Services.Services
     public interface IJobSaver
     {
         void Save(ExtraBackupJob backupJob, string path);
-        ExtraBackupJob Load(string jobPath);
+        ExtraBackupJob Load(string jobSettingsPath);
     }
 }

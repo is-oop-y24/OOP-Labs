@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Services;
@@ -23,11 +25,11 @@ namespace BackupsExtra.Services.Implementations.Restorers
             foreach (IStorage storage in restorePoint.Storages)
             {
                 BackupFile storageArchive = _repository.GetFile(storage.StoragePath);
-                List<BackupFile> files = _unarchiver.Unpack(storageArchive);
-                foreach (BackupFile file in files)
+                List<PathFile> pathFiles = _unarchiver.Unpack(storageArchive);
+
+                foreach (PathFile pathFile in pathFiles)
                 {
-                    IJobObject jobObject = storage.JobObjects.Find(obj => obj.Name == file.Name.Name);
-                    _repository.AddFile(file, jobObject.Paths[0]);
+                    _repository.AddFile(pathFile.BackupFile, Path.GetDirectoryName(pathFile.Path));
                 }
             }
         }

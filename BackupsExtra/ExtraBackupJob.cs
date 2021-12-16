@@ -78,7 +78,7 @@ namespace BackupsExtra
             _restorePoints = _jobCleaner.GetCleanedList(
                 _restorePoints,
                 _excessPointsChooser.ChoosePoints(_restorePoints));
-            _logger.Log("Points are cleaned.");
+            _logger.Log("Points cleaning finished.");
         }
     }
 }

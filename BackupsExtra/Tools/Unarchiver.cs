@@ -9,17 +9,19 @@ namespace BackupsExtra
 {
     public class Unarchiver : IUnarchiver
     {
-        public List<BackupFile> Unpack(BackupFile archive)
+        public List<PathFile> Unpack(BackupFile archive)
         {
-            var files = new List<BackupFile>();
+            var files = new List<PathFile>();
             var decoder = new FileDecoder(archive);
             while (!decoder.FinishedReading)
             {
-                long nameLength = decoder.GetNextLong();
-                string fileName = decoder.GetNextString(nameLength);
+                long pathLength = decoder.GetNextLong();
+                string filePath = decoder.GetNextString(pathLength);
                 long fileLength = decoder.GetNextLong();
                 byte[] content = decoder.GetNextByteContent(fileLength);
-                files.Add(new BackupFile(new FileName(fileName), content));
+
+                string fileName = Path.GetFileName(filePath);
+                files.Add(new PathFile(new BackupFile(new FileName(fileName), content), filePath));
             }
 
             return files;

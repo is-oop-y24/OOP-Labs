@@ -5,6 +5,6 @@ namespace BackupsExtra
 {
     public interface IUnarchiver
     {
-        List<BackupFile> Unpack(BackupFile archive);
+        List<PathFile> Unpack(BackupFile archive);
     }
 }
