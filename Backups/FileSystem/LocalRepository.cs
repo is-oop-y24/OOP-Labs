@@ -27,10 +27,10 @@ namespace Backups.FileSystem
 
         public BackupFile GetFile(string filePath)
         {
-            if (System.IO.File.Exists(filePath))
+            string absFilePath = Path.Combine(RepositoryPath, filePath);
+            if (!System.IO.File.Exists(absFilePath))
                 throw new FileSystemException("File doesnt exist.");
 
-            string absFilePath = Path.Combine(RepositoryPath, filePath);
             using FileStream fileStream = System.IO.File.OpenRead(absFilePath);
             using MemoryStream memoryStream = new MemoryStream();
             fileStream.CopyTo(memoryStream);
