@@ -1,6 +1,7 @@
 using System;
 using Backups.FileSystem;
 using Backups.Server.Tools;
+using BackupsExtra;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Backups.Server
@@ -10,7 +11,7 @@ namespace Backups.Server
         private readonly IBackupService _backupService;
         private readonly IFileRepository _fileRepository;
 
-        public OperationFactory(IBackupService backupService, IFileRepository fileRepository)
+        public OperationFactory(IFileRepository fileRepository, IBackupService backupService)
         {
             _backupService = backupService;
             _fileRepository = fileRepository;

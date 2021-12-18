@@ -18,7 +18,7 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                IBackupJob job = _backupService.FindJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
                 job.DeleteObject(_data.ObjectName ?? throw new ServerException("Request must have JobObjectName argument."));
             }
             catch (ServerException serverException)

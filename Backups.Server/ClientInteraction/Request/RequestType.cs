@@ -7,5 +7,7 @@ namespace Backups.Server
         MakeRestorePoint,
         CreateJob,
         DeleteJobObject,
+        CreateExtraJob,
+        RestoreThePoint
     }
 }
