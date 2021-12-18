@@ -11,6 +11,7 @@ namespace Backups
 {
     public class RestorePoint
     {
+        private static int _nextId = 1;
         private readonly List<IStorage> _storages;
 
         public RestorePoint(string destinationPath, List<IJobObject> jobObjects, IStoragePacker storagePacker)
@@ -27,7 +28,6 @@ namespace Backups
             _storages = storages;
         }
 
-        private static int _nextId = 1;
         public int Id { get; } = _nextId++;
         public DateTime Date { get; }
         public ReadOnlyCollection<IStorage> Storages => _storages.AsReadOnly();
