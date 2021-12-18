@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
         private IFileRepository _fileRepository;
         private ILogger _logger;
 
-        public void Save(ExtraBackupJob backupJob, string path)
+        public void Save(IBackupJob backupJob, string path)
         {
             string jobPath = Path.Combine(path, backupJob.Name);
             Directory.CreateDirectory(jobPath);
@@ -38,6 +39,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             var restorePointDtos = backupJob.RestorePoints
                 .Select(point => new RestorePointDto(point))
                 .ToList();
+
             var jobObjectDtos = backupJob.JobObjects
                 .Select(jo => new JobObjectDto(jo))
                 .ToList();
@@ -46,10 +48,50 @@ namespace BackupsExtra.Services.Implementations.JobSavers
             _serializer.SerializeToFile(jobObjectDtos, Path.Combine(jobPath, _jobObjectsFileName));
         }
 
-        public ExtraBackupJob Load(string jobSettingsPath)
+        public IBackupJob Load(string jobSettingsPath)
         {
-            var builder = new ExtraJobBuilder();
-            LoadConfig(builder, Path.Combine(jobSettingsPath, _configFileName));
+            IJobBuilder builder = LoadConfig(Path.Combine(jobSettingsPath, _configFileName));
+
+            LoadExtraData(jobSettingsPath, builder);
+            return builder.GetJob();
+        }
+
+        public JobConfig GetConfig(IBackupJob backupJob)
+        {
+            var config = new JobConfig();
+            config.DestinationPath = Path.GetDirectoryName(backupJob.Path);
+            config.JobName = backupJob.Name;
+            ConfigureJobType(backupJob, config);
+
+            if (backupJob is not ExtraBackupJob extraJob) return config;
+            ConfigureLogger(extraJob.Logger, config);
+            ConfigureRepository(extraJob.FileRepository, config);
+            ConfigureJobCleaner(extraJob.JobCleaner, config);
+            ConfigurePointRestorer(extraJob.PointRestorer, config);
+            ConfigureStoragePacker(extraJob.StoragePacker, config);
+            ConfigureExcessPointsChooser(extraJob.ExcessPointsChooser, config);
+            return config;
+        }
+
+        public IJobBuilder GetBuilder(JobConfig config)
+        {
+            var builder = ResolveBuilder(config);
+            builder.SetDestinationPath(config.DestinationPath);
+            builder.SetJobName(config.JobName);
+
+            if (builder is not IExtraJobBuilder extraBuilder) return builder;
+            ResolveLogger(config, extraBuilder);
+            ResolveRepository(config, extraBuilder);
+            ResolveJobCleaner(config, extraBuilder);
+            ResolvePointRestorer(config, extraBuilder);
+            ResolveStoragePacker(config, extraBuilder);
+            ResolveExcessPointsChooser(config, extraBuilder);
+            return extraBuilder;
+        }
+
+        private void LoadExtraData(string jobSettingsPath, IJobBuilder builder)
+        {
+            if (builder is not IExtraJobBuilder extraBuilder) return;
 
             List<JobObjectDto> jobObjectDtos =
                 _serializer.DeserializeFromFile<List<JobObjectDto>>(Path.Combine(jobSettingsPath, _jobObjectsFileName));
@@ -64,38 +106,34 @@ namespace BackupsExtra.Services.Implementations.JobSavers
                 .Select(rpd => rpd.GetRestorePoint())
                 .ToList();
 
-            builder.SetJobObjects(jobObjects.AsReadOnly());
-            builder.SetRestorePoints(restorePoints.AsReadOnly());
-            return builder.GetJob();
+            extraBuilder.SetJobObjects(jobObjects.AsReadOnly());
+            extraBuilder.SetRestorePoints(restorePoints.AsReadOnly());
         }
 
-        private void SaveConfig(ExtraBackupJob backupJob, string path)
+        private void SaveConfig(IBackupJob backupJob, string path)
         {
-            var config = new JobConfig();
-            config.DestinationPath = Path.GetDirectoryName(backupJob.Path);
-            config.JobName = backupJob.Name;
-            ConfigureLogger(backupJob.Logger, config);
-            ConfigureRepository(backupJob.Repository, config);
-            ConfigureJobCleaner(backupJob.JobCleaner, config);
-            ConfigurePointRestorer(backupJob.PointRestorer, config);
-            ConfigureStoragePacker(backupJob.StoragePacker, config);
-            ConfigureExcessPointsChooser(backupJob.ExcessPointsChooser, config);
-
+            JobConfig config = GetConfig(backupJob);
             string configPath = Path.Combine(path, _configFileName);
             _serializer.SerializeToFile(config, configPath);
         }
 
-        private void LoadConfig(IExtraJobBuilder builder, string path)
+        private IJobBuilder LoadConfig(string path)
         {
             JobConfig config = _serializer.DeserializeFromFile<JobConfig>(path);
-            builder.SetDestinationPath(config.DestinationPath);
-            builder.SetJobName(config.JobName);
-            ResolveLogger(config, builder);
-            ResolveRepository(config, builder);
-            ResolveJobCleaner(config, builder);
-            ResolvePointRestorer(config, builder);
-            ResolveStoragePacker(config, builder);
-            ResolveExcessPointsChooser(config, builder);
+            return GetBuilder(config);
+        }
+
+        private IJobBuilder ResolveBuilder(JobConfig config)
+        {
+            switch (config.JobType)
+            {
+                case JobType.Default:
+                    return new JobBuilder();
+                case JobType.Extra:
+                    return new ExtraJobBuilder();
+                default:
+                    throw new BackupException("Job type is not supported");
+            }
         }
 
         private IHybridMode ResolveHybridMode(JobConfig config)
@@ -338,6 +376,21 @@ namespace BackupsExtra.Services.Implementations.JobSavers
                     return LogWritingMode.Time;
                 default:
                     throw new BackupException("Incorrect message maker type.");
+            }
+        }
+
+        private void ConfigureJobType(IBackupJob backupJob, JobConfig config)
+        {
+            switch (backupJob)
+            {
+                case BackupJob:
+                    config.JobType = JobType.Default;
+                    break;
+                case ExtraBackupJob:
+                    config.JobType = JobType.Extra;
+                    break;
+                default:
+                    throw new BackupException("Job type is not supported.");
             }
         }
 

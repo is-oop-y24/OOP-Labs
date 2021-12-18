@@ -17,6 +17,8 @@ namespace BackupsExtra
         [JsonConverter(typeof(StringEnumConverter))]
         public StorageMode StorageMode { get; set; }
 
+        public JobType JobType { get; set; }
+
         public ExcessPointsChooseMode ExcessPointsChooseMode { get; set; }
         public TimeSpan DateChooserMaxPointAge { get; set; }
         public int CountChooserMaxCount { get; set; }

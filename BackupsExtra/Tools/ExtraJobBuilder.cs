@@ -69,7 +69,7 @@ namespace BackupsExtra
             _jobObjects = jobObjects;
         }
 
-        public ExtraBackupJob GetJob()
+        public IBackupJob GetJob()
         {
             return new ExtraBackupJob(
                 _destinationPath,

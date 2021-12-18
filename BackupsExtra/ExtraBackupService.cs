@@ -13,21 +13,21 @@ namespace BackupsExtra
         private const string _settingsDirectoryName = "Settings";
 
         private IJobSaver _jobSaver;
-        private List<ExtraBackupJob> _jobs = new List<ExtraBackupJob>();
+        private List<IBackupJob> _jobs = new List<IBackupJob>();
 
         public ExtraBackupService(IJobSaver jobSaver)
         {
             _jobSaver = jobSaver;
         }
 
-        public ExtraBackupJob CreateExtraJob(ExtraJobBuilder builder)
+        public IBackupJob CreateJob(IJobBuilder jobBuilder)
         {
-            ExtraBackupJob job = builder.GetJob();
+            IBackupJob job = jobBuilder.GetJob();
             _jobs.Add(job);
             return job;
         }
 
-        public ExtraBackupJob FindJob(string jobName)
+        public IBackupJob FindJob(string jobName)
         {
             return _jobs
                 .SingleOrDefault(job => job.Name == jobName);
@@ -49,7 +49,7 @@ namespace BackupsExtra
             foreach (string jobName in jobNames)
             {
                 string jobPath = Path.Combine(path, jobName);
-                ExtraBackupJob job = _jobSaver.Load(jobPath);
+                IBackupJob job = _jobSaver.Load(jobPath);
             }
         }
     }

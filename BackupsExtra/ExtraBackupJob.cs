@@ -7,7 +7,7 @@ using Kfc.Utility.Extensions;
 
 namespace BackupsExtra
 {
-    public class ExtraBackupJob
+    public class ExtraBackupJob : IBackupJob
     {
         private readonly BackupJob _backupJob;
         private readonly IExcessPointsChooser _excessPointsChooser;
@@ -30,7 +30,7 @@ namespace BackupsExtra
         public IJobCleaner JobCleaner => _jobCleaner;
         public ILogger Logger => _logger;
         public IPointRestorer PointRestorer => _pointRestorer;
-        public IFileRepository Repository => _backupJob.FileRepository;
+        public IFileRepository FileRepository => _backupJob.FileRepository;
         public IStoragePacker StoragePacker => _backupJob.StoragePacker;
         public IExcessPointsChooser ExcessPointsChooser => _excessPointsChooser;
 
@@ -59,12 +59,19 @@ namespace BackupsExtra
             _logger.Log($"Object {jobObject.Name} is added to the job.");
         }
 
-        public void MakeRestorePoint()
+        public void DeleteObject(string name)
+        {
+            _backupJob.DeleteObject(name);
+        }
+
+        public RestorePoint MakeRestorePoint()
         {
             _logger.Log("Restore point processing begins.");
-            _restorePoints.Add(_backupJob.MakeRestorePoint());
+            RestorePoint restorePoint = _backupJob.MakeRestorePoint();
+            _restorePoints.Add(restorePoint);
             _logger.Log("Restore point created.");
             CleanPoints();
+            return restorePoint;
         }
 
         public void RestoreThePoint(RestorePoint restorePoint)

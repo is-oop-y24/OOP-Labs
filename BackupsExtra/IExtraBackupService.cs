@@ -1,9 +1,9 @@
+using Backups;
+
 namespace BackupsExtra
 {
-    public interface IExtraBackupService
+    public interface IExtraBackupService : IBackupService
     {
-        ExtraBackupJob CreateExtraJob(ExtraJobBuilder builder);
-        ExtraBackupJob FindJob(string jobName);
         void Save(string path);
         void Load(string path);
     }
