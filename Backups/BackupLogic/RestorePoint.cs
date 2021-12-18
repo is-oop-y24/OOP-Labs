@@ -27,6 +27,8 @@ namespace Backups
             _storages = storages;
         }
 
+        private static int _nextId = 1;
+        public int Id { get; } = _nextId++;
         public DateTime Date { get; }
         public ReadOnlyCollection<IStorage> Storages => _storages.AsReadOnly();
         public string Path { get; }

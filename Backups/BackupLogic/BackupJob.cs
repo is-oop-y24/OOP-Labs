@@ -6,7 +6,7 @@ using Backups.FileSystem;
 
 namespace Backups
 {
-    public class BackupJob
+    public class BackupJob : IBackupJob
     {
         private readonly List<IJobObject> _jobObjects = new List<IJobObject>();
         private readonly List<RestorePoint> _restorePoints = new List<RestorePoint>();
@@ -17,8 +17,8 @@ namespace Backups
         {
             Path = System.IO.Path.Combine(destinationPath, jobName);
             Name = jobName;
-            _fileRepository = fileRepository;
-            _storagePacker = storagePacker;
+            _fileRepository = fileRepository ?? throw new NullReferenceException(nameof(fileRepository));
+            _storagePacker = storagePacker ?? throw new NullReferenceException(nameof(storagePacker));
         }
 
         public ReadOnlyCollection<IJobObject> JobObjects => _jobObjects.AsReadOnly();
@@ -34,9 +34,9 @@ namespace Backups
             _jobObjects.Add(jobObject);
         }
 
-        public void DeleteObject(string jobName)
+        public void DeleteObject(string name)
         {
-            if (_jobObjects.RemoveAll(job => job.Name == jobName) == 0)
+            if (_jobObjects.RemoveAll(job => job.Name == name) == 0)
                 throw new BackupException("File doesnt exist.");
         }
 
