@@ -20,23 +20,65 @@ interface ILogger {
     Log() : void
 }
 
-interface IServiceBuilder {
+interface ILogMessageMaker {
+    MakeMessage() : string
+}
+
+interface IJobBuilder {
+    SetDestinationPath() : void
+    SetJobName() : void
+    SetFileRepository() : void
+    SetStoragePacker() : void
+    GetJob() : IBackupJob
+}
+
+interface IExtraJobBuilder {
     SetLogger() : void
     SetPointsMerger() : void
     SetJobSaver() : void
     SetJobCleaner() : void
     SetPointsChooser() : void
-
-    GetBackupExtraService() : IExtraBackupJob
 }
 
-interface IExtraBackupJob { }
+interface IBackupJob { }
 
-RepositoryJobSaver -u-|> IJobSaver
-RepositoryJobSaver o-- IFileRepository
+interface IExtraBackupService {
+    Save() : void
+    Load() : void
+}
+
+interface IBackupService {
+    CreateJob() : IBackupJob
+    FindJob() : IBackupJob
+}
+
+interface IHybridMode {
+    MakeHybrid() : RestorePoint[]
+}
+
+interface IUnarchiver {
+    Unpack() : PathFile[]
+}
+
+class PathFile {
+    path : string
+}
+
+class JobConfig {}
+
+IExtraBackupService <|-u- IBackupService
+ExtraBackupService <|-u- IExtraBackupService
+ExtraBackupService o-d- IJobSaver
+
+ExtraBackupService o-- IBackupJob
+
+JobSaver -u-|> IJobSaver
+JobSaver o-- SerializerToFile
 
 OriginalLocationRestorer -u-|> IRestorer
 SpecifiedLocationRestorer -u-|> IRestorer
+IUnarchiver -u-o OriginalLocationRestorer
+IUnarchiver -u-o SpecifiedLocationRestorer
 
 IExcessPointsChooser <|- CountPointChooser
 IExcessPointsChooser <|- DatePointChooser
@@ -44,15 +86,31 @@ IExcessPointsChooser <|-- HybridPointChooser
 
 HybridPointChooser o-- CountPointChooser
 HybridPointChooser o-- DatePointChooser
+HybridPointChooser o-- IHybridMode
+
+AndHybridMode -u-|> IHybridMode
+OrHybridMode -u-|> IHybridMode
 
 IJobCleaner <|-- MergeJobCleaner
 IJobCleaner <|-- RemoveJobCleaner
 
 ConsoleLogger -u-|> ILogger
+FileLogger -u-|> ILogger
+ILogMessageMaker -u-o ConsoleLogger
+ILogMessageMaker -u-o FileLogger
+DefaultLogMessageMaker -u-|> ILogMessageMaker
+TimeLogMessageMaker -u-|> ILogMessageMaker
 
-ExtraBackupJob -u-|> IExtraBackupJob
+IExtraJobBuilder -u-|> IJobBuilder
+
+Unarchiver -u-|> IUnarchiver
+Unarchiver o-- FileDecoder
+PathFile --o BackupFile
+
+ExtraBackupJob -u-|> IBackupJob
+ExtraBackupJob *-- BackupJob
+ExtraBackupJob o-- RestorePoint
 ExtraBackupJob o-- IRestorer
-ExtraBackupJob o-- IJobSaver
 ExtraBackupJob o-- IExcessPointsChooser
 ExtraBackupJob o-- IJobCleaner
 ExtraBackupJob o-l- ILogger
