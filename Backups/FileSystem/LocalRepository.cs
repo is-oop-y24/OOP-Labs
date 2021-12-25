@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 
@@ -14,6 +15,10 @@ namespace Backups.FileSystem
 
         public void AddFile(BackupFile backupFile, string destinationPath)
         {
+            if (backupFile == null)
+                throw new NullReferenceException(nameof(backupFile));
+            if (string.IsNullOrWhiteSpace(destinationPath))
+                throw new BackupException("Incorrect destination path");
             string filePath = Path.Combine(destinationPath, backupFile.Name.Name);
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File with such name already exists.");

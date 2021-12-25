@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Backups;
 using BackupsExtra.Services.Services;
+using Kfc.Utility.Extensions;
 
 namespace BackupsExtra
 {
@@ -22,6 +23,7 @@ namespace BackupsExtra
 
         public IBackupJob CreateJob(IJobBuilder jobBuilder)
         {
+            jobBuilder.ThrowIfNull(nameof(jobBuilder));
             IBackupJob job = jobBuilder.GetJob();
             _jobs.Add(job);
             return job;
@@ -29,12 +31,16 @@ namespace BackupsExtra
 
         public IBackupJob FindJob(string jobName)
         {
+            if (string.IsNullOrWhiteSpace(jobName))
+                throw new BackupException("Incorrect job name.");
             return _jobs
                 .SingleOrDefault(job => job.Name == jobName);
         }
 
         public void Save(string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new BackupException("Incorrect path.");
             var serializer = new SerializerToFile();
 
             serializer.SerializeToFile(_jobs.Select(job => job.Name), Path.Combine(path, _jobListFileName));
@@ -43,6 +49,8 @@ namespace BackupsExtra
 
         public void Load(string path)
         {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new BackupException("Incorrect path.");
             var serializer = new SerializerToFile();
 
             List<string> jobNames = serializer.DeserializeFromFile<List<string>>(Path.Combine(path, _jobListFileName));

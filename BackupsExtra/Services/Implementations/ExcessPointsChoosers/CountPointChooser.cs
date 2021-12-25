@@ -20,7 +20,7 @@ namespace BackupsExtra.Services.Implementations.ExcessPointsChoosers
         public List<RestorePoint> ChoosePoints(List<RestorePoint> restorePoints)
         {
             return restorePoints
-                .OrderBy(point => point.Date)
+                .OrderByDescending(point => point.Date)
                 .SkipLast(MaxCount)
                 .ToList();
         }

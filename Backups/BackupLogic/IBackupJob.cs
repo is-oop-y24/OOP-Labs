@@ -5,15 +5,16 @@ namespace Backups
 {
     public interface IBackupJob
     {
-        public string Path { get; }
-        public string Name { get; }
-        public IFileRepository FileRepository { get; }
-        public IStoragePacker StoragePacker { get; }
-        public ReadOnlyCollection<RestorePoint> RestorePoints { get; }
-        public ReadOnlyCollection<IJobObject> JobObjects { get; }
+        string Path { get; }
+        string Name { get; }
+        IFileRepository FileRepository { get; }
+        IStoragePacker StoragePacker { get; }
+        ReadOnlyCollection<RestorePoint> RestorePoints { get; }
+        ReadOnlyCollection<IJobObject> JobObjects { get; }
 
         void AddObject(IJobObject jobObject);
         void DeleteObject(string name);
+        RestorePoint GetRestorePoint(int id);
         RestorePoint MakeRestorePoint();
     }
 }

@@ -15,6 +15,7 @@ using BackupsExtra.Services.Implementations.JobSavers.DTOs;
 using BackupsExtra.Services.Implementations.Loggers;
 using BackupsExtra.Services.Implementations.Restorers;
 using BackupsExtra.Services.Services;
+using Kfc.Utility.Extensions;
 using Newtonsoft.Json;
 
 namespace BackupsExtra.Services.Implementations.JobSavers
@@ -75,6 +76,7 @@ namespace BackupsExtra.Services.Implementations.JobSavers
 
         public IJobBuilder GetBuilder(JobConfig config)
         {
+            config.ThrowIfNull(nameof(config));
             var builder = ResolveBuilder(config);
             builder.SetDestinationPath(config.DestinationPath);
             builder.SetJobName(config.JobName);
