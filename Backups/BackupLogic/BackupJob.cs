@@ -13,12 +13,12 @@ namespace Backups
         private readonly IFileRepository _fileRepository;
         private readonly IStoragePacker _storagePacker;
 
-        public BackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker)
+        public BackupJob(string jobName, string destinationPath, IFileRepository fileRepository, IStoragePacker storagePacker)
         {
-            if (string.IsNullOrWhiteSpace(jobName))
-                throw new BackupException("Incorrect job name");
-            if (string.IsNullOrWhiteSpace(destinationPath))
-                throw new BackupException("Incorrect path");
+            if (jobName == null)
+                throw new NullReferenceException(nameof(jobName));
+            if (destinationPath == null)
+                throw new NullReferenceException(nameof(destinationPath));
 
             Path = System.IO.Path.Combine(destinationPath, jobName);
             Name = jobName;
