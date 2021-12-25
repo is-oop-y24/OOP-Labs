@@ -15,6 +15,11 @@ namespace Backups
 
         public BackupJob(string destinationPath, string jobName, IFileRepository fileRepository, IStoragePacker storagePacker)
         {
+            if (string.IsNullOrWhiteSpace(jobName))
+                throw new BackupException("Incorrect job name");
+            if (string.IsNullOrWhiteSpace(destinationPath))
+                throw new BackupException("Incorrect path");
+
             Path = System.IO.Path.Combine(destinationPath, jobName);
             Name = jobName;
             _fileRepository = fileRepository ?? throw new NullReferenceException(nameof(fileRepository));
@@ -31,13 +36,24 @@ namespace Backups
 
         public void AddObject(IJobObject jobObject)
         {
+            if (jobObject == null)
+                throw new NullReferenceException(nameof(jobObject));
             _jobObjects.Add(jobObject);
         }
 
         public void DeleteObject(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new BackupException("Incorrect object name");
             if (_jobObjects.RemoveAll(job => job.Name == name) == 0)
                 throw new BackupException("File doesnt exist.");
+        }
+
+        public RestorePoint GetRestorePoint(int id)
+        {
+            return _restorePoints
+                       .Find(rp => rp.Id == id)
+                   ?? throw new BackupException("Job doesn't contain this restore point.");
         }
 
         public RestorePoint MakeRestorePoint()

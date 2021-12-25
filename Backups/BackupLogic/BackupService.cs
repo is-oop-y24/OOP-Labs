@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Backups.FileSystem;
@@ -18,6 +19,8 @@ namespace Backups
 
         public IBackupJob CreateJob(IJobBuilder jobBuilder)
         {
+            if (jobBuilder == null)
+                throw new NullReferenceException(nameof(jobBuilder));
             IBackupJob backupJob = jobBuilder.GetJob();
             _jobs.Add(backupJob);
             return backupJob;
@@ -25,6 +28,8 @@ namespace Backups
 
         public IBackupJob FindJob(string jobName)
         {
+            if (string.IsNullOrWhiteSpace(jobName))
+                throw new BackupException("Incorrect job name.");
             if (!_jobs.Exists(job => job.Name == jobName))
                 throw new BackupException("Job doesnt exist.");
             return _jobs.Find(job => job.Name == jobName);

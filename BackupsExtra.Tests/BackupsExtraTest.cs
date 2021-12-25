@@ -12,15 +12,6 @@ namespace BackupsExtra.Tests
 {
     public class BackupsExtraTest
     {
-        private IExtraBackupService _extraBackupService;
-        private IExtraJobBuilder _defaultBuilder;
-        
-        [SetUp]
-        public void SetUp()
-        {
-            _extraBackupService = new ExtraBackupService(new JobSaver());
-        }
-
         [Test]
         public void CountExcessChooserGetExcessPoints_RightPointsNumberReturned()
         {

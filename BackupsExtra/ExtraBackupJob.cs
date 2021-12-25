@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Backups;
 using Backups.FileSystem;
 using BackupsExtra.Services.Services;
@@ -40,11 +41,7 @@ namespace BackupsExtra
         public ReadOnlyCollection<IJobObject> JobObjects
         {
             get => _backupJob.JobObjects;
-            init
-            {
-                foreach (IJobObject jobObject in value)
-                    _backupJob.AddObject(jobObject);
-            }
+            init => AddObjectRange(value);
         }
 
         public ReadOnlyCollection<RestorePoint> RestorePoints
@@ -55,13 +52,29 @@ namespace BackupsExtra
 
         public void AddObject(IJobObject jobObject)
         {
-            _backupJob.AddObject(jobObject);
+            _backupJob.AddObject(jobObject.ThrowIfNull(nameof(jobObject)));
             _logger.Log($"Object {jobObject.Name} is added to the job.");
+        }
+
+        public void AddObjectRange(IEnumerable<IJobObject> jobObjects)
+        {
+            jobObjects.ThrowIfNull(nameof(jobObjects));
+            foreach (IJobObject jobObject in jobObjects)
+                _backupJob.AddObject(jobObject);
         }
 
         public void DeleteObject(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new BackupException("Incorrect object name.");
             _backupJob.DeleteObject(name);
+        }
+
+        public RestorePoint GetRestorePoint(int id)
+        {
+            return _restorePoints
+                       .Find(rp => rp.Id == id)
+                   ?? throw new BackupException("Job doesn't contain this restore point.");
         }
 
         public RestorePoint MakeRestorePoint()
@@ -76,6 +89,9 @@ namespace BackupsExtra
 
         public void RestoreThePoint(RestorePoint restorePoint)
         {
+            restorePoint.ThrowIfNull(nameof(restorePoint));
+            if (!_restorePoints.Contains(restorePoint))
+                throw new BackupException("Job doesnt contain this restore point.");
             _pointRestorer.RestoreThePoint(restorePoint);
         }
 

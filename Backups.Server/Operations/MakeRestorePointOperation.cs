@@ -18,7 +18,7 @@ namespace Backups.Server
         {
             try
             {
-                IBackupJob job = _backupService.FindJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                IBackupJob job = _backupService.FindJob(_data.JobName);
                 job.MakeRestorePoint();
             }
             catch (ServerException serverException)

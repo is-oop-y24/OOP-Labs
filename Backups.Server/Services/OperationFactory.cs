@@ -31,6 +31,8 @@ namespace Backups.Server
                     return new CreateJobOperation(_backupService, request.RequestData);
                 case RequestType.DeleteJobObject:
                     return new DeleteJobObjectOperation(_backupService, request.RequestData);
+                case RequestType.RestoreThePoint:
+                    return new RestoreThePointOperation(_backupService, request.RequestData);
                 default:
                     throw new ServerException("Incorrect operation type.");
             }

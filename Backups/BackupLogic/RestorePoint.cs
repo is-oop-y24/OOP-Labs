@@ -17,14 +17,14 @@ namespace Backups
         public RestorePoint(string destinationPath, List<IJobObject> jobObjects, IStoragePacker storagePacker)
         {
             Date = DateTime.Now;
-            Path = System.IO.Path.Combine(destinationPath, $"{Date.Day}.{Date.Month}.{Date.Year} [Time {Date.Hour}.{Date.Minute}.{Date.Second}]");
+            Path = System.IO.Path.Combine(destinationPath, $"{Date.Day}.{Date.Month}.{Date.Year}[Time {Date.Hour}.{Date.Minute}.{Date.Second}]");
             _storages = storagePacker.MakeStorages(jobObjects, Path);
         }
 
         public RestorePoint(DateTime date, string path, List<IStorage> storages)
         {
             Date = date;
-            Path = System.IO.Path.Combine(path, $"{Date.Day}.{Date.Month}.{Date.Year} [Time {Date.Hour}.{Date.Minute}.{Date.Second}]");
+            Path = System.IO.Path.Combine(path, $"{Date.Day}.{Date.Month}.{Date.Year}[Time {Date.Hour}.{Date.Minute}.{Date.Second}]");
             _storages = storages;
         }
 

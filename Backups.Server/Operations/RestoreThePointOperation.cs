@@ -19,11 +19,11 @@ namespace Backups.Server
         {
             try
             {
-                IBackupJob job = _backupService.FindJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
-                if (job is not ExtraBackupJob extraJob) throw new BackupException("Cannot restore the point of default job.");
-                RestorePoint restorePoint = extraJob.RestorePoints.SingleOrDefault(p => p.Id == _data.RestorePointId);
-                extraJob.RestoreThePoint(restorePoint ?? throw new BackupException("Job doesnt contain this restore point."));
-                return new Response(ResponseCode.Success, new ResponseData());
+                IBackupJob job = _backupService.FindJob(_data.JobName);
+                if (job is not ExtraBackupJob extraJob) 
+                    throw new BackupException("Cannot restore the point of default job.");
+                RestorePoint restorePoint = extraJob.GetRestorePoint(_data.RestorePointId);
+                extraJob.RestoreThePoint(restorePoint);
             }
             catch (ServerException serverException)
             {
@@ -36,6 +36,8 @@ namespace Backups.Server
                     Error = new Error { Message = "Backup error: " + backupException}
                 });
             }
+
+            return new Response(ResponseCode.Success, new ResponseData());
         }
     }
 }
