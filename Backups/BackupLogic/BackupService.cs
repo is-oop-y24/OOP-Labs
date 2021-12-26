@@ -1,31 +1,35 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Backups.FileSystem;
 
 namespace Backups
 {
     public class BackupService : IBackupService
     {
-        private readonly List<BackupJob> _jobs = new List<BackupJob>();
-        private readonly string _path;
-        private readonly IFileRepository _repository;
+        private readonly List<IBackupJob> _jobs = new List<IBackupJob>();
 
-        public BackupService(string path, IFileRepository repository)
+        public BackupService(string path)
         {
-            _path = path;
-            _repository = repository;
+            Path = path;
         }
 
-        public BackupJob CreateJob(string jobName, IStoragePacker storagePacker,  string jobPath = null)
+        public ReadOnlyCollection<IBackupJob> Jobs => _jobs.AsReadOnly();
+        public string Path { get; }
+
+        public IBackupJob CreateJob(IJobBuilder jobBuilder)
         {
-            if (_jobs.Exists(job => job.Name == jobName))
-                throw new BackupException("Job already exists.");
-            var job = new BackupJob(jobPath ?? _path, jobName, _repository, storagePacker);
-            _jobs.Add(job);
-            return job;
+            if (jobBuilder == null)
+                throw new NullReferenceException(nameof(jobBuilder));
+            IBackupJob backupJob = jobBuilder.GetJob();
+            _jobs.Add(backupJob);
+            return backupJob;
         }
 
-        public BackupJob GetJob(string jobName)
+        public IBackupJob FindJob(string jobName)
         {
+            if (string.IsNullOrWhiteSpace(jobName))
+                throw new BackupException("Incorrect job name.");
             if (!_jobs.Exists(job => job.Name == jobName))
                 throw new BackupException("Job doesnt exist.");
             return _jobs.Find(job => job.Name == jobName);

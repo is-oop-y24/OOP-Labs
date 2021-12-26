@@ -18,12 +18,15 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
-                job.DeleteObject(_data.ObjectName ?? throw new ServerException("Request must have JobObjectName argument."));
+                IBackupJob job = _backupService.FindJob(_data.JobName);
+                job.DeleteObject(_data.ObjectName);
             }
             catch (ServerException serverException)
             {
-                return new Response(ResponseCode.Error, new ResponseData {Error = new Error{Message = serverException.Message}});
+                return new Response(ResponseCode.Error, new ResponseData
+                {
+                    Error = new Error {Message = serverException.Message}
+                });
             }
             catch (BackupException backupException)
             {

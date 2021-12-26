@@ -14,10 +14,6 @@ namespace Backups
         }
 
         public string Name { get; }
-
-        public ReadOnlyCollection<string> GetPathList()
-        {
-            return _paths.AsReadOnly();
-        }
+        public ReadOnlyCollection<string> Paths => _paths.AsReadOnly();
     }
 }

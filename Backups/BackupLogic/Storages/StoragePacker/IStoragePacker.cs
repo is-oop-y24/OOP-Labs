@@ -5,6 +5,6 @@ namespace Backups
 {
     public interface IStoragePacker
     {
-        public List<IStorage> MakeStorages(List<IJobObject> jobObjects, IFileRepository fileRepository, string path);
+        List<IStorage> MakeStorages(List<IJobObject> jobObjects, string path);
     }
 }

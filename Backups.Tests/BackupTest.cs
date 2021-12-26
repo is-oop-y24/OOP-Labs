@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Backups.FileSystem;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace Backups.Tests
@@ -14,7 +15,7 @@ namespace Backups.Tests
         public void SetUp()
         {
             _fileRepository = new FileRepositoryMock();
-            _backupService = new BackupService("", _fileRepository);
+            _backupService = new BackupService("");
         }
 
         [Test]
@@ -31,8 +32,13 @@ namespace Backups.Tests
             var file2 = new BackupFile(new FileName(fileName2), fileContent2);
             _fileRepository.AddFile(file1, fileFolderPath);
             _fileRepository.AddFile(file2, fileFolderPath);
-            
-            BackupJob job = _backupService.CreateJob(jobName, new SplitStoragePacker());
+
+            IJobBuilder jobBuilder = new JobBuilder();
+            jobBuilder.SetDestinationPath("");
+            jobBuilder.SetJobName(jobName);
+            jobBuilder.SetStoragePacker(new SplitStoragePacker());
+            jobBuilder.SetFileRepository(_fileRepository);
+            IBackupJob job = _backupService.CreateJob(jobBuilder);
             job.AddObject(new JobFiles(new List<string>
             {
                 Path.Combine(fileFolderPath, fileName1),
@@ -68,8 +74,13 @@ namespace Backups.Tests
             var file2 = new BackupFile(new FileName(fileName2), fileContent2);
             _fileRepository.AddFile(file1, fileFolderPath);
             _fileRepository.AddFile(file2, fileFolderPath);
-            
-            BackupJob job = _backupService.CreateJob(jobName, new SingleStoragePacker());
+
+            IJobBuilder jobBuilder = new JobBuilder();
+            jobBuilder.SetJobName(jobName);
+            jobBuilder.SetStoragePacker(new SplitStoragePacker());
+            jobBuilder.SetDestinationPath("");
+            jobBuilder.SetFileRepository(_fileRepository);
+            IBackupJob job = _backupService.CreateJob(jobBuilder);
             job.AddObject(new JobFiles(new List<string>
             {
                 Path.Combine(fileFolderPath, fileName1),

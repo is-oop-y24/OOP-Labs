@@ -1,44 +1,46 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Backups;
-using Backups.FileSystem;
 
-namespace Isu
+namespace Backups.FileSystem
 {
     public class LocalRepository : IFileRepository
     {
-        private readonly string _path;
-
         public LocalRepository(string path)
         {
-            _path = path;
+            RepositoryPath = path;
         }
+
+        public string RepositoryPath { get; }
 
         public void AddFile(BackupFile backupFile, string destinationPath)
         {
+            if (backupFile == null)
+                throw new NullReferenceException(nameof(backupFile));
+            if (string.IsNullOrWhiteSpace(destinationPath))
+                throw new BackupException("Incorrect destination path");
             string filePath = Path.Combine(destinationPath, backupFile.Name.Name);
             if (System.IO.File.Exists(filePath))
                 throw new FileSystemException("File with such name already exists.");
 
-            string absDirPath = Path.Combine(_path, destinationPath);
+            string absDirPath = Path.Combine(RepositoryPath, destinationPath);
             string absFilePath = Path.Combine(absDirPath, backupFile.Name.Name);
-            Directory.CreateDirectory(absDirPath);
+            if (!Directory.Exists(absDirPath))
+                Directory.CreateDirectory(absDirPath);
             using FileStream fileStream = System.IO.File.Create(absFilePath);
             fileStream.Write(backupFile.Content.ToArray());
         }
 
         public BackupFile GetFile(string filePath)
         {
-            if (System.IO.File.Exists(filePath))
+            string absFilePath = Path.Combine(RepositoryPath, filePath);
+            if (!System.IO.File.Exists(absFilePath))
                 throw new FileSystemException("File doesnt exist.");
-            
-            string absFilePath = Path.Combine(_path, filePath);
+
             using FileStream fileStream = System.IO.File.OpenRead(absFilePath);
             using MemoryStream memoryStream = new MemoryStream();
             fileStream.CopyTo(memoryStream);
-            return new BackupFile(new FileName(Path.GetFileName(filePath)), memoryStream.GetBuffer());
+            return new BackupFile(new FileName(Path.GetFileName(filePath)), memoryStream.ToArray());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Backups.Server
         {
             try
             {
-                BackupJob job = _backupService.GetJob(_data.JobName ?? throw new ServerException("Request must have JobName argument."));
+                IBackupJob job = _backupService.FindJob(_data.JobName);
                 job.AddObject(new JobFiles(new List<string> {_data.Path}, Path.GetFileName(_data.Path)));
             }
             catch (ServerException serverException)
